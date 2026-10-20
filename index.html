@@ -115,7 +115,8 @@ body.rainbow::after { opacity: .22; }
 .secret::after { content: ""; position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; pointer-events: none;
   background: conic-gradient(from 45deg, transparent 0 20%, #fff 25%, transparent 30% 45%, #fff 50%, transparent 55% 70%, #fff 75%, transparent 80% 95%, #fff 100%);
   -webkit-mask: radial-gradient(circle, #000 20%, transparent 70%); mask: radial-gradient(circle, #000 20%, transparent 70%);
-  animation: glint 1.8s ease-in-out infinite; }
+}
+.secret.show::after { animation: glint 1.8s ease-in-out infinite; }
 @keyframes glint { 0%,100% { opacity: 0; transform: scale(.4) rotate(0deg); } 50% { opacity: 1; transform: scale(1.2) rotate(45deg); } }
 .secret svg { width: 100%; height: 100%; display: block; overflow: visible; }
 .secret:focus-visible { outline: 2px dashed var(--glow); outline-offset: 2px; }
@@ -151,9 +152,14 @@ body.rainbow::after { opacity: .22; }
   width: min(64vw, 320px, 40vh); max-width: 100%;
   border: 0; background: none; padding: 0; cursor: pointer; border-radius: 50%;
   transition: transform 900ms cubic-bezier(.34,1.4,.5,1);
-  filter: drop-shadow(0 18px 30px rgba(0,0,0,.35));
 }
-#pal.aura { filter: drop-shadow(0 0 18px rgba(255,236,170,.75)) drop-shadow(0 0 40px rgba(143,211,244,.6)); }
+.float { position: relative; }
+.float::before { content: ""; position: absolute; left: 50%; bottom: 4%; width: 62%; height: 22px; margin-left: -31%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 70%); }
+.float::after { content: ""; position: absolute; left: 50%; top: 50%; width: 130%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: -1; opacity: 0;
+  background: radial-gradient(circle, rgba(255,236,170,.55) 0%, rgba(143,211,244,.3) 40%, transparent 68%); transition: opacity 1s; }
+.float.aura::after { opacity: 1; }
+#pal svg { will-change: transform, scale; }
 #pal.fast { transition-duration: 350ms; }
 #pal:focus-visible { outline: 3px dashed var(--glow); outline-offset: 12px; }
 #pal svg { display: block; width: 100%; height: auto; overflow: visible; }
@@ -161,9 +167,10 @@ body.rainbow::after { opacity: .22; }
 @keyframes squish { 0% { scale: 1 1; } 30% { scale: 1.12 .88; } 60% { scale: .94 1.06; } 100% { scale: 1 1; } }
 .dizzy { animation: dizzy 4s ease-in-out !important; }
 @keyframes dizzy { 0%,100% { translate: 0 0; rotate: 0deg; } 8% { translate: -16px 4px; rotate: -8deg; } 18% { translate: 14px -4px; rotate: 7deg; } 30% { translate: -12px 3px; rotate: -6deg; } 42% { translate: 10px -2px; rotate: 5deg; } 55% { translate: -7px 1px; rotate: -3deg; } 70% { translate: 4px 0; rotate: 2deg; } 85% { translate: -2px 0; rotate: -1deg; } }
-.wobble .jelly-skirt { animation: wob 700ms ease-out; transform-origin: 150px 150px; }
+.jelly-skirt { transform-origin: 150px 150px; transform-box: view-box; }
 @keyframes wob { 0%{transform:scaleX(1)} 20%{transform:scaleX(1.15) scaleY(.9)} 45%{transform:scaleX(.9) scaleY(1.08)} 70%{transform:scaleX(1.05)} 100%{transform:none} }
-.lure-glow { animation: pulse 2.4s ease-in-out infinite; transform-origin: 106px 40px; }
+.lure-glow { transform-origin: 106px 40px; }
+.char.on .lure-glow { animation: pulse 2.4s ease-in-out infinite; }
 @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
 .flash .lure-glow { animation: flash 900ms ease-out; }
 @keyframes flash { 0% { opacity: 1; transform: scale(1); } 25% { opacity: 1; transform: scale(2.2); } 100% { opacity: .6; transform: scale(1); } }
@@ -189,9 +196,9 @@ body.rainbow::after { opacity: .22; }
 .brand { display: flex; align-items: center; gap: 9px; font: 21px var(--font); color: var(--text); text-shadow: 0 1px 10px rgba(0,0,0,.35); background: none; border: 0; padding: 0; cursor: pointer; border-radius: 12px; }
 .brand:focus-visible { outline: 2px solid var(--glow); outline-offset: 4px; }
 .brand svg { width: 44px; height: 44px; flex: none; filter: drop-shadow(0 3px 8px rgba(0,0,0,.3)); overflow: visible; }
-.brand .ico-spout { transform-origin: 27px 20px; transform-box: view-box; animation: spoutpuff 4s ease-in-out infinite; }
-.brand .ico-whale { animation: peek 4s ease-in-out infinite; }
-.brand .ico-sea { animation: icosea 3s linear infinite; }
+.brand .ico-spout { transform-origin: 27px 20px; transform-box: view-box; }
+.brand svg { animation: brandbob 4s ease-in-out infinite; will-change: transform; }
+@keyframes brandbob { 0%,60%,100% { transform: translateY(0) rotate(0); } 70% { transform: translateY(-2px) rotate(-4deg); } 80% { transform: translateY(1px) rotate(2deg); } }
 @keyframes icosea { to { transform: translateX(-16px); } }
 @keyframes peek { 0%,60%,100% { transform: translateY(0); } 70% { transform: translateY(-2px); } 80% { transform: translateY(1px); } }
 @keyframes spoutpuff { 0%,60%,100% { transform: scale(1); } 70% { transform: scale(1.18) translateY(-1px); } 80% { transform: scale(.95); } }
@@ -206,7 +213,7 @@ body.rainbow::after { opacity: .22; }
 .fpill:active { transform: scale(.97); }
 .fpill:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; }
 .fpav { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.14); display: grid; place-items: center; overflow: visible; }
-.fpav svg { width: 46px; height: 40px; overflow: visible; }
+.fpav .cr { width: 46px; height: 40px; }
 .fptx { display: grid; text-align: left; line-height: 1.15; }
 .fptx b { font-size: 15px; font-weight: 600; }
 .fptx span { font-size: 11px; opacity: .7; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
@@ -219,7 +226,7 @@ body.rainbow::after { opacity: .22; }
 .ghead h2 { margin: 0; font-size: 21px; }
 .ghead p { margin: 2px 0 0; font-size: 13px; opacity: .72; }
 .gbody { overflow-y: auto; padding: 0 16px 18px; overscroll-behavior: contain; }
-.gzone { position: relative; margin-top: 10px; padding: 12px 12px 12px 26px; border-radius: 18px; background: linear-gradient(180deg, var(--za), var(--zb)); border: 1px solid rgba(255,255,255,.12); animation: rise .45s cubic-bezier(.34,1.3,.5,1) both; }
+.gzone { contain: layout paint; position: relative; margin-top: 10px; padding: 12px 12px 12px 26px; border-radius: 18px; background: linear-gradient(180deg, var(--za), var(--zb)); border: 1px solid rgba(255,255,255,.12); animation: rise .45s cubic-bezier(.34,1.3,.5,1) both; }
 .gzone::before { content: ""; position: absolute; left: 12px; top: 16px; bottom: 16px; width: 3px; border-radius: 3px; background: linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.15)); }
 .gzh { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
 .gzh b { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
@@ -228,7 +235,8 @@ body.rainbow::after { opacity: .22; }
 .gcard { position: relative; display: grid; justify-items: center; gap: 2px; padding: 8px 4px 9px; border-radius: 14px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.08); color: var(--text); font: inherit; cursor: pointer; text-align: center; transition: transform .25s cubic-bezier(.34,1.6,.5,1), background .2s; }
 .gcard:hover:not(.locked) { transform: translateY(-3px); background: rgba(255,255,255,.14); }
 .gcard:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; }
-.gcard svg.cr { width: 64px; height: 54px; overflow: visible; animation: gfloat 3.2s ease-in-out infinite; animation-delay: var(--gd, 0s); }
+.gcard .cr { width: 64px; height: 54px; object-fit: contain; }
+.gcard.cur .cr { animation: gfloat 3.2s ease-in-out infinite; will-change: transform; }
 @keyframes gfloat { 50% { transform: translateY(-4px); } }
 .gcard b { font-size: 12.5px; font-weight: 600; line-height: 1.2; }
 .gcard .gm { font-size: 10.5px; opacity: .7; font-variant-numeric: tabular-nums; }
@@ -236,7 +244,7 @@ body.rainbow::after { opacity: .22; }
 .gcard.cur { border-color: var(--gold); background: rgba(255,211,107,.16); box-shadow: 0 0 0 2px rgba(255,211,107,.35); }
 .gcard.cur::after { content: "Here now"; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 600; letter-spacing: .08em; padding: 2px 7px; border-radius: 999px; background: var(--gold); color: #2a1b00; }
 .gcard.locked { cursor: default; background: rgba(0,0,0,.2); border-style: dashed; }
-.gcard.locked svg.cr { filter: brightness(0) invert(.22); opacity: .55; animation: none; }
+.gcard.locked .cr { opacity: .5; animation: none; }
 .gcard.locked b { opacity: .55; letter-spacing: .1em; }
 .gcard.locked .gs { color: rgba(230,245,255,.6); }
 .gcard .lk { position: absolute; top: 6px; right: 6px; width: 15px; height: 15px; stroke: var(--gold); fill: none; stroke-width: 2.2; stroke-linecap: round; opacity: .8; }
@@ -244,16 +252,17 @@ body.rainbow::after { opacity: .22; }
 .gnext b { color: var(--gold); }
 .gbar { height: 6px; border-radius: 6px; background: rgba(0,0,0,.3); margin-top: 7px; overflow: hidden; }
 .gbar span { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--gold), var(--pink)); transition: width .9s cubic-bezier(.3,1,.4,1); }
-@media (max-width: 380px) { .gcards { gap: 6px; } .gcard svg.cr { width: 54px; height: 46px; } }
+@media (max-width: 380px) { .gcards { gap: 6px; } .gcard .cr { width: 54px; height: 46px; } }
 @media (max-width: 520px) { #guide { place-items: end center; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); } #guide .sheet { animation: sheetup .45s cubic-bezier(.3,1.3,.5,1); } #guide.closing .sheet { animation: sheetdown .25s ease-in forwards; } }
 .cregrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; margin: 4px 0 12px; }
 .cre { display: grid; justify-items: center; gap: 1px; padding: 8px 4px 7px; border-radius: 14px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); animation: rise .45s cubic-bezier(.34,1.3,.5,1) both; text-align: center; }
-.cre svg { width: 48px; height: 42px; overflow: visible; }
+.cre .cr { width: 48px; height: 42px; object-fit: contain; }
 .cre b { font-size: 11px; font-weight: 600; color: #fff; line-height: 1.2; }
 .cre span { font-size: 10px; opacity: .65; font-variant-numeric: tabular-nums; }
-.cre.locked svg { filter: brightness(0) invert(.25); opacity: .5; }
+.cre.locked .cr { opacity: .5; }
 .cre.locked b { opacity: .5; letter-spacing: .1em; }
 @media (max-width: 380px) { .cregrid { grid-template-columns: repeat(3, 1fr); } }
+@media (pointer: coarse) { .cre, .card, .gzone { animation: none !important; } }
 button.cat { width: 100%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 8px 10px; color: var(--text); font: inherit; cursor: pointer; text-align: left; }
 button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; }
 .cat .chev { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; transition: transform .3s; opacity: .7; margin-left: 6px; }
@@ -312,7 +321,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .gauge .dot {
   position: absolute; right: 9px; width: 23px; height: 23px; border-radius: 50%;
   background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,.55), inset 0 -3px 0 rgba(0,0,0,.12);
-  transform: translateY(-50%); transition: opacity .6s, scale .2s;
+  top: 0; transform: translate3d(0, calc(var(--dy, 0px) - 50%), 0); transition: opacity .6s, scale .2s; will-change: transform;
 }
 .gauge .dot::after { content: ""; position: absolute; inset: 7px 5px; border-top: 2px solid #9db8cc; border-bottom: 2px solid #9db8cc; }
 .gauge.drag .dot { scale: 1.2; }
@@ -412,10 +421,11 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .sheet::before { content: ""; position: absolute; left: 50%; top: 40%; width: 760px; height: 760px; margin: -380px 0 0 -380px; z-index: -1; pointer-events: none; opacity: .55;
   background: radial-gradient(circle at 30% 30%, rgba(255,159,181,.55), transparent 32%), radial-gradient(circle at 72% 38%, rgba(255,211,107,.45), transparent 30%), radial-gradient(circle at 46% 72%, rgba(127,227,176,.45), transparent 32%), radial-gradient(circle at 68% 70%, rgba(143,211,244,.5), transparent 30%);
   animation: aurora 26s linear infinite; will-change: transform; }
+@media (max-width: 520px), (pointer: coarse) { .sheet::before { animation: none; width: 520px; height: 520px; margin: -260px 0 0 -260px; } }
 @keyframes aurora { to { transform: rotate(360deg); } }
 .sheet::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(5,8,25,.45) 100%); }
 .parade { position: absolute; inset: 0; overflow: hidden; }
-.parade svg { position: absolute; width: 46px; height: 40px; bottom: 6px; left: 0; animation: paradeswim var(--pd, 14s) linear infinite; animation-delay: var(--pl, 0s); will-change: transform; overflow: visible; }
+.parade .cr { position: absolute; width: 46px; height: 40px; bottom: 6px; left: 0; animation: paradeswim var(--pd, 14s) linear infinite; animation-delay: var(--pl, 0s); will-change: transform; overflow: visible; }
 @keyframes paradeswim { from { transform: translateX(-60px) translateY(0); } 50% { transform: translateX(calc(215px)) translateY(-8px); } to { transform: translateX(490px) translateY(0); } }
 .shero { position: relative; height: 82px; margin: 0 -20px 6px; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0)); overflow: hidden; }
 .sh-waves { position: absolute; left: 0; bottom: -1px; width: 200%; height: 46px; animation: drift 8s linear infinite; }
@@ -456,8 +466,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .card { position: relative; display: flex; gap: 9px; align-items: flex-start; padding: 9px 10px; border-radius: 14px; overflow: hidden;
   background: linear-gradient(140deg, color-mix(in srgb, var(--cc) 22%, transparent), rgba(0,0,0,.18)); border: 1px solid color-mix(in srgb, var(--cc) 55%, transparent);
   animation: rise .45s cubic-bezier(.34,1.3,.5,1) both; }
-.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.22) 45%, transparent 60%); transform: translateX(-120%); animation: cardshine 5s ease-in-out infinite; animation-delay: var(--sd, 0s); pointer-events: none; }
-@keyframes cardshine { 0%, 70% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+.card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.22) 45%, transparent 60%); transform: translateX(-120%); pointer-events: none; }
+@media (hover: hover) { .card:hover::after { animation: cardshine 1.2s ease-in-out; } }
+@keyframes cardshine { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
 .card .bd { width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--cc); box-shadow: 0 0 12px color-mix(in srgb, var(--cc) 60%, transparent); }
 .card .bd svg { width: 15px; height: 15px; stroke: #13213a; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .card .tt { font-size: 12.5px; font-weight: 600; color: #fff; line-height: 1.25; text-transform: capitalize; }
@@ -479,8 +490,8 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .tab { position: relative; z-index: 1; flex: 1; background: none; border: 0; color: var(--text); opacity: .75; font: 14px var(--font); padding: 7px 6px; cursor: pointer; border-radius: 999px; transition: opacity .2s, color .25s; white-space: nowrap; }
 .tab[aria-selected="true"] { opacity: 1; font-weight: 600; color: #2a1b00; }
 .tab:focus-visible { outline: 2px solid var(--glow); outline-offset: -2px; }
-.tabline { position: absolute; top: 4px; bottom: 4px; border-radius: 999px; background: linear-gradient(135deg, #ffe08a, #ffb86b); box-shadow: 0 4px 14px rgba(255,190,90,.45); transition: left .4s cubic-bezier(.34,1.35,.5,1), width .4s cubic-bezier(.34,1.35,.5,1); }
-.panels { position: relative; height: min(48vh, 340px); overflow-y: auto; }
+.tabline { position: absolute; left: 0; top: 4px; bottom: 4px; border-radius: 999px; will-change: transform; background: linear-gradient(135deg, #ffe08a, #ffb86b); box-shadow: 0 4px 14px rgba(255,190,90,.45); transition: transform .4s cubic-bezier(.34,1.35,.5,1); }
+.panels { position: relative; height: min(48vh, 340px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .panel { animation: panelin .35s ease; }
 .panel.left { animation-name: panelinL; }
 @keyframes panelinL { from { opacity: 0; transform: translateX(-14px); } }
@@ -635,6 +646,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 @keyframes idlesweep { 0%, 100% { opacity: 0; transform: rotate(-30deg); } 40% { opacity: .3; } 60% { opacity: .3; transform: rotate(160deg); } 70% { opacity: 0; transform: rotate(180deg); } }
 #e-light.act .beam.idle { animation: sweep 1.6s ease-in-out; }
 @media (prefers-reduced-motion: reduce) { .env, .env svg, .env *, #e-gull { animation: none !important; } }
+@media (pointer: coarse) { .env:not(.act) svg *, #surface .wave { animation: none !important; } #surface .cloud { animation: none; } }
 #surface .sun.pop .disc { animation: sunboop .6s ease-out; }
 #surface .sun .flare { position: absolute; inset: -30px; border-radius: 50%; border: 3px solid rgba(255,248,210,.9); opacity: 0; pointer-events: none; }
 #surface .sun.wink .flare { animation: flarering 1s ease-out 2; }
@@ -647,7 +659,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .cform { display: grid; gap: 6px; }
 .cform label { font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-top: 4px; }
 .cform label span { font-weight: 400; opacity: .6; }
-.cform input, .cform textarea { width: 100%; box-sizing: border-box; padding: 9px 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.25); color: #fff; font: 14px var(--font); resize: vertical; user-select: text; -webkit-user-select: text; }
+.cform input, .cform textarea { width: 100%; box-sizing: border-box; padding: 9px 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.25); color: #fff; font: 16px var(--font); resize: vertical; user-select: text; -webkit-user-select: text; }
 .cform input:focus, .cform textarea:focus { outline: 2px solid var(--glow); outline-offset: 1px; }
 .cform .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .csend { margin-top: 8px; justify-self: start; border: 0; border-radius: 999px; padding: 10px 18px; font: 600 14px var(--font); color: #2a1b00; background: linear-gradient(135deg, #ffe08a, #ffb86b); cursor: pointer; }
@@ -665,7 +677,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .fin p { margin: 0; font-size: 17px; line-height: 1.5; max-width: 44ch; text-wrap: balance; }
 .finrow { display: flex; gap: 2px 4px; justify-content: center; align-items: flex-end; margin-top: 26px; flex-wrap: wrap; width: 100%; max-width: 560px; }
 .finpal { position: relative; width: min(17vw, 92px); animation: finhop 1.1s ease-in-out infinite; }
-.finpal svg { width: 100%; height: auto; display: block; overflow: visible; }
+.finpal .cr { width: 100%; height: auto; display: block; }
 .finpal .say { position: absolute; left: 50%; top: -30px; transform: translateX(-50%) scale(0); background: #fff; color: #13314f; font-weight: 600; font-size: 12px;
   padding: 4px 8px; border-radius: 12px; white-space: nowrap; animation: sayin .5s cubic-bezier(.34,1.6,.5,1) forwards; }
 .finpal .say::after { content: ""; position: absolute; left: 50%; bottom: -5px; margin-left: -5px; border: 5px solid transparent; border-bottom: 0; border-top-color: #fff; }
@@ -674,24 +686,34 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .fin .keep { margin-top: 10px; }
 @media (max-width: 480px) { .finpal .say { font-size: 10px; top: -24px; padding: 3px 6px; } }
 
-/* dizzy face and sleepy face */
-#dizzyFace, #zzz { opacity: 0; transition: opacity .35s ease; pointer-events: none; }
-.dizzy-on #dizzyFace { opacity: 1; }
-.dizzy-on .eye-open, .dizzy-on .eye-happy { opacity: 0 !important; transition: opacity .2s; }
-.dz path { animation: swirl .9s linear infinite; transform-box: fill-box; transform-origin: center; }
-@keyframes swirl { to { transform: rotate(360deg); } }
-.star { animation: orb 1.4s linear infinite; }
+/* dizzy face and sleepy face: drawn on their own layer above the friend */
+.fxo { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 300 / 260; pointer-events: none; }
+#pal .fxo svg { width: auto; height: auto; }
+.dz2 { position: absolute; aspect-ratio: 1; opacity: 0; transition: opacity .25s; will-change: transform; }
+.stars2 { position: absolute; width: 30%; height: 12%; transform: translate(-50%, -50%); opacity: 0; transition: opacity .25s; }
+.stars2 .st { position: absolute; inset: 0; display: grid; place-items: center; will-change: transform; }
+#pal .stars2 .st svg { width: 22%; max-width: 22px; height: auto; }
+.zz2 { position: absolute; width: 20%; height: 20%; opacity: 0; transition: opacity .4s; }
+.zz2 span { position: absolute; left: 0; bottom: 0; font: 600 clamp(14px, 7vw, 30px) var(--font); color: #fff; -webkit-text-stroke: 1px rgba(10,40,80,.35); opacity: 0; will-change: transform, opacity; }
+.zz2 span:nth-child(2) { font-size: clamp(12px, 5.6vw, 24px); left: 20%; bottom: 25%; }
+.zz2 span:nth-child(3) { font-size: clamp(10px, 4.2vw, 18px); left: 38%; bottom: 50%; }
+#pal.dizzy-on .eye-open, #pal.dizzy-on .eye-happy { opacity: 0 !important; transition: opacity .2s; }
+#pal.dizzy-on .dz2, #pal.dizzy-on .stars2 { opacity: 1; }
+#pal.dizzy-on .dz2 { animation: swirl .9s linear infinite; }
+@keyframes swirl { to { rotate: 360deg; } }
+#pal.dizzy-on .stars2 .st { animation: orb 1.4s linear infinite; }
 @keyframes orb {
-  0% { transform: translate(44px, 0) scale(1); } 12.5% { transform: translate(31px, 11px) scale(1.1); } 25% { transform: translate(0, 16px) scale(1.2); }
-  37.5% { transform: translate(-31px, 11px) scale(1.1); } 50% { transform: translate(-44px, 0) scale(1); } 62.5% { transform: translate(-31px, -11px) scale(.85); }
-  75% { transform: translate(0, -16px) scale(.75); } 87.5% { transform: translate(31px, -11px) scale(.85); } 100% { transform: translate(44px, 0) scale(1); } }
-.asleep .eye-open { opacity: 0; }
-.asleep .eye-happy { opacity: 1; }
-.asleep #zzz { opacity: 1; }
-#zzz text { font: 600 30px var(--font); paint-order: stroke; stroke: rgba(10,40,80,.35); stroke-width: 3px; fill: #fff; animation: zfloat 3s ease-in-out infinite; }
-#zzz text:nth-child(2) { animation-delay: 1s; font-size: 24px; }
-#zzz text:nth-child(3) { animation-delay: 2s; font-size: 18px; }
-@keyframes zfloat { 0% { opacity: 0; transform: translate(0,0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(14px,-30px); } }
+  0% { transform: translate(50%, 0) scale(1); } 12.5% { transform: translate(35%, 34%) scale(1.1); } 25% { transform: translate(0, 50%) scale(1.2); }
+  37.5% { transform: translate(-35%, 34%) scale(1.1); } 50% { transform: translate(-50%, 0) scale(1); } 62.5% { transform: translate(-35%, -34%) scale(.85); }
+  75% { transform: translate(0, -50%) scale(.75); } 87.5% { transform: translate(35%, -34%) scale(.85); } 100% { transform: translate(50%, 0) scale(1); } }
+#pal.asleep .eye-open { opacity: 0; }
+#pal.asleep .eye-happy { opacity: 1; }
+#pal.asleep .zz2 { opacity: 1; }
+#pal.asleep .zz2 span { animation: zfloat 3s ease-in-out infinite; }
+#pal.asleep .zz2 span:nth-child(2) { animation-delay: 1s; }
+#pal.asleep .zz2 span:nth-child(3) { animation-delay: 2s; }
+@keyframes zfloat { 0% { opacity: 0; transform: translate(0, 0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(60%, -120%); } }
+#pal { position: relative; }
 .asleep-float { animation-duration: 7s !important; }
 #pal { -webkit-touch-callout: none; }
 .mcard svg.wave-bye { width: 120px; height: 90px; display: block; margin: -6px auto 6px; }
@@ -1165,12 +1187,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 </g>
         </g>
 
-        <g id="dizzyFace">
-          <g class="dz" id="dzL"><path d="M0 0 m-1 0 a1 1 0 1 1 2 0 a2 2 0 1 1 -4 0 a3 3 0 1 1 6 0 a4 4 0 1 1 -8 0 a5 5 0 1 1 10 0" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></g>
-          <g class="dz" id="dzR"><path d="M0 0 m-1 0 a1 1 0 1 1 2 0 a2 2 0 1 1 -4 0 a3 3 0 1 1 6 0 a4 4 0 1 1 -8 0 a5 5 0 1 1 10 0" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></g>
-          <g id="dzStars"><path class="star" d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b"/><path class="star" d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#fff" style="animation-delay:-.47s"/><path class="star" d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b" style="animation-delay:-.93s"/></g>
-        </g>
-        <g id="zzz"><text x="0" y="0">z</text><text x="14" y="-14">z</text><text x="26" y="-26">z</text></g>
+
         <g id="accs">
           <g class="acc" id="a-hat">
             <path d="M0 0 L-24 -2 L-6 -58 Z" fill="#ff9fb5"/><path d="M-12 -40 L-4 -42 M-17 -22 L-6 -25" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
@@ -1188,6 +1205,12 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         </g>
       
       </svg>
+      <div class="fxo" aria-hidden="true">
+        <svg class="dz2" id="dzL2" viewBox="-6 -6 12 12"><path d="M0 0 m-1 0 a1 1 0 1 1 2 0 a2 2 0 1 1 -4 0 a3 3 0 1 1 6 0 a4 4 0 1 1 -8 0 a5 5 0 1 1 10 0" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg class="dz2" id="dzR2" viewBox="-6 -6 12 12"><path d="M0 0 m-1 0 a1 1 0 1 1 2 0 a2 2 0 1 1 -4 0 a3 3 0 1 1 6 0 a4 4 0 1 1 -8 0 a5 5 0 1 1 10 0" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="stars2" id="stars2"><span class="st"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b"/></svg></span><span class="st" style="animation-delay:-.47s"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffffff"/></svg></span><span class="st" style="animation-delay:-.93s"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b"/></svg></span></div>
+        <div class="zz2" id="zz2"><span>z</span><span>z</span><span>z</span></div>
+      </div>
     </button>
   </div>
 </div>
@@ -1250,7 +1273,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         <p class="big">Just a clicker. Nothing else.</p>
         <p>Tap a friend, watch it spin, listen to the bubbles. That's it. No ads, no accounts, no point. Just bloops.</p>
         <p>Dive with the slider, poke the things floating around, and keep an eye out. The ocean is full of secrets.</p>
-        <p class="sig">Made by Rex, Sydney</p>
+        <p class="sig">Made with love by Raghav <span aria-hidden="true">♥</span></p>
       </section>
       <section class="panel" role="tabpanel" id="p-trophies" aria-labelledby="t-trophies" hidden>
         <p class="big">Your records</p>
@@ -1279,10 +1302,11 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       </section>
       <section class="panel" role="tabpanel" id="p-privacy" aria-labelledby="t-privacy" hidden>
         <ul>
-          <li><b>No accounts, no ads, no tracking.</b> Bloop Ocean doesn't collect your name, email or anything else about you.</li>
+          <li><b>No accounts, no ads, no tracking.</b> Bloop Ocean doesn't collect your name, email or anything else about you while you play.</li>
           <li><b>Your progress stays on your device.</b> Spins, prizes, secrets and sound settings are saved in your browser's local storage. They are never sent anywhere.</li>
           <li><b>All sounds are made live</b> in your browser. Nothing is recorded, and the page never asks for your microphone or camera.</li>
-          <li><b>Fonts</b> come from Google Fonts, and the page is hosted on claude.ai. Both may see standard connection details like your IP address under their own privacy policies.</li>
+          <li><b>Hosting.</b> The site is hosted on GitHub Pages, the domain runs through Cloudflare, and fonts come from Google Fonts. Like any website, they may see standard connection details such as your IP address, under their own privacy policies.</li>
+          <li><b>Messages you send</b> through the Contact tab go through Formspree, which emails them to the developer. Only what you type is sent, and your email is optional.</li>
           <li><b>To erase everything,</b> use Start over, or clear this site's data in your browser settings.</li>
         </ul>
       </section>
@@ -1563,11 +1587,13 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const persist = () => { try { localStorage.setItem(SAVE_KEY, enc(save)); } catch (e) {} };
   const store = {
     get(k, d) { return save[k] !== undefined ? JSON.parse(JSON.stringify(save[k])) : d; },
-    set(k, v) { save[k] = JSON.parse(JSON.stringify(v)); clearTimeout(saveT); saveT = setTimeout(persist, 250); }
+    set(k, v) { save[k] = (v && typeof v === 'object') ? (Array.isArray(v) ? v.slice() : Object.assign({}, v)) : v; if (!saveT) saveT = setTimeout(() => { saveT = 0; persist(); }, 900); }
   };
   addEventListener('pagehide', persist); document.addEventListener('visibilitychange', () => { if (document.hidden) persist(); });
   // scripted clicks and key presses (element.click(), dispatchEvent) are ignored everywhere
   ['click', 'pointerdown', 'pointerup', 'keydown', 'keyup'].forEach(ev => document.addEventListener(ev, e => { if (!e.isTrusted) { e.stopImmediatePropagation(); e.preventDefault(); } }, true));
+  let dataVer = 0, lastTapAt = 0;
+  const PHONE = Math.min(innerWidth, innerHeight) < 520 || matchMedia('(pointer: coarse)').matches;
   let spins = store.get('spins', 0), cur = store.get('friend', 'turtle'), muted = store.get('muted', false);
   const foundAt = store.get('foundAt', {});
   Object.assign(SECRET_INFO, GEN_INFO);
@@ -1592,29 +1618,38 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       master = ctx.createGain(); master.gain.value = fxLevel();
       const comp = ctx.createDynamicsCompressor();
       const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 4200;
-      const verb = ctx.createConvolver();
-      const len = Math.floor(ctx.sampleRate * 1.6), ir = ctx.createBuffer(2, len, ctx.sampleRate);
-      for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
-      verb.buffer = ir;
-      const wet = ctx.createGain(); wet.gain.value = 0.3;
       master.connect(lp); lp.connect(comp); comp.connect(ctx.destination);
-      lp.connect(verb); verb.connect(wet); wet.connect(comp);
       const b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
-      const n = ctx.sampleRate * 4, nb = ctx.createBuffer(1, n, ctx.sampleRate), nd = nb.getChannelData(0);
-      let last = 0; for (let i = 0; i < n; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; nd[i] = last * 3.5; }
-      const ns = ctx.createBufferSource(); ns.buffer = nb; ns.loop = true;
-      seaFilter = ctx.createBiquadFilter(); seaFilter.type = 'lowpass'; seaFilter.frequency.value = 600;
-      seaGain = ctx.createGain(); seaGain.gain.value = 0;
-      seaLfo = ctx.createOscillator(); seaLfo.frequency.value = 0.12; seaLfoGain = ctx.createGain(); seaLfoGain.gain.value = 0;
-      seaLfo.connect(seaLfoGain); seaLfoGain.connect(seaGain.gain); seaLfo.start();
-      ns.connect(seaFilter); seaFilter.connect(seaGain); seaGain.connect(comp); ns.start();
-      applySea();
+      // the heavier parts (reverb, ocean bed, noise) are prepared in small pieces right after, so the first tap feels instant
+      const later = (fn, ms) => setTimeout(() => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 400 }) : fn()), ms);
+      later(() => {
+        const n = Math.floor(ctx.sampleRate * 2); noiseBuf = ctx.createBuffer(1, n, ctx.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+      }, 60);
+      later(() => {
+        const verb = ctx.createConvolver();
+        const len = Math.floor(ctx.sampleRate * (PHONE ? .8 : 1.6)), ir = ctx.createBuffer(2, len, ctx.sampleRate);
+        for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+        verb.buffer = ir;
+        const wet = ctx.createGain(); wet.gain.value = 0.3;
+        lp.connect(verb); verb.connect(wet); wet.connect(comp);
+      }, 250);
+      later(() => {
+        const n = Math.floor(ctx.sampleRate * 3), nb = ctx.createBuffer(1, n, ctx.sampleRate), nd = nb.getChannelData(0);
+        let last = 0; for (let i = 0; i < n; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; nd[i] = last * 3.5; }
+        const ns = ctx.createBufferSource(); ns.buffer = nb; ns.loop = true;
+        seaFilter = ctx.createBiquadFilter(); seaFilter.type = 'lowpass'; seaFilter.frequency.value = 600;
+        seaGain = ctx.createGain(); seaGain.gain.value = 0;
+        seaLfo = ctx.createOscillator(); seaLfo.frequency.value = 0.12; seaLfoGain = ctx.createGain(); seaLfoGain.gain.value = 0;
+        seaLfo.connect(seaLfoGain); seaLfoGain.connect(seaGain.gain); seaLfo.start();
+        ns.connect(seaFilter); seaFilter.connect(seaGain); seaGain.connect(comp); ns.start();
+        applySea();
+      }, 700);
     }
     if (ctx.state !== 'running') ctx.resume();
     return true;
   }
   function applySea() {
-    if (!ctx) return;
+    if (!ctx || !seaGain) return;
     const t = ctx.currentTime, s = FRIENDS[cur].sea, k = muted ? 0 : seaLevel();
     master.gain.setTargetAtTime(fxLevel(), t, 0.05);
     seaFilter.frequency.setTargetAtTime(s.cut, t, 0.8);
@@ -1657,14 +1692,14 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(vol, t + dur * .35); g.gain.linearRampToValueAtTime(0.0001, t + dur);
     o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + .1);
   }
+  let noiseBuf = null;
   function noise(t, dur, vol, f0, f1, f2) {
-    const n = Math.floor(ctx.sampleRate * dur), buf = ctx.createBuffer(1, n, ctx.sampleRate), d = buf.getChannelData(0);
-    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
-    const s = ctx.createBufferSource(); s.buffer = buf;
+    if (!noiseBuf) return;
+    const s = ctx.createBufferSource(); s.buffer = noiseBuf;
     const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.2;
     bp.frequency.setValueAtTime(f0, t); bp.frequency.exponentialRampToValueAtTime(f1, t + dur * .5); bp.frequency.exponentialRampToValueAtTime(f2, t + dur);
     const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(Math.max(vol, 0.0002), t + dur * .4); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    s.connect(bp); bp.connect(g); g.connect(master); s.start(t);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(t, Math.random() * Math.max(0, noiseBuf.duration - dur - .06), Math.min(dur + .05, noiseBuf.duration));
   }
   function quack(t) {
     const o = ctx.createOscillator(), f = ctx.createBiquadFilter(), g = ctx.createGain();
@@ -1679,9 +1714,13 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     tone(t, f, f, 1.2, vol, 'triangle'); tone(t, f * 2, f * 2, 0.9, vol / 3, 'sine');
   }
   function pops(t, n, lo, hi, vol) { for (let i = 0; i < n; i++) { const bt = t + i * 0.08 + Math.random() * 0.05, bf = lo + Math.random() * (hi - lo); tone(bt, bf, bf * 1.9, 0.07, vol); } }
+  let lastSpinSound = 0;
   function playSpin(speed) {
     if (muted || !ensureAudio()) return;
     const t = now(), p = (0.92 + Math.random() * 0.18) * (speed || 1);
+    // tapping very fast: a short, light bloop so sounds don't pile up
+    if (t - lastSpinSound < .14) { tone(t, 620 * p, 260 * p, 0.12, 0.22); if (Math.random() < .4) tone(t + .03, 900 * p, 1700 * p, 0.05, 0.06); return; }
+    lastSpinSound = t;
     if (cur === 'turtle') {
       [0, 0.11].forEach((d, i) => { tone(t + d, (i ? 520 : 440) * p, (i ? 480 : 400) * p, 0.09, 0.3); noise(t + d, 0.03, 0.12, 2000, 2500, 1800); });
       tone(t + .25, 500 * p, 180 * p, 0.25, 0.25);
@@ -1736,7 +1775,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   // ---------- Ocean painting + particles ----------
   const cv = $('fx'), g2 = cv.getContext('2d');
   let W, H, dpr, parts = [];
-  function resize() { dpr = Math.min(window.devicePixelRatio || 1, 2); W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px'; lastPaint = -1; }
+  function resize() { dpr = Math.min(window.devicePixelRatio || 1, PHONE ? 1.5 : 2); W = cv.width = innerWidth * dpr; H = cv.height = innerHeight * dpr; cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px'; lastPaint = -1; }
   let lastPaint = -1, lastLake = -1;
   resize(); addEventListener('resize', resize);
   function waterAt(p) {
@@ -1790,7 +1829,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     return { amb: lerp(o.amb, 1, lakeMix), snow: lerp(o.snow, .3, lakeMix), glow: lerp(o.glow, 0, lakeMix) };
   }
   function burst(px, py, n = 24) {
-    if (parts.length > 500) n = Math.min(n, 8); if (parts.length > 900) return;
+    const cap = PHONE ? 260 : 600; if (parts.length > cap * .6) n = Math.min(n, 5); if (parts.length > cap) return;
     const rainbow = spins >= 50000, hearts = found.size >= SECRET_TOTAL;
     for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, sp = (1.2 + Math.random() * 3.6) * dpr;
       parts.push({ k: 'bub', x: px, y: py, r: (3 + Math.random() * 9) * dpr, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1.5 * dpr, life: 1,
@@ -1832,6 +1871,10 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   });
   const STEP = 1 / 60;
   let lastFrame = performance.now(), acc = 0, lastDot = -1;
+  let gaugeH = 0;
+  const measureGauge = () => { gaugeH = $('gauge').clientHeight; };
+  addEventListener('resize', () => { measureGauge(); placeDot(dragging ? dragP : depthNow); });
+  function placeDot(p) { if (!gaugeH) measureGauge(); $('dot').style.setProperty('--dy', (p / 100 * gaugeH).toFixed(1) + 'px'); }
   function stepWorld() {
     // glide the depth toward its target: quick while dragging, gentle otherwise
     depthNow += (depthTarget - depthNow) * (dragging ? .22 : .055);
@@ -1900,7 +1943,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     acc += dt; let n = 0;
     while (acc >= STEP && n < 5) { stepWorld(); acc -= STEP; n++; }
     if (n === 5) acc = 0;
-    if (!dragging && Math.abs(depthNow - lastDot) > .01) { lastDot = depthNow; $('dot').style.top = depthNow + '%'; }
+    if (!dragging && Math.abs(depthNow - lastDot) > .01) { lastDot = depthNow; placeDot(depthNow); }
     if (dragging && dragP >= 53 && dragP <= 57) { if (!balStart) balStart = t; else if (t - balStart > 2500) foundSecret('balance'); } else balStart = 0;
     paintOcean();
     positionDuck();
@@ -1911,7 +1954,10 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 
   // ---------- UI ----------
   const fmtBadge = n => n >= 1000000 ? n / 1000000 + 'M' : n >= 1000 ? n / 1000 + 'k' : String(n);
+  let lastAccKey = '';
   function placeAccs() {
+    const ak = cur + [100, 500, 1000, 10000, 100000, 1000000, 10000000].map(n => spins >= n ? 1 : 0).join('');
+    if (ak === lastAccKey) return; lastAccKey = ak;
     const sp = FRIENDS[cur].spots;
     [['a-hat', 'hat'], ['a-shades', 'shades'], ['a-crown', 'crown']].forEach(([id, k]) => {
       const [x, y, s] = sp[k]; $(id).setAttribute('transform', `translate(${x} ${y}) scale(${s})`);
@@ -1920,12 +1966,15 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     $('a-shades').classList.toggle('on', spins >= 500);
     $('a-crown').classList.toggle('on', spins >= 1000);
     svg.classList.toggle('golden', spins >= 10000);
-    pal.classList.toggle('aura', spins >= 100000);
+    $('float').classList.toggle('aura', spins >= 100000);
     $('legend').hidden = spins < 1000000;
     document.body.classList.toggle('disco', spins >= 10000000);
   }
+  let lastMileKey = '';
   function renderCount() {
     $('count').textContent = spins.toLocaleString();
+    const mk = MILES.filter(m => spins >= m.n).length + '|' + (spins === 0);
+    if (mk === lastMileKey) return; lastMileKey = mk;
     const nx = MILES.find(m => m.n > spins);
     $('next').textContent = nx ? `Next surprise at ${nx.n.toLocaleString()}` : 'You found every surprise';
     $('badges').innerHTML = MILES.map(m => `<button type="button" class="badge${spins >= m.n ? ' got' : ''}" data-n="${m.n}" ${spins >= m.n ? `aria-label="Replay ${m.n} celebration"` : `aria-disabled="true" aria-label="${m.n} spins, locked"`}>${fmtBadge(m.n)}</button>`).join('');
@@ -1965,12 +2014,12 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       pill.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.7)' }], { duration: 150, easing: 'ease-in' }).onfinish = () => {
         pill.hidden = true; box.hidden = false;
         const h = box.offsetHeight;
-        box.animate([{ opacity: 0, height: '30px', transform: 'scale(.85)' }, { opacity: 1, height: h + 'px', transform: 'scale(1)' }], { duration: 380, easing: springy });
+        box.animate([{ opacity: 0, transform: 'translateY(10px) scale(.92)' }, { opacity: 1, transform: 'none' }], { duration: 340, easing: springy });
         $('hideFact').focus();
       };
     } else {
       const h = box.offsetHeight;
-      box.animate([{ opacity: 1, height: h + 'px', transform: 'scale(1)' }, { opacity: 0, height: '30px', transform: 'scale(.85)' }], { duration: 240, easing: 'ease-in' }).onfinish = () => {
+      box.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(10px) scale(.92)' }], { duration: 200, easing: 'ease-in' }).onfinish = () => {
         box.hidden = true; pill.hidden = false;
         pill.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 340, easing: springy });
         pill.focus();
@@ -2010,10 +2059,22 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   function switchSound() { if (!muted && ensureAudio()) { const t = now(); chime(t, 783.99, 0.05); noise(t, 1.2, 0.08, 1200, 400, 200); } }
   // the picker: every friend as a little avatar; locked ones show when they join
   const NS = 'http://www.w3.org/2000/svg';
-  function cloneChar(id, cls) {
-    const s2 = document.createElementNS(NS, 'svg'); s2.setAttribute('viewBox', '-10 0 320 260'); s2.setAttribute('aria-hidden', 'true'); if (cls) s2.setAttribute('class', cls);
-    const g = $('c-' + id).cloneNode(true); g.removeAttribute('id'); g.classList.add('on'); g.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
-    s2.appendChild(g); return s2;
+  // friends shown in menus are turned into pictures once and reused (much lighter than live drawings)
+  const charCache = {};
+  function charURL(id, variant) {
+    const k = id + '|' + variant;
+    if (charCache[k]) return charCache[k];
+    const g = $('c-' + id).cloneNode(true); g.removeAttribute('id'); g.removeAttribute('class');
+    const defs = svg.querySelector('defs') ? new XMLSerializer().serializeToString(svg.querySelector('defs')) : '';
+    let css = '.eye-happy{opacity:0}';
+    if (variant === 'happy') css = '.eye-open{opacity:0}';
+    if (variant === 'locked') css += '*{fill:#2c3a52 !important;stroke:#2c3a52 !important}[opacity]{opacity:1}';
+    const str = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 320 260" width="320" height="260"><style>' + css + '</style>' + defs + new XMLSerializer().serializeToString(g) + '</svg>';
+    return charCache[k] = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(str);
+  }
+  function cloneChar(id, variant) {
+    const im = new Image(); im.decoding = 'async'; im.alt = ''; im.draggable = false; im.className = 'cr';
+    im.src = charURL(id, variant || ''); if (im.decode) im.decode().catch(() => {}); return im;
   }
   const LOCK_SVG = '<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   // the friend button and the ocean guide
@@ -2042,7 +2103,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         const open = isUnlocked(c.id), b = document.createElement('button');
         b.type = 'button'; b.className = 'gcard' + (open ? '' : ' locked') + (c.id === cur ? ' cur' : ''); b.dataset.c = c.id;
         b.style.setProperty('--gd', (-(gi++ % 7) * .45) + 's');
-        const sv = cloneChar(c.id); sv.classList.add('cr'); b.appendChild(sv);
+        b.appendChild(cloneChar(c.id, open ? '' : 'locked'));
         const m = c.depth < 1 ? 'Surface' : sliderToMetres(c.depth).toLocaleString('en-US') + ' m';
         b.insertAdjacentHTML('beforeend', `<b>${open ? c.name : '? ? ?'}</b><span class="gm">${m}</span><span class="gs">${open ? fmtN(perFriend[c.id] || 0) + ' spins' : 'Joins at ' + fmtN(c.unlock)}</span>` + (open ? '' : LOCK_SVG));
         b.setAttribute('aria-label', open ? `${c.name}, ${m}` : `Locked friend, joins at ${fmtN(c.unlock)} spins`);
@@ -2058,7 +2119,14 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       requestAnimationFrame(() => { const bar = body.querySelector('.gbar span'); if (bar) bar.style.width = pct + '%'; });
     }
   }
-  function openGuide() { buildGuide(); $('guide').hidden = false; $('guideClose').focus(); const c = $('guideBody').querySelector('.gcard.cur'); if (c) c.scrollIntoView({ block: 'center' }); }
+  let guideVer = -1, guideCur = '';
+  let guideUnl = '';
+  function refreshGuideText() {
+    $('guideBody').querySelectorAll('.gcard:not(.locked)').forEach(b => { const g = b.querySelector('.gs'); if (g) g.textContent = fmtN(perFriend[b.dataset.c] || 0) + ' spins'; });
+    const bar = $('guideBody').querySelector('.gnext'); const next = CREATURES.find(c => !isUnlocked(c.id));
+    if (bar && next) { const prev = [...CREATURES].reverse().find(c => isUnlocked(c.id)); bar.firstChild.textContent = 'Next friend joins at '; bar.querySelector('b').textContent = fmtN(next.unlock); bar.childNodes[2].textContent = ` spins. ${fmtN(next.unlock - spins)} to go.`; bar.querySelector('.gbar span').style.width = Math.max(2, Math.min(100, (spins - prev.unlock) / (next.unlock - prev.unlock) * 100)) + '%'; }
+  }
+  function openGuide() { const u = unlockedIds().join(','); if (u !== guideUnl || guideCur !== cur || !$('guideBody').children.length) { guideUnl = u; guideVer = dataVer; guideCur = cur; buildGuide(); } else if (guideVer !== dataVer) { guideVer = dataVer; refreshGuideText(); } $('guide').hidden = false; $('guideClose').focus(); const c = $('guideBody').querySelector('.gcard.cur'); if (c) c.scrollIntoView({ block: 'center' }); }
   function closeGuide() { const g = $('guide'); g.classList.add('closing'); setTimeout(() => { g.hidden = true; g.classList.remove('closing'); }, 240); $('friendBtn').focus(); }
   $('friendBtn').addEventListener('click', openGuide);
   $('guideClose').addEventListener('click', closeGuide);
@@ -2095,7 +2163,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const nearest = p => unlockedIds().reduce((a, c) => Math.abs(FRIENDS[c].depth - p) < Math.abs(FRIENDS[a].depth - p) ? c : a);
   function dragTo(e) {
     dragP = pctFromY(e.clientY);
-    $('dot').style.top = dragP + '%';
+    placeDot(dragP);
     depthTarget = dragP;
     if (dragP >= 98) foundSecret('abyss');
     const edge = dragP >= 95 ? 'b' : dragP <= 5 ? 't' : null, tn = performance.now();
@@ -2209,9 +2277,10 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     }
     secretTimer = setTimeout(() => { el.classList.remove('show'); secretShowing = false; nextSecretAt = performance.now() + rnd(12000, 20000); }, dur);
   }
+  let duckTop = -1;
   function positionDuck() {
-    const el = $('x-duck');
-    if (zoneOf(depthNow) === 'surface') el.style.top = (waterline() / dpr - 30) + 'px';
+    if (zoneOf(depthNow) !== 'surface') return;
+    const y = Math.round(waterline() / dpr - 30); if (y === duckTop) return; duckTop = y; $('x-duck').style.top = y + 'px';
   }
   setInterval(() => { if (!secretShowing && performance.now() > nextSecretAt && !document.hidden) popSecret(); }, 1000);
   function revealChest() {
@@ -2242,6 +2311,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   }));
   function foundSecret(id) {
     if (found.has(id)) return false;
+    dataVer++;
     found.add(id); store.set('secrets', [...found]); foundAt[id] = Date.now(); store.set('foundAt', foundAt);
     toast(`You found a secret: <b>${SECRETS[id].what}</b>`);
     if (!muted && ensureAudio()) { const t = now() + .05; [1046.5, 1318.5, 1567.98, 2093].forEach((f, i) => tone(t + i * .07, f, f, 0.5, 0.05, 'triangle')); }
@@ -2476,7 +2546,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       setTimeout(() => { if (active.includes(a)) removeActive(a); }, 20000);
     } else { a.el.classList.add('ghost'); setTimeout(() => removeActive(a), fast ? 1300 : 950); }
   }
-  const targetCount = () => innerWidth < 520 ? 3 : innerWidth < 900 ? 6 : 8;
+  const targetCount = () => innerWidth < 520 ? 3 : PHONE ? 5 : innerWidth < 900 ? 6 : 8;
   const sceneScale = () => innerWidth < 520 ? .74 : 1;
   function spawnIfRoom(z) { if (zoneOf(depthNow) !== z) return; if (active.filter(a => a.z === z && !a.leaving).length < targetCount()) spawn(z); }
   let lastZone = null, nextSpawn = 0;
@@ -2594,23 +2664,23 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 
   // face extras that move with each friend
   function placeFaceBits() {
-    const e = EYES[cur], sp = FRIENDS[cur].spots.hat;
-    $('dzL').setAttribute('transform', `translate(${e[0][0]} ${e[0][1]}) scale(${e[2] * 2.1})`);
-    $('dzR').setAttribute('transform', `translate(${e[1][0]} ${e[1][1]}) scale(${e[2] * 2.1})`);
-    $('dzStars').setAttribute('transform', `translate(${(e[0][0] + e[1][0]) / 2} ${sp[1] - 4})`);
-    $('zzz').setAttribute('transform', `translate(${Math.max(e[0][0], e[1][0]) + 30} ${sp[1] + 6})`);
+    const e = EYES[cur], sp = FRIENDS[cur].spots.hat, X = x => (x / 300 * 100), Y = y => (y / 260 * 100);
+    const w = 7.2 * e[2];
+    [['dzL2', e[0]], ['dzR2', e[1]]].forEach(([id, [x, y]]) => { const el = $(id); el.style.width = w + '%'; el.style.left = (X(x) - w / 2) + '%'; el.style.top = Y(y) + '%'; el.style.marginTop = (-w / 2 * 300 / 300) + '%'; });
+    const st = $('stars2'); st.style.left = X((e[0][0] + e[1][0]) / 2) + '%'; st.style.top = Y(sp[1] - 4) + '%';
+    const zz = $('zz2'); zz.style.left = X(Math.max(e[0][0], e[1][0]) + 22) + '%'; zz.style.top = Y(sp[1] - 34) + '%';
   }
 
   // sleepy secret: leave your friend alone for a while and it dozes off
   let asleep = false, lastInteract = performance.now(), snoreTimer;
   ['pointerdown', 'keydown', 'wheel'].forEach(ev => addEventListener(ev, () => { lastInteract = performance.now(); }, { passive: true }));
   function fallAsleep() {
-    asleep = true; svg.classList.add('asleep'); $('float').classList.add('asleep-float');
+    asleep = true; pal.classList.add('asleep'); $('float').classList.add('asleep-float');
     const snore = () => { if (!muted && ctx && ctx.state === 'running') { const t = now(); soft(t, [140, 110], 1.4, 0.05, 0); soft(t + 1.6, [110, 150], 1.1, 0.03, 0); } };
     snore(); snoreTimer = setInterval(snore, 3600);
   }
   function wake(counts) {
-    asleep = false; svg.classList.remove('asleep'); $('float').classList.remove('asleep-float'); clearInterval(snoreTimer);
+    asleep = false; pal.classList.remove('asleep'); $('float').classList.remove('asleep-float'); clearInterval(snoreTimer);
     if (counts) {
       if (!muted && ensureAudio()) { const t = now(); soft(t, [300, 520, 260], 0.9, 0.08, 3); }
       foundSecret('sleepy');
@@ -2664,13 +2734,14 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const info = $('info');
   const TABS = ['about', 'trophies', 'privacy', 'contact'];
   let curTab = 'about', tabsSeen = new Set();
+  let trophyVer = -1;
   function selectTab(name) {
     const dir = TABS.indexOf(name) < TABS.indexOf(curTab) ? 'left' : '';
     curTab = name; tabsSeen.add(name); if (tabsSeen.size === TABS.length) foundSecret('curious');
     if (name === 'trophies') fillTrophies();
     $('p-' + name).classList.toggle('left', dir === 'left');
     TABS.forEach(t => { const on = t === name; $('t-' + t).setAttribute('aria-selected', String(on)); $('t-' + t).tabIndex = on ? 0 : -1; $('p-' + t).hidden = !on; });
-    const tb = $('t-' + name); $('tabline').style.left = tb.offsetLeft + 'px'; $('tabline').style.width = tb.offsetWidth + 'px';
+    const tb = $('t-' + name), tl = $('tabline'); tl.style.width = tb.offsetWidth + 'px'; tl.style.transform = `translate3d(${tb.offsetLeft}px, 0, 0)`;
   }
   TABS.forEach(t => $('t-' + t).addEventListener('click', () => selectTab(t)));
     document.querySelector('.tabs').addEventListener('keydown', e => {
@@ -2694,7 +2765,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     const lock = '<rect x="6" y="11" width="12" height="9" rx="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/>';
     const newest = Object.entries(foundAt).sort((a, b) => b[1] - a[1]).slice(0, 3).filter(([, t]) => Date.now() - t < 86400000).map(([k]) => k);
     let n = 0;
-    window.__secOpen = window.__secOpen || { sea: true };
+    window.__secOpen = window.__secOpen || (PHONE ? {} : { sea: true });
+    const sk = found.size + '|' + Object.keys(window.__secOpen).filter(k => window.__secOpen[k]).join(',');
+    if (sk === window.__secKey) return; window.__secKey = sk;
     $('secCats').innerHTML = Object.entries(CATS).map(([ck, c]) => {
       const list = ids.filter(k => SECRET_INFO[k][0] === ck);
       const got = list.filter(k => found.has(k)).sort((a, b) => (foundAt[b] || 0) - (foundAt[a] || 0)), not = list.filter(k => !found.has(k));
@@ -2707,14 +2780,17 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         <div class="cards"${isOpen ? '' : ' hidden'}>${isOpen ? got.map(k => card(k, true)).join('') + not.map(k => card(k, false)).join('') : ''}</div>`;
     }).join('');
   }
+  let creKey = '';
   function fillCreatures() {
     const ids = unlockedIds();
     $('creCnt').textContent = `${ids.length} of ${CREATURES.length} unlocked`;
-    const gr = $('creGrid'); gr.innerHTML = '';
+    const gr = $('creGrid'), key = ids.join(',');
+    if (key === creKey) { gr.querySelectorAll('.cre:not(.locked)').forEach(d => { d.querySelector('span').textContent = fmtN(perFriend[d.dataset.c] || 0) + ' spins'; }); return; }
+    creKey = key; gr.innerHTML = '';
     CREATURES.forEach((c, i) => {
       const open = isUnlocked(c.id), d = document.createElement('div');
-      d.className = 'cre' + (open ? '' : ' locked'); d.style.animationDelay = Math.min(i, 20) * .03 + 's';
-      d.appendChild(cloneChar(c.id));
+      d.className = 'cre' + (open ? '' : ' locked'); d.dataset.c = c.id; d.style.animationDelay = Math.min(i, 20) * .03 + 's';
+      d.appendChild(cloneChar(c.id, open ? '' : 'locked'));
       d.insertAdjacentHTML('beforeend', `<b>${open ? c.name : '???'}</b><span>${open ? fmtN(perFriend[c.id] || 0) + ' spins' : fmtN(c.unlock) + ' to unlock'}</span>`);
       gr.appendChild(d);
     });
@@ -2729,10 +2805,12 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     const pf = Object.entries(perFriend).sort((a, b) => b[1] - a[1])[0];
     $('lgFav').textContent = pf && pf[1] > 0 && FRIENDS[pf[0]] ? FRIENDS[pf[0]].name : 'Not yet';
   }
+  let paradeKey = '';
   function fillParade() {
-    const pr = $('parade'); pr.innerHTML = '';
-    const ids = unlockedIds().slice(-7);
-    ids.forEach((id, i) => { const sv = cloneChar(id); sv.style.setProperty('--pd', (11 + (i % 3) * 3 + Math.random() * 2).toFixed(1) + 's'); sv.style.setProperty('--pl', (-i * 2.1).toFixed(1) + 's'); sv.style.bottom = (4 + (i % 3) * 10) + 'px'; pr.appendChild(sv); });
+    const ids = unlockedIds().slice(-(PHONE ? 4 : 7));
+    const pr = $('parade'); const pk = ids.join(',');
+    if (pk !== paradeKey) { paradeKey = pk; pr.innerHTML = '';
+    ids.forEach((id, i) => { const sv = cloneChar(id); sv.style.setProperty('--pd', (11 + (i % 3) * 3 + Math.random() * 2).toFixed(1) + 's'); sv.style.setProperty('--pl', (-i * 2.1).toFixed(1) + 's'); sv.style.bottom = (4 + (i % 3) * 10) + 'px'; pr.appendChild(sv); }); }
     const [top, bot] = waterAt(depthNow);
     const deepen = (c, k) => c.map(v => Math.round(v * k)).join(',');
     info.querySelector('.sheet').style.setProperty('--pa', `rgb(${deepen(top, .55)})`);
@@ -2814,7 +2892,12 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const perFriend = store.get('perFriend', {});
   const records = store.get('records', {}); let tenSec = [], visitSpins = 0;
   const bump = (k, v) => { if (v > (records[k] || 0)) { records[k] = v; store.set('records', records); } };
+  const SQUISH = [{ scale: '1 1' }, { scale: '1.12 .88', offset: .3 }, { scale: '.94 1.06', offset: .6 }, { scale: '1 1' }];
+  const WOB = [{ transform: 'scaleX(1)' }, { transform: 'scale(1.15, .9)', offset: .2 }, { transform: 'scale(.9, 1.08)', offset: .45 }, { transform: 'scaleX(1.05)', offset: .7 }, { transform: 'none' }];
+  const FLASH = [{ opacity: 1, transform: 'scale(1)' }, { opacity: 1, transform: 'scale(2.2)', offset: .25 }, { opacity: .6, transform: 'scale(1)' }];
+  let squishAnim = null;
   function spin(e) {
+    lastTapAt = performance.now();
     if (suppressClick) { suppressClick = false; return; }
     if (e && e.isTrusted === false) return;
     { const tq = performance.now(); if (taps.filter(x => tq - x < 1000).length >= 25) return; }
@@ -2824,10 +2907,11 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     const fast = taps.length >= 8;
     pal.classList.toggle('fast', fast);
     rot += 360; pal.style.transform = `rotate(${rot}deg)`;
-    svg.classList.remove('squish', 'wobble', 'flash'); void svg.offsetWidth; svg.classList.add('squish');
-    if (cur === 'jelly') svg.classList.add('wobble');
-    if (cur === 'angler') { svg.classList.add('flash'); revealChest(); }
-    pal.classList.add('happy'); clearTimeout(happyTimer); happyTimer = setTimeout(() => pal.classList.remove('happy'), 1100);
+    if (squishAnim) squishAnim.cancel();
+    squishAnim = svg.animate(SQUISH, { duration: 420, easing: 'ease-out' });
+    if (cur === 'jelly') { const sk = $('c-jelly').querySelector('.jelly-skirt'); if (sk) sk.animate(WOB, { duration: 700, easing: 'ease-out' }); }
+    if (cur === 'angler') { const lg = $('c-angler').querySelector('.lure-glow'); if (lg) lg.animate(FLASH, { duration: 900, easing: 'ease-out' }); revealChest(); }
+    if (!pal.classList.contains('happy')) pal.classList.add('happy'); clearTimeout(happyTimer); happyTimer = setTimeout(() => pal.classList.remove('happy'), 1100);
     if (cur === 'whale') {
       spout.style.transformOrigin = '150px 62px';
       spout.animate([{ opacity: 0, transform: 'translateY(16px) scale(.6)' }, { opacity: 1, transform: 'none', offset: .35 }, { opacity: 0, transform: 'translateY(-10px) scale(1.1)' }], { duration: 1100, easing: 'ease-out' });
@@ -2835,9 +2919,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     let x, y;
     if (e && e.detail > 0 && e.clientX != null) { x = e.clientX; y = e.clientY; }
     else { const b = pal.getBoundingClientRect(); x = b.left + b.width / 2; y = b.top + b.height / 2; }
-    burst(x * dpr, y * dpr);
+    burst(x * dpr, y * dpr, (PHONE ? 12 : 22) - (fast ? (PHONE ? 5 : 8) : 0));
     playSpin(fast ? 1 + Math.min(.5, (taps.length - 8) * .04) : 1);
-    spins++; store.set('spins', spins); renderCount(); placeAccs();
+    spins++; dataVer++; store.set('spins', spins); renderCount(); placeAccs();
     perFriend[cur] = (perFriend[cur] || 0) + 1; store.set('perFriend', perFriend); [10, 100, 1000].forEach(n => { if (perFriend[cur] === n) foundSecret('spin' + n + '_' + cur); });
     if (SECRETS['total_' + spins]) foundSecret('total_' + spins); if (SECRETS['num_' + spins]) foundSecret('num_' + spins);
     checkUnlocks();
@@ -2859,9 +2943,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     if (m) setTimeout(() => celebrate(m), 500);
     if (taps.length >= 18 && tnow > dizzyUntil) {
       dizzyUntil = tnow + 10000;
-      const fl = $('float'); fl.classList.remove('dizzy'); void fl.offsetWidth; fl.classList.add('dizzy');
-      svg.classList.add('dizzy-on');
-      setTimeout(() => { fl.classList.remove('dizzy'); svg.classList.remove('dizzy-on'); }, 4000);
+      const fl = $('float'); fl.classList.add('dizzy');
+      pal.classList.add('dizzy-on');
+      setTimeout(() => { fl.classList.remove('dizzy'); pal.classList.remove('dizzy-on'); }, 4000);
       toast('Whoa, slow down! Your friend is <b>dizzy</b>', 3000);
       setTimeout(() => foundSecret('dizzy'), 3200);
       dizzyCount++; store.set('dizzies', dizzyCount); if (dizzyCount >= 3) setTimeout(() => foundSecret('spinout'), 6000); if (dizzyCount >= 10) setTimeout(() => foundSecret('dizzy_10'), 7000);
@@ -2876,6 +2960,11 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   CREATURES.forEach(c => { if (c.unlock > 0 && isUnlocked(c.id) && !found.has('unlock_' + c.id)) { found.add('unlock_' + c.id); } }); store.set('secrets', [...found]);
   placeFaceBits();
   setFriend(cur, { instant: true }); renderCount();
+  const idle = (fn, ms) => setTimeout(function go() { if (performance.now() - lastTapAt < 2500) { setTimeout(go, 1200); return; } (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 2000 }) : fn()); }, ms);
+  idle(() => { fillCreatures(); }, 1500);
+  idle(() => { if ($('guide').hidden) { guideUnl = unlockedIds().join(','); guideVer = dataVer; guideCur = cur; buildGuide(); } }, 2600);
+  idle(() => { if (info.hidden) fillTrophies(); }, 4200);
+  idle(() => { fillParade(); }, 3400);
   if (saveWasTampered) setTimeout(() => toast('Your saved progress looked edited, so the ocean started fresh', 4200), 800); renderMute(); renderFacts();
   tick();
 })();
