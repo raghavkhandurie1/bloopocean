@@ -406,6 +406,78 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
 #toast b { color: var(--gold); font-weight: 600; }
 
+/* ---------- pearls and the Pearl Shop ---------- */
+.countrow { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.prl { width: 16px; height: 16px; flex: none; border-radius: 50%; display: inline-block; background: radial-gradient(circle at 34% 30%, #fff 0 16%, #fff1f6 28%, #f1d3e1 58%, #c99bb3 100%); box-shadow: 0 0 6px rgba(255,225,238,.55), inset -1px -2px 3px rgba(120,60,90,.25); }
+.pearlbtn { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px 4px 6px; border-radius: 999px; border: 1px solid rgba(255,214,232,.5); background: var(--ink); color: #fff; font: 600 15px var(--font); font-variant-numeric: tabular-nums; cursor: pointer; transition: transform .25s cubic-bezier(.34,1.6,.5,1), background .2s; }
+.pearlbtn:hover { background: rgba(6,20,38,.7); }
+.pearlbtn:active { transform: scale(.96); }
+.pearlbtn:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; }
+.pearlbtn .pshop { font-weight: 400; font-size: 12px; letter-spacing: .04em; opacity: .85; padding-left: 7px; margin-left: 1px; border-left: 1px solid rgba(255,255,255,.25); }
+.rushtag { background: var(--gold); color: #3b2a00; border-radius: 999px; font-size: 11px; line-height: 16px; padding: 0 6px; }
+.rushtag[hidden] { display: none; }
+.pplus { position: absolute; left: 100%; top: 50%; margin: -9px 0 0 8px; pointer-events: none; font: 600 13px var(--font); color: #ffe6f1; white-space: nowrap; text-shadow: 0 1px 6px rgba(0,0,0,.6); opacity: 0; }
+#toast .tpl { display: inline-flex; align-items: center; gap: 4px; margin-left: 8px; color: #ffe6f1; font-weight: 600; white-space: nowrap; }
+#toast .tpl .prl { width: 12px; height: 12px; }
+.shopsheet { padding: 0; display: flex; flex-direction: column; max-height: min(86vh, 680px); width: min(440px, 100%); }
+.shopsheet .ghead p { display: flex; align-items: center; gap: 5px; opacity: .85; }
+.shopsheet .ghead p b { font-size: 15px; font-weight: 600; }
+.sitems { display: grid; gap: 10px; padding: 0 16px 6px; overflow-y: auto; overscroll-behavior: contain; }
+.sitem { display: grid; grid-template-columns: 58px 1fr; column-gap: 12px; row-gap: 9px; align-items: center; padding: 12px; border-radius: 18px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); }
+.sitem.own { border-color: rgba(255,214,232,.45); background: rgba(255,214,232,.08); }
+.sic { grid-row: 1 / span 2; width: 58px; height: 58px; border-radius: 16px; display: grid; place-items: center; background: rgba(255,255,255,.1); }
+.sic svg { width: 42px; height: 42px; overflow: visible; }
+.stx b { display: block; font-size: 16px; font-weight: 600; }
+.stx span { display: block; font-size: 13px; line-height: 1.35; opacity: .8; margin-top: 2px; text-wrap: pretty; }
+.sbtn { justify-self: start; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 7px 14px; font: 600 14px var(--font); cursor: pointer; border: 1px solid transparent; background: linear-gradient(135deg, #ffe08a, #ffb86b); color: #2a1b00; font-variant-numeric: tabular-nums; transition: transform .2s cubic-bezier(.34,1.6,.5,1); }
+.sbtn:active { transform: scale(.95); }
+.sbtn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.sbtn .prl { width: 14px; height: 14px; }
+.sbtn.poor { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); border: 1px dashed rgba(255,255,255,.35); font-weight: 400; }
+.sbtn.tog { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.3); min-width: 64px; justify-content: center; }
+.sbtn.tog[aria-pressed="true"] { background: #7fe3b0; color: #0b3324; }
+.sbtn.live { background: rgba(255,211,107,.16); color: var(--gold); border-color: rgba(255,211,107,.5); cursor: default; font-weight: 400; }
+.searn { margin: 8px 16px 16px; padding: 10px 14px; border-radius: 16px; background: rgba(0,0,0,.2); font-size: 13px; flex: none; }
+.searnh { width: 100%; display: flex; align-items: center; justify-content: space-between; background: none; border: 0; padding: 0; color: inherit; font: 600 13px var(--font); cursor: pointer; text-align: left; }
+.searnh:focus-visible { outline: 2px solid var(--glow); outline-offset: 4px; border-radius: 6px; }
+.pm { position: relative; width: 12px; height: 12px; flex: none; }
+.pm::before, .pm::after { content: ""; position: absolute; left: 0; top: 5px; width: 12px; height: 2px; border-radius: 2px; background: currentColor; opacity: .8; transition: transform .35s cubic-bezier(.34,1.5,.5,1); }
+.pm::after { transform: rotate(90deg); }
+.searn.open .pm::after { transform: rotate(0deg); }
+.searnb { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .34s cubic-bezier(.3,.9,.4,1); }
+.searnb > div { overflow: hidden; min-height: 0; }
+.searnb ul { margin: 0; padding: 8px 0 2px 18px; opacity: 0; transform: translateY(-6px); transition: opacity .22s ease, transform .34s cubic-bezier(.3,.9,.4,1); }
+.searn.open .searnb { grid-template-rows: 1fr; }
+.searn.open .searnb ul { opacity: 1; transform: none; transition-delay: .06s; }
+.searn li { margin: 3px 0; line-height: 1.4; opacity: .88; }
+@media (prefers-reduced-motion: reduce) { .searnb, .searnb ul, .pm::after { transition: none; } }
+@media (max-width: 520px) { #shop { place-items: end center; padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); } #shop .sheet { animation: sheetup .45s cubic-bezier(.3,1.3,.5,1); } #shop.closing .sheet { animation: sheetdown .25s ease-in forwards; } }
+
+.skinned .body-art { filter: var(--skin); }
+.gfact { padding: 0 16px 12px; flex: none; display: grid; justify-items: start; }
+.gfact .fact { width: 100%; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
+.gfact .fact #fact { min-height: 2.7em; display: flex; align-items: center; }
+.stabs { display: flex; gap: 5px; padding: 0 16px 10px; overflow-x: auto; scrollbar-width: none; flex: none; }
+.stabs::-webkit-scrollbar { display: none; }
+.stab { flex: 1 0 auto; border-radius: 999px; padding: 6px 8px; font: 600 12.5px var(--font); color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); cursor: pointer; transition: background .2s, color .2s; }
+.stab[aria-selected="true"] { background: #fff; color: #17305a; border-color: #fff; }
+.stab:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; }
+.shopsheet .sitems { height: min(56vh, 460px); flex: 0 1 auto; min-height: 140px; align-content: start; }
+.sitems.grid { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.sgh { grid-column: 1 / -1; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; opacity: .7; margin: 6px 2px 0; }
+.sgh:first-child { margin-top: 0; }
+.scard { display: grid; justify-items: center; gap: 6px; padding: 8px 8px 10px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); text-align: center; }
+.scard.on { border-color: #7fe3b0; background: rgba(127,227,176,.13); }
+.spv { width: 100%; height: 64px; display: grid; place-items: center; border-radius: 12px; background: rgba(255,255,255,.08); border: 0; padding: 0; color: #fff; font: 11px var(--font); }
+.spv svg { height: 50px; width: 80px; overflow: visible; }
+.spv img { height: 58px; width: auto; max-width: 100%; }
+button.spv { cursor: pointer; grid-auto-flow: row; gap: 2px; padding: 4px 0; }
+button.spv svg { height: 34px; width: 34px; }
+button.spv span { opacity: .75; }
+button.spv:active svg { transform: scale(.92); }
+.sname { font-size: 14px; font-weight: 600; line-height: 1.15; }
+.scard .sbtn { justify-self: stretch; justify-content: center; padding: 6px 8px; font-size: 13px; }
+
 /* ---------- start-over dialog ---------- */
 .modal {
   position: fixed; inset: 0; z-index: 9; display: grid; place-items: center;
@@ -980,7 +1052,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   </div>
   <button class="fpill" id="friendBtn" type="button" aria-haspopup="dialog" aria-label="Open the ocean guide">
     <span class="fpav" id="fpAv"></span>
-    <span class="fptx"><b id="fpName">Turtle</b><span id="fpCount">1 of 20 friends</span></span>
+    <span class="fptx"><b id="fpName">Turtle</b><span id="fpCount">1 of 30 friends</span></span>
     <svg class="fpch" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
   </button>
 </div>
@@ -1266,6 +1338,118 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 <g fill="#ee9ab2" opacity=".7"><circle cx="160" cy="150" r="5"/><circle cx="190" cy="162" r="4"/><circle cx="214" cy="146" r="5"/><circle cx="178" cy="132" r="3"/></g>
 <g class="eye-open"><circle cx="88" cy="144" r="8.5" fill="#13314f"/><circle cx="91.0" cy="140.8" r="3.1" fill="#fff"/><circle cx="118" cy="144" r="8.5" fill="#13314f"/><circle cx="121.0" cy="140.8" r="3.1" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="4.7" stroke-linecap="round" fill="none"><path d="M79.1 145.7 Q88 134.2 96.9 145.7"/><path d="M109.1 145.7 Q118 134.2 126.9 145.7"/></g><ellipse cx="80" cy="158" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><ellipse cx="126" cy="158" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><path d="M95 166 Q103 173.2 111 166" stroke="#13314f" stroke-width="3.8" stroke-linecap="round" fill="none"/>
 </g>
+        <!-- WALRUS -->
+        <g class="char" id="c-walrus">
+<path d="M70 206 C52 214 40 226 44 236 C62 236 78 228 88 216 Z M230 206 C248 214 260 226 256 236 C238 236 222 228 212 216 Z" fill="#a67c5e"/>
+<path d="M58 196 C50 136 90 80 150 80 C210 80 250 136 242 196 C238 226 202 238 150 238 C98 238 62 226 58 196 Z" fill="#c99e7e"/>
+<path d="M78 214 C100 232 200 232 222 214 C210 230 184 238 150 238 C116 238 90 230 78 214 Z" fill="#dcb797"/>
+<ellipse cx="112" cy="104" rx="26" ry="11" fill="#fff" opacity=".28" transform="rotate(-24 112 104)"/>
+<path d="M128 160 C122 180 122 198 128 212 C135 200 138 182 138 164 Z M172 160 C178 180 178 198 172 212 C165 200 162 182 162 164 Z" fill="#fffaf0" stroke="#e7dbc2" stroke-width="2"/>
+<circle cx="134" cy="152" r="20" fill="#e8c8aa"/><circle cx="166" cy="152" r="20" fill="#e8c8aa"/>
+<g fill="#a67c5e"><circle cx="124" cy="150" r="2"/><circle cx="132" cy="158" r="2"/><circle cx="122" cy="160" r="2"/><circle cx="176" cy="150" r="2"/><circle cx="168" cy="158" r="2"/><circle cx="178" cy="160" r="2"/></g>
+<ellipse cx="150" cy="136" rx="10" ry="7" fill="#6b4a3a"/>
+<g class="eye-open"><circle cx="122" cy="114" r="9" fill="#13314f"/><circle cx="125.2" cy="110.6" r="3.2" fill="#fff"/><circle cx="178" cy="114" r="9" fill="#13314f"/><circle cx="181.2" cy="110.6" r="3.2" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="5.0" stroke-linecap="round" fill="none"><path d="M112.5 115.8 Q122 103.7 131.4 115.8"/><path d="M168.6 115.8 Q178 103.7 187.4 115.8"/></g><ellipse cx="100" cy="128" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><ellipse cx="200" cy="128" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/>
+</g>
+        <!-- DUGONG -->
+        <g class="char" id="c-dugong">
+<path d="M236 150 C252 130 272 122 292 124 C286 140 274 150 262 154 C276 156 290 168 292 184 C272 182 252 174 236 162 Z" fill="#8ea3b3"/>
+<path d="M44 150 C44 110 90 96 150 96 C206 98 244 124 246 156 C248 186 206 206 150 206 C92 206 44 190 44 150 Z" fill="#aabdcc"/>
+<path d="M66 182 C96 204 200 210 238 170 C224 196 192 206 150 206 C110 206 82 198 66 182 Z" fill="#c9d7e2"/>
+<ellipse cx="120" cy="112" rx="34" ry="10" fill="#fff" opacity=".3" transform="rotate(-8 120 112)"/>
+<path d="M130 186 C122 208 130 226 148 226 C148 212 146 198 142 184 Z" fill="#8ea3b3"/>
+<ellipse cx="64" cy="162" rx="28" ry="21" fill="#bccdda"/>
+<g fill="#8ea3b3"><circle cx="54" cy="160" r="1.8"/><circle cx="62" cy="166" r="1.8"/><circle cx="72" cy="160" r="1.8"/><circle cx="58" cy="170" r="1.8"/><circle cx="70" cy="170" r="1.8"/></g>
+<ellipse cx="54" cy="152" rx="4" ry="2.6" fill="#5f7385"/><ellipse cx="70" cy="152" rx="4" ry="2.6" fill="#5f7385"/>
+<g class="eye-open"><circle cx="98" cy="134" r="8.5" fill="#13314f"/><circle cx="101.0" cy="130.8" r="3.1" fill="#fff"/><circle cx="136" cy="134" r="8.5" fill="#13314f"/><circle cx="139.0" cy="130.8" r="3.1" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="4.7" stroke-linecap="round" fill="none"><path d="M89.1 135.7 Q98 124.2 106.9 135.7"/><path d="M127.1 135.7 Q136 124.2 144.9 135.7"/></g><ellipse cx="88" cy="150" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><ellipse cx="150" cy="150" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><path d="M56 176 Q64 183.2 72 176" stroke="#13314f" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- SEA BUNNY -->
+        <g class="char" id="c-seabunny">
+<g fill="#f6ead2"><circle cx="232" cy="118" r="9"/><circle cx="244" cy="128" r="8"/><circle cx="236" cy="138" r="7"/><circle cx="222" cy="128" r="8"/></g>
+<path d="M104 120 C94 86 98 58 112 52 C126 56 132 86 128 116 Z" fill="#fffaf0"/><path d="M196 120 C206 86 202 58 188 52 C174 56 168 86 172 116 Z" fill="#fffaf0"/>
+<path d="M100 76 C100 62 104 52 112 52 C120 54 124 64 124 76 C118 70 106 70 100 76 Z" fill="#2b2b38"/><path d="M200 76 C200 62 196 52 188 52 C180 54 176 64 176 76 C182 70 194 70 200 76 Z" fill="#2b2b38"/>
+<ellipse cx="150" cy="160" rx="98" ry="62" fill="#fffaf0"/>
+<g fill="#eadcc0"><circle cx="92" cy="150" r="2.2"/><circle cx="104" cy="128" r="2.2"/><circle cx="124" cy="118" r="2.2"/><circle cx="198" cy="122" r="2.2"/><circle cx="214" cy="140" r="2.2"/><circle cx="220" cy="170" r="2.2"/><circle cx="206" cy="192" r="2.2"/><circle cx="96" cy="182" r="2.2"/><circle cx="118" cy="200" r="2.2"/><circle cx="180" cy="204" r="2.2"/><circle cx="150" cy="112" r="2.2"/><circle cx="230" cy="156" r="2.2"/></g><g fill="#3a3a48" opacity=".7"><circle cx="112" cy="136" r="1.6"/><circle cx="196" cy="150" r="1.6"/><circle cx="186" cy="128" r="1.6"/><circle cx="110" cy="190" r="1.6"/><circle cx="214" cy="182" r="1.6"/><circle cx="140" cy="206" r="1.6"/><circle cx="170" cy="116" r="1.6"/></g>
+<ellipse cx="118" cy="122" rx="26" ry="10" fill="#fff" opacity=".8" transform="rotate(-14 118 122)"/>
+<g class="eye-open"><circle cx="128" cy="154" r="8.5" fill="#13314f"/><circle cx="131.0" cy="150.8" r="3.1" fill="#fff"/><circle cx="172" cy="154" r="8.5" fill="#13314f"/><circle cx="175.0" cy="150.8" r="3.1" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="4.7" stroke-linecap="round" fill="none"><path d="M119.1 155.7 Q128 144.2 136.9 155.7"/><path d="M163.1 155.7 Q172 144.2 180.9 155.7"/></g><ellipse cx="108" cy="170" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><ellipse cx="192" cy="170" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><path d="M142 172 Q150 179.5 158 172" stroke="#13314f" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- LOBSTER -->
+        <g class="char" id="c-lobster">
+<path d="M138 82 C120 50 100 26 82 14 M162 82 C180 50 200 26 218 14" stroke="#d84a3f" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g stroke="#d84a3f" stroke-width="6" stroke-linecap="round"><path d="M106 150 l-22 10"/><path d="M194 150 l22 10"/><path d="M106 166 l-22 14"/><path d="M194 166 l22 14"/><path d="M106 182 l-22 16"/><path d="M194 182 l22 16"/></g>
+<path d="M108 130 C90 118 78 108 70 98 M192 130 C210 118 222 108 230 98" stroke="#e2493f" stroke-width="12" stroke-linecap="round" fill="none"/>
+<path d="M40 104 C28 80 42 54 66 56 C82 58 86 74 76 82 C90 82 96 96 86 108 C74 120 50 120 40 104 Z" fill="#f06a5c"/><path d="M74 82 C66 86 58 86 52 82" stroke="#c63c33" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M260 104 C272 80 258 54 234 56 C218 58 214 74 224 82 C210 82 204 96 214 108 C226 120 250 120 260 104 Z" fill="#f06a5c"/><path d="M226 82 C234 86 242 86 248 82" stroke="#c63c33" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="116" y="188" width="68" height="18" rx="9" fill="#e2493f"/><rect x="122" y="202" width="56" height="16" rx="8" fill="#ea5549"/><rect x="128" y="214" width="44" height="14" rx="7" fill="#e2493f"/>
+<path d="M150 226 C130 228 116 238 112 250 C128 252 142 246 150 238 C158 246 172 252 188 250 C184 238 170 228 150 226 Z" fill="#f06a5c"/>
+<ellipse cx="150" cy="138" rx="52" ry="62" fill="#ef5b4f"/>
+<ellipse cx="128" cy="104" rx="16" ry="8" fill="#fff" opacity=".35" transform="rotate(-30 128 104)"/>
+<g class="eye-open"><circle cx="130" cy="124" r="9" fill="#3a1418"/><circle cx="133.2" cy="120.6" r="3.2" fill="#fff"/><circle cx="170" cy="124" r="9" fill="#3a1418"/><circle cx="173.2" cy="120.6" r="3.2" fill="#fff"/></g><g class="eye-happy" stroke="#3a1418" stroke-width="5.0" stroke-linecap="round" fill="none"><path d="M120.5 125.8 Q130 113.7 139.4 125.8"/><path d="M160.6 125.8 Q170 113.7 179.4 125.8"/></g><ellipse cx="112" cy="142" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><ellipse cx="188" cy="142" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><path d="M141 143 Q150 151.0 159 143" stroke="#3a1418" stroke-width="4.0" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- CUTTLEFISH -->
+        <g class="char" id="c-cuttle">
+<ellipse cx="164" cy="140" rx="98" ry="56" fill="#e9c3f2" stroke="#efd2f6" stroke-width="12" stroke-dasharray="1 13" stroke-linecap="round"/>
+<g stroke="#b77ccb" stroke-width="10" stroke-linecap="round" fill="none"><path d="M76 124 C56 116 42 118 34 126"/><path d="M72 138 C50 136 36 142 30 150"/><path d="M74 152 C54 158 44 168 40 178"/><path d="M80 162 C66 176 62 188 64 198"/></g>
+<ellipse cx="164" cy="140" rx="90" ry="46" fill="#c48bd6"/>
+<g fill="#dcb0ea" opacity=".8"><circle cx="170" cy="118" r="5"/><circle cx="196" cy="128" r="4"/><circle cx="214" cy="144" r="5"/><circle cx="184" cy="150" r="3.5"/><circle cx="160" cy="160" r="4"/><circle cx="206" cy="166" r="3"/><circle cx="226" cy="134" r="3"/></g>
+<ellipse cx="100" cy="140" rx="36" ry="38" fill="#cf9ae0"/>
+<ellipse cx="96" cy="114" rx="16" ry="7" fill="#fff" opacity=".35" transform="rotate(-20 96 114)"/>
+<g class="eye-open"><circle cx="86" cy="134" r="8.5" fill="#13314f"/><circle cx="89.0" cy="130.8" r="3.1" fill="#fff"/><circle cx="118" cy="134" r="8.5" fill="#13314f"/><circle cx="121.0" cy="130.8" r="3.1" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="4.7" stroke-linecap="round" fill="none"><path d="M77.1 135.7 Q86 124.2 94.9 135.7"/><path d="M109.1 135.7 Q118 124.2 126.9 135.7"/></g><ellipse cx="74" cy="152" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><ellipse cx="130" cy="152" rx="9.4" ry="5.1" fill="#ff8fab" opacity=".6"/><path d="M94 152 Q102 159.5 110 152" stroke="#13314f" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- HAMMERHEAD -->
+        <g class="char" id="c-hammer">
+<path d="M140 104 C146 66 158 46 172 38 C172 68 170 92 166 108 Z" fill="#7a90a8"/>
+<path d="M116 172 C92 182 76 198 72 212 C94 208 110 198 120 188 Z M184 172 C208 182 224 198 228 212 C206 208 190 198 180 188 Z" fill="#7a90a8"/>
+<path d="M110 120 C104 170 116 214 150 238 C184 214 196 170 190 120 Z" fill="#8aa0b8"/>
+<path d="M126 152 C124 188 134 214 150 228 C166 214 176 188 174 152 C162 162 138 162 126 152 Z" fill="#e8f0f6"/>
+<path d="M40 116 C40 98 70 92 150 92 C230 92 260 98 260 116 C260 132 236 136 206 132 C186 130 172 138 150 138 C128 138 114 130 94 132 C64 136 40 132 40 116 Z" fill="#97adc4"/>
+<ellipse cx="110" cy="102" rx="34" ry="6" fill="#fff" opacity=".3"/>
+<g class="eye-open"><circle cx="60" cy="114" r="9" fill="#13314f"/><circle cx="63.1" cy="110.6" r="3.2" fill="#fff"/><circle cx="240" cy="114" r="9" fill="#13314f"/><circle cx="243.2" cy="110.6" r="3.2" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="5.0" stroke-linecap="round" fill="none"><path d="M50.5 115.8 Q60 103.7 69.5 115.8"/><path d="M230.6 115.8 Q240 103.7 249.4 115.8"/></g><ellipse cx="84" cy="126" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><ellipse cx="216" cy="126" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><path d="M139 152 Q150 161.9 161 152" stroke="#13314f" stroke-width="4.0" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- OCEAN SUNFISH -->
+        <g class="char" id="c-mola">
+<path d="M168 72 C174 42 186 20 198 12 C204 36 202 60 194 82 Z" fill="#8c9eb0"/>
+<path d="M168 220 C172 238 184 250 198 254 C204 236 202 220 194 208 Z" fill="#8c9eb0"/>
+<path d="M48 146 C48 96 92 66 148 66 C198 66 230 96 234 146 C230 196 198 226 148 226 C92 226 48 196 48 146 Z" fill="#b2c1ce"/>
+<path d="M226 96 C248 108 254 130 246 146 C256 162 250 184 226 198 C234 182 236 164 232 146 C236 128 234 110 226 96 Z" fill="#98aabb"/>
+<path d="M62 176 C84 212 190 222 226 186 C206 214 180 226 148 226 C106 226 74 206 62 176 Z" fill="#d3dde6"/>
+<path d="M150 150 C164 142 176 146 180 156 C168 162 158 162 150 150 Z" fill="#98aabb"/>
+<ellipse cx="102" cy="88" rx="28" ry="10" fill="#fff" opacity=".35" transform="rotate(-20 102 88)"/>
+<g class="eye-open"><circle cx="92" cy="132" r="9" fill="#13314f"/><circle cx="95.2" cy="128.6" r="3.2" fill="#fff"/><circle cx="132" cy="132" r="9" fill="#13314f"/><circle cx="135.2" cy="128.6" r="3.2" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="5.0" stroke-linecap="round" fill="none"><path d="M82.5 133.8 Q92 121.7 101.5 133.8"/><path d="M122.5 133.8 Q132 121.7 141.4 133.8"/></g><ellipse cx="74" cy="150" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><ellipse cx="150" cy="150" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><path d="M103 151 Q112 159.0 121 151" stroke="#13314f" stroke-width="4.0" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- SEA ANGEL -->
+        <g class="char" id="c-angel">
+<path d="M120 122 C88 90 52 92 46 112 C52 134 90 140 120 134 Z" fill="#d3ebff" stroke="#bfe0ff" stroke-width="2"/>
+<path d="M180 122 C212 90 248 92 254 112 C248 134 210 140 180 134 Z" fill="#d3ebff" stroke="#bfe0ff" stroke-width="2"/>
+<path d="M150 62 C184 62 196 98 192 132 C188 178 174 214 150 238 C126 214 112 178 108 132 C104 98 116 62 150 62 Z" fill="#eef8ff" stroke="#c8e6ff" stroke-width="3"/>
+<circle cx="132" cy="70" r="5" fill="#ffb3c7"/><circle cx="168" cy="70" r="5" fill="#ffb3c7"/>
+<ellipse cx="150" cy="172" rx="16" ry="26" fill="#ff9d5c" opacity=".9"/><ellipse cx="145" cy="162" rx="4" ry="7" fill="#fff" opacity=".5"/>
+<ellipse cx="132" cy="88" rx="12" ry="6" fill="#fff" transform="rotate(-30 132 88)"/>
+<g class="eye-open"><circle cx="136" cy="106" r="7.5" fill="#13314f"/><circle cx="138.6" cy="103.2" r="2.7" fill="#fff"/><circle cx="164" cy="106" r="7.5" fill="#13314f"/><circle cx="166.6" cy="103.2" r="2.7" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="4.1" stroke-linecap="round" fill="none"><path d="M128.1 107.5 Q136 97.4 143.9 107.5"/><path d="M156.1 107.5 Q164 97.4 171.9 107.5"/></g><ellipse cx="122" cy="120" rx="8.2" ry="4.5" fill="#ff8fab" opacity=".6"/><ellipse cx="178" cy="120" rx="8.2" ry="4.5" fill="#ff8fab" opacity=".6"/><path d="M142 122 Q150 128.5 158 122" stroke="#13314f" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- BARRELEYE -->
+        <g class="char" id="c-barreleye">
+<path d="M240 160 C258 136 276 130 290 132 C284 150 284 170 290 188 C276 190 258 184 240 160 Z" fill="#4f5e74"/>
+<path d="M168 116 C180 96 200 92 214 98 C206 108 196 116 186 120 Z" fill="#7c8ea6"/>
+<path d="M60 160 C60 124 100 110 160 112 C214 114 244 136 246 160 C244 186 214 206 160 208 C100 210 60 196 60 160 Z" fill="#5f6f86"/>
+<path d="M150 182 C160 214 186 232 214 232 C200 210 186 194 172 180 Z" fill="#7c8ea6"/>
+<ellipse cx="200" cy="140" rx="22" ry="7" fill="#fff" opacity=".18" transform="rotate(-10 200 140)"/>
+<ellipse cx="118" cy="114" rx="48" ry="42" fill="rgba(200,255,240,.22)" stroke="rgba(220,255,245,.85)" stroke-width="3"/>
+<ellipse cx="106" cy="112" rx="8" ry="13" fill="#7df0b0"/><ellipse cx="130" cy="112" rx="8" ry="13" fill="#7df0b0"/>
+<ellipse cx="104" cy="106" rx="3" ry="4" fill="#fff" opacity=".7"/><ellipse cx="128" cy="106" rx="3" ry="4" fill="#fff" opacity=".7"/>
+<ellipse cx="96" cy="90" rx="14" ry="6" fill="#fff" opacity=".55" transform="rotate(-30 96 90)"/>
+<g class="eye-open"><circle cx="92" cy="162" r="8" fill="#0e1a2a"/><circle cx="94.8" cy="159.0" r="2.9" fill="#fff"/><circle cx="124" cy="162" r="8" fill="#0e1a2a"/><circle cx="126.8" cy="159.0" r="2.9" fill="#fff"/></g><g class="eye-happy" stroke="#0e1a2a" stroke-width="4.4" stroke-linecap="round" fill="none"><path d="M83.6 163.6 Q92 152.8 100.4 163.6"/><path d="M115.6 163.6 Q124 152.8 132.4 163.6"/></g><ellipse cx="78" cy="178" rx="8.8" ry="4.8" fill="#ff8fab" opacity=".6"/><ellipse cx="138" cy="178" rx="8.8" ry="4.8" fill="#ff8fab" opacity=".6"/><path d="M100 179 Q108 186.0 116 179" stroke="#0e1a2a" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+</g>
+        <!-- YETI CRAB -->
+        <g class="char" id="c-yeti">
+<g stroke="#e0d8ca" stroke-width="8" stroke-linecap="round"><path d="M96 172 l-22 18"/><path d="M104 186 l-16 18"/><path d="M116 196 l-8 18"/><path d="M204 172 l22 18"/><path d="M196 186 l16 18"/><path d="M184 196 l8 18"/></g>
+<path d="M100 140 C84 126 74 112 70 100 M200 140 C216 126 226 112 230 100" stroke="#ece5d8" stroke-width="12" stroke-linecap="round" fill="none"/>
+<g fill="#fffdf8" stroke="#e6dccb" stroke-width="2"><circle cx="62" cy="86" r="18"/><circle cx="48" cy="76" r="12"/><circle cx="74" cy="74" r="12"/><circle cx="46" cy="94" r="11"/><circle cx="76" cy="96" r="11"/><circle cx="62" cy="66" r="10"/><circle cx="62" cy="104" r="10"/><circle cx="40" cy="84" r="8"/><circle cx="84" cy="86" r="8"/><circle cx="238" cy="86" r="18"/><circle cx="224" cy="76" r="12"/><circle cx="250" cy="74" r="12"/><circle cx="222" cy="94" r="11"/><circle cx="252" cy="96" r="11"/><circle cx="238" cy="66" r="10"/><circle cx="238" cy="104" r="10"/><circle cx="216" cy="84" r="8"/><circle cx="260" cy="86" r="8"/></g>
+<path d="M50 64 C46 52 52 44 60 44 C60 54 58 60 50 64 Z M74 62 C80 52 76 44 68 42 C66 52 68 58 74 62 Z M226 62 C220 52 224 44 232 42 C234 52 232 58 226 62 Z M250 64 C254 52 248 44 240 44 C240 54 242 60 250 64 Z" fill="#f2b8a8"/>
+<ellipse cx="150" cy="156" rx="72" ry="54" fill="#f6f1e8"/>
+<path d="M90 172 C110 200 190 200 210 172 C196 198 176 210 150 210 C124 210 104 198 90 172 Z" fill="#e8e0d2"/>
+<ellipse cx="126" cy="124" rx="22" ry="9" fill="#fff" transform="rotate(-16 126 124)"/>
+<g class="eye-open"><circle cx="128" cy="150" r="9" fill="#13314f"/><circle cx="131.2" cy="146.6" r="3.2" fill="#fff"/><circle cx="172" cy="150" r="9" fill="#13314f"/><circle cx="175.2" cy="146.6" r="3.2" fill="#fff"/></g><g class="eye-happy" stroke="#13314f" stroke-width="5.0" stroke-linecap="round" fill="none"><path d="M118.5 151.8 Q128 139.7 137.4 151.8"/><path d="M162.6 151.8 Q172 139.7 181.4 151.8"/></g><ellipse cx="108" cy="166" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><ellipse cx="192" cy="166" rx="9.9" ry="5.4" fill="#ff8fab" opacity=".6"/><path d="M141 169 Q150 177.0 159 169" stroke="#13314f" stroke-width="4.0" stroke-linecap="round" fill="none"/>
+</g>
         </g>
 
 
@@ -1274,6 +1458,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
             <path d="M0 0 L-24 -2 L-6 -58 Z" fill="#ff9fb5"/><path d="M-12 -40 L-4 -42 M-17 -22 L-6 -25" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
             <path d="M-24 -2 L0 0" stroke="#ffd36b" stroke-width="5" stroke-linecap="round"/><circle cx="-6" cy="-60" r="7" fill="#ffd36b"/>
           </g>
+          <g class="acc" id="a-shop"></g>
           <g class="acc" id="a-crown">
             <path d="M-34 0 L-38 -34 L-18 -16 L0 -42 L18 -16 L38 -34 L34 0 Z" fill="#ffd36b" stroke="#e0a930" stroke-width="3" stroke-linejoin="round"/>
             <circle cx="0" cy="-12" r="5" fill="#ff7fa8"/><circle cx="-20" cy="-8" r="4" fill="#8fd3f4"/><circle cx="20" cy="-8" r="4" fill="#9ff0c8"/>
@@ -1297,13 +1482,10 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 
 <div class="foot">
   <div class="zone"><div class="zn" id="zn"></div><div class="zd" id="zd"></div></div>
-  <div class="fact" id="factBox">
-    <span class="ft">Fact</span><span id="fact"></span>
-    <button class="chip icon small" id="nextFact" type="button" aria-label="Next fact" title="Next fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    <button class="chip icon small" id="hideFact" type="button" aria-label="Hide facts" title="Hide facts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="countrow">
+    <div class="count"><b id="count">0</b> spins<span class="legend" id="legend" hidden>Ocean Legend</span></div>
+    <button class="pearlbtn" id="pearlBtn" type="button" aria-haspopup="dialog" aria-label="0 pearls. Open the Pearl Shop"><span class="prl" aria-hidden="true"></span><b id="pearlN">0</b><span class="rushtag" id="rushTag" hidden>x2</span><span class="pshop">Shop</span><span class="pplus" id="pplus" aria-hidden="true"></span></button>
   </div>
-  <button class="chip factPill" id="showFact" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg>Show facts</button>
-  <div class="count"><b id="count">0</b> spins<span class="legend" id="legend" hidden>Ocean Legend</span></div>
   <div class="next" id="next">Next surprise at 100</div>
   <div class="badges" id="badges"></div>
 </div>
@@ -1346,7 +1528,33 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       <div><h2 id="guideTitle">Ocean guide</h2><p id="guideSub">Tap a friend to dive to them</p></div>
       <button class="chip icon small" id="guideClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
+    <div class="gfact">
+  <div class="fact" id="factBox">
+    <span class="ft">Fact</span><span id="fact"></span>
+    <button class="chip icon small" id="nextFact" type="button" aria-label="Next fact" title="Next fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button class="chip icon small" id="hideFact" type="button" aria-label="Hide facts" title="Hide facts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+  </div>
+  <button class="chip factPill" id="showFact" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg>Show facts</button>
+    </div>
     <div class="gbody" id="guideBody"></div>
+  </div>
+</div>
+
+<div class="modal" id="shop" role="dialog" aria-modal="true" aria-labelledby="shopTitle" hidden>
+  <div class="mcard sheet shopsheet">
+    <div class="ghead">
+      <div><h2 id="shopTitle">Pearl Shop</h2><p><span class="prl" aria-hidden="true"></span><b id="shopBal">0</b> pearls to spend</p></div>
+      <button class="chip icon small" id="shopClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="stabs" id="shopTabs" role="tablist" aria-label="Shop sections"></div>
+    <div class="sitems grid" id="shopItems"></div>
+    <div class="searn" id="searn"><button class="searnh" id="searnBtn" type="button" aria-expanded="false" aria-controls="searnBody">How to earn pearls<span class="pm" aria-hidden="true"></span></button><div class="searnb" id="searnBody"><div><ul>
+      <li>1 pearl for every 10 spins</li>
+      <li>5 pearls for a speedy burst of taps</li>
+      <li>10 pearls for every secret you find</li>
+      <li>25 pearls when a new friend joins (every 150 spins)</li>
+      <li>50 pearls at every spin milestone</li>
+    </ul></div></div></div>
   </div>
 </div>
 
@@ -1449,7 +1657,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       <ellipse cx="28" cy="60" rx="5" ry="3" fill="#ff9fb5" opacity=".75"/><ellipse cx="68" cy="60" rx="5" ry="3" fill="#ff9fb5" opacity=".75"/>
     </svg>
     <h2 id="mTitle">Start a fresh dive?</h2>
-    <p>Your spins, prizes and every secret you found will float away. Hold the button to confirm.</p>
+    <p>Your spins, pearls, shop treats and every secret you found will float away. Hold the button to confirm.</p>
     <div class="mbtns">
       <button class="hold" id="holdBtn" type="button"><div class="fill" id="holdFill"></div><span id="holdTxt">Hold to start over</span></button>
       <button class="keep" id="keepBtn" type="button">Keep my progress</button>
@@ -1465,8 +1673,8 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const smooth = (v, a, b) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
   const lerp = (a, b, t) => a + (b - a) * t;
 
-  // ---------- the 20 friends: who they are, how deep they live, when they unlock ----------
-  const CREATURES = [{"id":"turtle","name":"Turtle","label":"sea turtle","unlock":0,"depth":0,"desc":"Sea turtles pop up to the surface to breathe air","hat":[70,98,0.8],"shades":[65,138,0.6],"crown":[66,100,0.75],"eyes":[[48,138],[82,138],0.85]},{"id":"clown","name":"Clownfish","label":"clownfish","unlock":500,"depth":8,"desc":"Clownfish live in warm, shallow coral reefs","hat":[92,96,0.85],"shades":[91,128,0.52],"crown":[90,96,0.8],"eyes":[[76,128],[106,128],0.9]},{"id":"whale","name":"Whale","label":"whale","unlock":1000,"depth":12,"desc":"Whales cruise the sunlit upper ocean","hat":[146,80,1],"shades":[114,146,0.9],"crown":[114,82,0.95],"eyes":[[88,146],[140,146],1]},{"id":"puffer","name":"Pufferfish","label":"pufferfish","unlock":1500,"depth":9,"desc":"Pufferfish drift around sunny reefs","hat":[150,58,1],"shades":[150,136,1.05],"crown":[150,60,1],"eyes":[[120,136],[180,136],1.15]},{"id":"seahorse","name":"Seahorse","label":"seahorse","unlock":2000,"depth":7,"desc":"Seahorses cling to seagrass in shallow water","hat":[154,56,0.75],"shades":[155,92,0.45],"crown":[154,56,0.7],"eyes":[[142,92],[168,92],0.8]},{"id":"crab","name":"Crab","label":"crab","unlock":2500,"depth":10,"desc":"Crabs scuttle along the shallow sea floor","hat":[150,108,0.9],"shades":[150,72,0.97],"crown":[150,110,0.9],"eyes":[[122,72],[178,72],1]},{"id":"jelly","name":"Jelly","label":"jellyfish","unlock":3000,"depth":40,"desc":"Many jellyfish glow in the dim twilight zone","hat":[150,66,1],"shades":[150,124,1.05],"crown":[150,68,1],"eyes":[[122,124],[178,124],0.9]},{"id":"star","name":"Starfish","label":"sea star","unlock":3500,"depth":6,"desc":"Sea stars cling to rocks in shallow water","hat":[150,48,0.85],"shades":[150,134,0.7],"crown":[150,50,0.8],"eyes":[[130,134],[170,134],0.95]},{"id":"octo","name":"Octopus","label":"octopus","unlock":4000,"depth":14,"desc":"Octopuses hide in rocky reefs and kelp","hat":[150,38,1],"shades":[150,116,0.85],"crown":[150,40,1],"eyes":[[126,116],[174,116],1.1]},{"id":"beluga","name":"Beluga","label":"beluga whale","unlock":4500,"depth":9,"desc":"Belugas chirp and sing in chilly Arctic seas","hat":[96,72,.95],"shades":[107,140,.8],"crown":[100,74,.95],"eyes":[[84,140],[130,140],1]},{"id":"seal","name":"Seal","label":"seal","unlock":5000,"depth":3,"desc":"Seals hunt below and rest at the surface","hat":[106,72,0.9],"shades":[106,116,0.7],"crown":[106,74,0.9],"eyes":[[86,116],[126,116],1.05]},{"id":"ray","name":"Stingray","label":"stingray","unlock":5500,"depth":16,"desc":"Stingrays glide over sandy sea floors","hat":[150,70,0.75],"shades":[150,128,0.7],"crown":[150,72,0.7],"eyes":[[130,128],[170,128],0.9]},{"id":"shark","name":"Shark","label":"shark","unlock":6000,"depth":18,"desc":"Sharks patrol the open sunlit ocean","hat":[102,96,0.85],"shades":[95,134,0.52],"crown":[100,98,0.85],"eyes":[[80,134],[110,134],0.85]},{"id":"naut","name":"Nautilus","label":"nautilus","unlock":6500,"depth":34,"desc":"Nautiluses drift between 100 and 700 m deep","hat":[176,58,0.9],"shades":[109,140,0.38],"crown":[176,60,0.85],"eyes":[[98,140],[120,140],0.7]},{"id":"angler","name":"Angler","label":"anglerfish","unlock":7000,"depth":80,"desc":"Anglerfish glow in the pitch-black midnight zone","hat":[198,90,1],"shades":[150,144,1.0],"crown":[184,82,0.9],"eyes":[[122,144],[178,144],1.2]},{"id":"orca","name":"Orca","label":"orca","unlock":7500,"depth":15,"desc":"Orcas hunt in every ocean, from pole to pole","hat":[104,96,0.85],"shades":[84,146,0.5],"crown":[104,98,0.85],"eyes":[[70,146],[98,146],0.8]},{"id":"narwhal","name":"Narwhal","label":"narwhal","unlock":8000,"depth":20,"desc":"Narwhals live in icy Arctic waters","hat":[146,80,1],"shades":[112,146,0.83],"crown":[112,84,0.9],"eyes":[[88,146],[136,146],1]},{"id":"blob","name":"Blobfish","label":"blobfish","unlock":8500,"depth":47,"desc":"Blobfish float 600 to 1,200 m down off Australia","hat":[150,54,1],"shades":[148,118,1.03],"crown":[150,56,1],"eyes":[[118,118],[178,118],0.95]},{"id":"isopod","name":"Giant isopod","label":"giant isopod","unlock":9000,"depth":63,"desc":"Giant isopods crawl along the deep sea floor","hat":[150,52,0.9],"shades":[150,84,0.76],"crown":[150,54,0.9],"eyes":[[128,84],[172,84],0.9]},{"id":"seapig","name":"Sea pig","label":"sea pig","unlock":9500,"depth":98,"desc":"Sea pigs roam the deepest sea floor","hat":[170,100,0.85],"shades":[103,144,0.52],"crown":[170,102,0.85],"eyes":[[88,144],[118,144],0.85]}];
+  // ---------- the 30 friends: who they are, how deep they live, when they unlock ----------
+  const CREATURES = [{"id":"turtle","name":"Turtle","label":"sea turtle","unlock":0,"depth":0,"desc":"Sea turtles pop up to the surface to breathe air","hat":[70,98,0.8],"shades":[65,138,0.6],"crown":[66,100,0.75],"eyes":[[48,138],[82,138],0.85]},{"id":"clown","name":"Clownfish","label":"clownfish","unlock":150,"depth":8,"desc":"Clownfish live in warm, shallow coral reefs","hat":[92,96,0.85],"shades":[91,128,0.52],"crown":[90,96,0.8],"eyes":[[76,128],[106,128],0.9]},{"id":"whale","name":"Whale","label":"whale","unlock":300,"depth":12,"desc":"Whales cruise the sunlit upper ocean","hat":[146,80,1],"shades":[114,146,0.9],"crown":[114,82,0.95],"eyes":[[88,146],[140,146],1]},{"id":"puffer","name":"Pufferfish","label":"pufferfish","unlock":450,"depth":9,"desc":"Pufferfish drift around sunny reefs","hat":[150,58,1],"shades":[150,136,1.05],"crown":[150,60,1],"eyes":[[120,136],[180,136],1.15]},{"id":"seahorse","name":"Seahorse","label":"seahorse","unlock":600,"depth":7,"desc":"Seahorses cling to seagrass in shallow water","hat":[154,56,0.75],"shades":[155,92,0.45],"crown":[154,56,0.7],"eyes":[[142,92],[168,92],0.8]},{"id":"crab","name":"Crab","label":"crab","unlock":750,"depth":10,"desc":"Crabs scuttle along the shallow sea floor","hat":[150,108,0.9],"shades":[150,72,0.97],"crown":[150,110,0.9],"eyes":[[122,72],[178,72],1]},{"id":"jelly","name":"Jelly","label":"jellyfish","unlock":900,"depth":40,"desc":"Many jellyfish glow in the dim twilight zone","hat":[150,66,1],"shades":[150,124,1.05],"crown":[150,68,1],"eyes":[[122,124],[178,124],0.9]},{"id":"star","name":"Starfish","label":"sea star","unlock":1050,"depth":6,"desc":"Sea stars cling to rocks in shallow water","hat":[150,48,0.85],"shades":[150,134,0.7],"crown":[150,50,0.8],"eyes":[[130,134],[170,134],0.95]},{"id":"octo","name":"Octopus","label":"octopus","unlock":1200,"depth":14,"desc":"Octopuses hide in rocky reefs and kelp","hat":[150,38,1],"shades":[150,116,0.85],"crown":[150,40,1],"eyes":[[126,116],[174,116],1.1]},{"id":"beluga","name":"Beluga","label":"beluga whale","unlock":1350,"depth":9,"desc":"Belugas chirp and sing in chilly Arctic seas","hat":[96,72,0.95],"shades":[107,140,0.8],"crown":[100,74,0.95],"eyes":[[84,140],[130,140],1]},{"id":"seal","name":"Seal","label":"seal","unlock":1500,"depth":3,"desc":"Seals hunt below and rest at the surface","hat":[106,72,0.9],"shades":[106,116,0.7],"crown":[106,74,0.9],"eyes":[[86,116],[126,116],1.05]},{"id":"ray","name":"Stingray","label":"stingray","unlock":1650,"depth":16,"desc":"Stingrays glide over sandy sea floors","hat":[150,70,0.75],"shades":[150,128,0.7],"crown":[150,72,0.7],"eyes":[[130,128],[170,128],0.9]},{"id":"shark","name":"Shark","label":"shark","unlock":1800,"depth":18,"desc":"Sharks patrol the open sunlit ocean","hat":[102,96,0.85],"shades":[95,134,0.52],"crown":[100,98,0.85],"eyes":[[80,134],[110,134],0.85]},{"id":"naut","name":"Nautilus","label":"nautilus","unlock":1950,"depth":34,"desc":"Nautiluses drift between 100 and 700 m deep","hat":[176,58,0.9],"shades":[109,140,0.38],"crown":[176,60,0.85],"eyes":[[98,140],[120,140],0.7]},{"id":"angler","name":"Angler","label":"anglerfish","unlock":2100,"depth":80,"desc":"Anglerfish glow in the pitch-black midnight zone","hat":[198,90,1],"shades":[150,144,1.0],"crown":[184,82,0.9],"eyes":[[122,144],[178,144],1.2]},{"id":"orca","name":"Orca","label":"orca","unlock":2250,"depth":15,"desc":"Orcas hunt in every ocean, from pole to pole","hat":[104,96,0.85],"shades":[84,146,0.5],"crown":[104,98,0.85],"eyes":[[70,146],[98,146],0.8]},{"id":"narwhal","name":"Narwhal","label":"narwhal","unlock":2400,"depth":20,"desc":"Narwhals live in icy Arctic waters","hat":[146,80,1],"shades":[112,146,0.83],"crown":[112,84,0.9],"eyes":[[88,146],[136,146],1]},{"id":"blob","name":"Blobfish","label":"blobfish","unlock":2550,"depth":47,"desc":"Blobfish float 600 to 1,200 m down off Australia","hat":[150,54,1],"shades":[148,118,1.03],"crown":[150,56,1],"eyes":[[118,118],[178,118],0.95]},{"id":"isopod","name":"Giant isopod","label":"giant isopod","unlock":2700,"depth":63,"desc":"Giant isopods crawl along the deep sea floor","hat":[150,52,0.9],"shades":[150,84,0.76],"crown":[150,54,0.9],"eyes":[[128,84],[172,84],0.9]},{"id":"seapig","name":"Sea pig","label":"sea pig","unlock":2850,"depth":98,"desc":"Sea pigs roam the deepest sea floor","hat":[170,100,0.85],"shades":[103,144,0.52],"crown":[170,102,0.85],"eyes":[[88,144],[118,144],0.85]},{"id":"walrus","name":"Walrus","label":"walrus","unlock":3000,"depth":3,"desc":"Walruses rest on Arctic ice at the surface","hat":[150,84,0.95],"shades":[150,114,1],"crown":[150,86,0.9],"eyes":[[122,114],[178,114],0.95]},{"id":"dugong","name":"Dugong","label":"dugong","unlock":3150,"depth":6,"desc":"Dugongs graze on seagrass in warm shallow seas","hat":[116,98,0.9],"shades":[117,134,0.8],"crown":[116,100,0.85],"eyes":[[98,134],[136,134],0.9]},{"id":"seabunny","name":"Sea bunny","label":"sea bunny","unlock":3300,"depth":7,"desc":"Sea bunnies crawl over shallow reefs","hat":[150,102,0.85],"shades":[150,154,0.8],"crown":[150,104,0.8],"eyes":[[128,154],[172,154],0.9]},{"id":"lobster","name":"Lobster","label":"lobster","unlock":3450,"depth":10,"desc":"Lobsters hide in rocky crevices on the sea floor","hat":[150,80,0.85],"shades":[150,124,0.8],"crown":[150,82,0.8],"eyes":[[130,124],[170,124],0.95]},{"id":"cuttle","name":"Cuttlefish","label":"cuttlefish","unlock":3600,"depth":11,"desc":"Cuttlefish hunt over reefs and seagrass","hat":[104,104,0.8],"shades":[102,134,0.65],"crown":[104,106,0.75],"eyes":[[86,134],[118,134],0.85]},{"id":"hammer","name":"Hammerhead","label":"hammerhead shark","unlock":3750,"depth":17,"desc":"Hammerheads school in the open sunlit ocean","hat":[150,94,0.9],"shades":[150,114,1],"crown":[150,96,0.85],"eyes":[[60,114],[240,114],0.95]},{"id":"mola","name":"Sunfish","label":"ocean sunfish","unlock":3900,"depth":22,"desc":"Sunfish dive deep, then bask at the surface","hat":[116,70,0.9],"shades":[112,132,0.8],"crown":[116,72,0.85],"eyes":[[92,132],[132,132],0.95]},{"id":"angel","name":"Sea angel","label":"sea angel","unlock":4050,"depth":28,"desc":"Sea angels drift in cold, dim water","hat":[150,64,0.7],"shades":[150,106,0.55],"crown":[150,66,0.65],"eyes":[[136,106],[164,106],0.75]},{"id":"barreleye","name":"Barreleye","label":"barreleye fish","unlock":4200,"depth":44,"desc":"Barreleyes hover 600 to 800 m down","hat":[118,74,0.85],"shades":[108,162,0.6],"crown":[118,76,0.8],"eyes":[[92,162],[124,162],0.85]},{"id":"yeti","name":"Yeti crab","label":"yeti crab","unlock":4350,"depth":76,"desc":"Yeti crabs live by hot vents on the deep sea floor","hat":[150,104,0.9],"shades":[150,150,0.85],"crown":[150,106,0.85],"eyes":[[128,150],[172,150],0.95]}];
   const zoneOf = p => p <= 4 ? 'surface' : p <= 25 ? 'sunlight' : p <= 55 ? 'twilight' : 'midnight';
   const ZONES = {
     surface:  { zone: 'The surface',   tint: '230,247,255', sea: { cut: 900, vol: .035, lfo: .14, depth: .03 } },
@@ -1559,11 +1767,29 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     narwhal: ["A narwhal's tusk is actually a very long tooth.", "A narwhal's tusk can grow to about 3 m long.", "Narwhals live in icy Arctic waters around Canada, Greenland and Russia.", "Narwhals can dive more than 1,500 m deep in winter.", "A narwhal's tusk has millions of nerve endings that may help it sense the water."],
     blob: ["Blobfish only look blobby out of water. In the deep, they look like a normal fish.", "Blobfish live around 600 to 1,200 m deep off Australia and New Zealand.", "Blobfish have very little muscle and float just above the sea floor.", "The blobfish was voted the world's ugliest animal in 2013, but we think it's adorable.", "Blobfish save energy by drifting and eating whatever floats past."],
     isopod: ["Giant isopods are relatives of the little woodlice you find in gardens.", "Giant isopods can grow longer than 40 cm.", "Giant isopods can survive for years without food.", "Like woodlice, giant isopods can roll into a ball to protect themselves.", "Giant isopods clean up the sea floor by eating things that sink from above."],
-    seapig: ["Sea pigs are a kind of sea cucumber that walks on tube-feet legs.", "Sea pigs live on the deep sea floor, often more than 1,000 m down.", "Sea pigs eat mud, picking out tiny bits of food from it.", "Sea pigs often travel together in big herds across the sea floor.", "Sea pigs are see-through pink, which helps them blend into the dark."]
+    seapig: ["Sea pigs are a kind of sea cucumber that walks on tube-feet legs.", "Sea pigs live on the deep sea floor, often more than 1,000 m down.", "Sea pigs eat mud, picking out tiny bits of food from it.", "Sea pigs often travel together in big herds across the sea floor.", "Sea pigs are see-through pink, which helps them blend into the dark."],
+    walrus: ["Walruses use their long tusks to haul themselves out of the water onto the ice.", "Both male and female walruses grow tusks.", "A walrus has hundreds of sensitive whiskers for finding clams on the sea floor.", "Walruses suck clams right out of their shells.", "A thick layer of blubber keeps walruses warm in icy Arctic water."],
+    dugong: ["Dugongs are related to elephants, not to whales or seals.", "Dugongs eat seagrass, which is why they're called sea cows.", "Australia is home to most of the world's dugongs.", "Dugongs can live for 70 years or more.", "A dugong's tail is shaped like a dolphin's, while a manatee's is round like a paddle."],
+    seabunny: ["The sea bunny is really a tiny sea slug, only about 1 to 2.5 cm long.", "A sea bunny's 'ears' are rhinophores, which smell chemicals in the water.", "Its fluffy look comes from tiny rods covering its body.", "Sea bunnies live in the Indian and Pacific Oceans, including off Japan.", "The fluffy tuft on a sea bunny's back is its gills."],
+    lobster: ["Lobsters keep growing their whole lives, shedding their shells to get bigger.", "A lobster's two big claws are different: one crushes and one cuts.", "Lobsters smell with their antennae and taste with tiny hairs on their legs.", "Lobsters walk forwards, but zoom backwards by flapping their tails.", "Roughly 1 in 2 million lobsters is born bright blue."],
+    cuttle: ["Cuttlefish can change colour in less than a second.", "Cuttlefish have W-shaped pupils.", "Cuttlefish have three hearts and blue-green blood.", "Giant cuttlefish gather in huge numbers every winter off South Australia.", "A cuttlefish's cuttlebone is full of gas, which helps it float."],
+    hammer: ["A hammerhead's wide head helps it see almost all the way around.", "Hammerheads sense the tiny electric signals of prey hidden in the sand.", "Scalloped hammerheads gather in big schools during the day.", "The great hammerhead can grow to about 6 m long.", "Hammerheads love to hunt stingrays."],
+    mola: ["The ocean sunfish is the heaviest bony fish in the world.", "A sunfish can weigh more than 2,000 kg.", "Sunfish lie flat at the surface to warm up after deep, chilly dives.", "A female sunfish can carry around 300 million eggs.", "Sunfish love to eat jellyfish."],
+    angel: ["Sea angels are tiny sea snails that have no shell.", "Sea angels flap two wing-like feet to swim.", "Most sea angels are only a few centimetres long.", "You can see right through a sea angel's body.", "Sea angels live in cold seas, from the Arctic to the Southern Ocean."],
+    barreleye: ["The barreleye fish has a clear, see-through head.", "A barreleye's green eyes sit inside its head and can turn to look up or forward.", "The two dots that look like eyes on a barreleye's face are its nostrils.", "Barreleyes live about 600 to 800 m deep in the Pacific.", "Scientists first filmed a living barreleye's clear head in the late 2000s."],
+    yeti: ["Yeti crabs were only discovered in 2005.", "Yeti crabs live near hot vents on the deep sea floor.", "Yeti crabs grow bacteria on their hairy arms, then eat them.", "Some yeti crabs wave their arms to keep their bacteria fed.", "The first yeti crab found has no working eyes, since it lives in total darkness."]
   };
 
-  const VERSION = '2.4';
+  const VERSION = '2.6';
   const CHANGELOG = [
+    { v: '2.6', name: 'Dress up your friends', date: '21 Oct 2026', items: [
+      '10 new sea friends, from the walrus to the yeti crab',
+      'A new friend joins every 150 spins',
+      'Hats, colours, bubbles and sounds in the Pearl Shop'] },
+    { v: '2.5', name: 'The Pearl Shop', date: '21 Oct 2026', items: [
+      'Earn pearls by spinning, tapping fast, finding secrets and making friends',
+      'Spend them in the new Pearl Shop: candy bubbles, music box taps and Pearl Rush',
+      'Already playing? Your progress so far turns into pearls to start you off'] },
     { v: '2.4', name: 'Friends every 500 spins', date: '21 Oct 2026', items: [
       'A new friend joins every 500 spins, with the big finale at 10,000',
       'Bubble buddies replace the sunglasses',
@@ -1648,7 +1874,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const addS = (id, what, cat, desc) => { SECRETS[id] = { what }; GEN_INFO[id] = [cat, desc]; };
   CREATURES.forEach(c => {
     if (c.unlock > 0) addS('unlock_' + c.id, c.name + ' joins the ocean', 'friends', 'Unlocked at ' + fmtN(c.unlock) + ' spins');
-    [[10, 'fan'], [100, 'best buds'], [500, 'legend']].forEach(([n, t]) => addS('spin' + n + '_' + c.id, c.name + ' ' + t, 'friends', 'Spun the ' + c.label + ' ' + fmtN(n) + ' times'));
+    [[100, 'best buds']].forEach(([n, t]) => addS('spin' + n + '_' + c.id, c.name + ' ' + t, 'friends', 'Spun the ' + c.label + ' ' + fmtN(n) + ' times'));
     addS('song_' + c.id, c.name + "'s song", 'friends', 'Held the ' + c.label + ' to hear it sing');
     addS('facts_' + c.id, c.name + ' expert', 'friends', 'Read every ' + c.label + ' fact');
   });
@@ -1728,9 +1954,71 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   let spins = store.get('spins', 0), cur = store.get('friend', 'turtle'), muted = store.get('muted', false);
   const foundAt = store.get('foundAt', {});
   Object.assign(SECRET_INFO, GEN_INFO);
-  let found = new Set(store.get('secrets', [])), factsOpen = store.get('factsOpen', innerWidth >= 520);
+  let found = new Set(store.get('secrets', [])), factsOpen = store.get('guideFacts', true);
   [...found].forEach(k => { if (!SECRETS[k]) found.delete(k); });
   let fxVol = store.get('fxVol', 80), seaVol = store.get('seaVol', 50);
+  // ---------- pearls: earned by playing, spent in the Pearl Shop ----------
+  const SHOP = [
+    { id: 'nohat', slot: 'hat', cost: 0, name: 'Prize hat' },
+    { id: 'bow', slot: 'hat', cost: 60, name: 'Bow' },
+    { id: 'flowers', slot: 'hat', cost: 90, name: 'Flower crown' },
+    { id: 'beanie', slot: 'hat', cost: 110, name: 'Beanie' },
+    { id: 'tophat', slot: 'hat', cost: 140, name: 'Top hat' },
+    { id: 'pirate', slot: 'hat', cost: 160, name: 'Pirate hat' },
+    { id: 'phones', slot: 'hat', cost: 180, name: 'Headphones' },
+    { id: 'wizard', slot: 'hat', cost: 220, name: 'Wizard hat' },
+    { id: 'halo', slot: 'hat', cost: 260, name: 'Halo' },
+    { id: 'natural', slot: 'skin', cost: 0, name: 'Natural' },
+    { id: 'bubblegum', slot: 'skin', cost: 100, name: 'Bubblegum', f: 'sepia(1) saturate(2.2) hue-rotate(285deg) brightness(1.05)' },
+    { id: 'mint', slot: 'skin', cost: 100, name: 'Mint', f: 'sepia(1) saturate(1.8) hue-rotate(105deg) brightness(1.08)' },
+    { id: 'sunset', slot: 'skin', cost: 130, name: 'Sunset', f: 'sepia(1) saturate(3) hue-rotate(-22deg) brightness(1.05)' },
+    { id: 'lavender', slot: 'skin', cost: 130, name: 'Lavender', f: 'sepia(1) saturate(1.6) hue-rotate(220deg) brightness(1.1)' },
+    { id: 'pastel', slot: 'skin', cost: 150, name: 'Pastel', f: 'saturate(.5) brightness(1.18)' },
+    { id: 'ghost', slot: 'skin', cost: 180, name: 'Ghost', f: 'saturate(.15) brightness(1.3)' },
+    { id: 'shadow', slot: 'skin', cost: 200, name: 'Shadow', f: 'sepia(1) saturate(1.4) hue-rotate(180deg) brightness(.6)' },
+    { id: 'classic', slot: 'bub', cost: 0, name: 'Classic' },
+    { id: 'ocean', slot: 'bub', cost: 100, name: 'Ocean', h: [185, 195, 205, 215, 175] },
+    { id: 'minty', slot: 'bub', cost: 100, name: 'Minty', h: [140, 155, 165, 175] },
+    { id: 'sunbub', slot: 'bub', cost: 120, name: 'Sunset', h: [8, 22, 38, 345, 330] },
+    { id: 'candy', slot: 'bub', cost: 150, name: 'Candy', h: [335, 150, 52, 275, 195] },
+    { id: 'goldbub', slot: 'bub', cost: 180, name: 'Gold', h: [42, 46, 50, 38] },
+    { id: 'galaxy', slot: 'bub', cost: 180, name: 'Galaxy', h: [250, 265, 280, 295, 210] },
+    { id: 'round', slot: 'shape', cost: 0, name: 'Round' },
+    { id: 'hearts', slot: 'shape', cost: 200, name: 'Hearts' },
+    { id: 'stars', slot: 'shape', cost: 220, name: 'Stars' },
+    { id: 'friendly', slot: 'snd', cost: 0, name: 'Friend sounds', c: '#5fd0ff' },
+    { id: 'pops', slot: 'snd', cost: 120, name: 'Bubble pops', c: '#8fd3f4' },
+    { id: 'chimes', slot: 'snd', cost: 180, name: 'Wind chimes', c: '#9ff0c8' },
+    { id: 'xylo', slot: 'snd', cost: 200, name: 'Xylophone', c: '#ffd36b' },
+    { id: 'kalimba', slot: 'snd', cost: 220, name: 'Kalimba', c: '#ffb86b' },
+    { id: 'music', slot: 'snd', cost: 300, name: 'Music box', c: '#ff9fc4' },
+    { id: 'rush', slot: 'boost', cost: 80, name: 'Pearl Rush', desc: 'Double pearls from spinning and speedy taps for 5 minutes.' }
+  ];
+  const ITEM = Object.fromEntries(SHOP.map(x => [x.id, x]));
+  const RUSH_MS = 5 * 60 * 1000;
+  const LULLABY = [0, 0, 4, 4, 5, 5, 4, 3, 3, 2, 2, 1, 1, 0, 4, 4, 3, 3, 2, 2, 1, 4, 4, 3, 3, 2, 2, 1], MBOX = [523.25, 587.33, 659.25, 698.46, 783.99, 880];
+  let musicI = 0, lastSpeedPearl = 0, pearlGift = 0;
+  let pearlsEarned = store.get('pearlsEarned', null), pearlsSpent = store.get('pearlsSpent', 0);
+  let owned = new Set(store.get('owned', [])), equip = store.get('equip', {}), rushUntil = store.get('rushUntil', 0);
+  // 2.5 saves kept candy bubbles and the music box as on/off switches
+  if (equip.candy === true) equip.bub = 'candy'; if (equip.music === true) equip.snd = 'music'; delete equip.candy; delete equip.music;
+  {
+    const miles = MILES.filter(m => spins >= m.n).length, friends = CREATURES.filter(c => spins >= c.unlock).length;
+    if (pearlsEarned === null) { pearlsEarned = spins > 0 ? Math.floor(spins / 10) + found.size * 10 + miles * 50 : 0; pearlGift = pearlsEarned; store.set('pearlsEarned', pearlsEarned); }
+    // pearls must add up: no more than the spins, secrets and friends could have earned, and nothing owned that wasn't paid for
+    const ownedCost = [...owned].reduce((a, id) => a + (ITEM[id] && ITEM[id].slot !== 'boost' ? ITEM[id].cost : 1e9), 0);
+    const cap = spins * 0.45 + found.size * 12 + miles * 50 + friends * 25 + 200;
+    if (!(pearlsEarned >= 0) || pearlsEarned > cap || !(pearlsSpent >= 0) || pearlsSpent > pearlsEarned || ownedCost > pearlsSpent || !(rushUntil >= 0) || rushUntil > Date.now() + RUSH_MS) {
+      pearlsEarned = 0; pearlsSpent = 0; owned = new Set(); equip = {}; rushUntil = 0;
+      ['pearlsEarned', 'pearlsSpent', 'rushUntil'].forEach(k => store.set(k, 0)); store.set('owned', []);
+    }
+    Object.keys(equip).forEach(k => { const it = ITEM[equip[k]]; if (!it || it.slot !== k || !(owned.has(it.id) || it.cost === 0)) delete equip[k]; });
+    store.set('equip', equip);
+  }
+  const pearlBal = () => pearlsEarned - pearlsSpent;
+  const rushOn = () => Date.now() < rushUntil;
+  const ownsIt = it => it.cost === 0 || owned.has(it.id);
+  const wearing = slot => { const it = ITEM[equip[slot]]; return it && it.cost > 0 && owned.has(it.id) ? it : null; };
   const isUnlocked = id => FRIENDS[id] && spins >= FRIENDS[id].unlock;
   if (!isUnlocked(cur)) cur = 'turtle';
   let rot = 0, happyTimer, dragging = false;
@@ -1846,8 +2134,24 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   }
   function pops(t, n, lo, hi, vol) { for (let i = 0; i < n; i++) { const bt = t + i * 0.08 + Math.random() * 0.05, bf = lo + Math.random() * (hi - lo); tone(bt, bf, bf * 1.9, 0.07, vol); } }
   let lastSpinSound = 0;
+  // Music box taps (Pearl Shop): each tap is the next note of Twinkle Twinkle
+  function musicBox(quick) {
+    const t = now(), f = MBOX[LULLABY[musicI++ % LULLABY.length]], d = quick ? .55 : 1.2;
+    tone(t, f, f, d, .12, 'triangle'); tone(t, f * 2, f * 2, d * .7, .035); tone(t, f * 4.02, f * 4.02, d * .35, .012);
+  }
+  const XYLO = [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77, 1046.5], KAL = [261.63, 293.66, 329.63, 392, 440, 523.25, 587.33, 659.25];
+  let xyI = 0, xyDir = 1;
+  function shopSound(id, quick) {
+    const t = now(), pick = a => a[Math.floor(Math.random() * a.length)];
+    if (id === 'music') musicBox(quick);
+    else if (id === 'pops') { pops(t, quick ? 1 : 3, 450, 1300, .12); tone(t, 300, 720, .08, .12); }
+    else if (id === 'chimes') { chime(t, pick(PENTA) * 2, .05); if (!quick) chime(t + .12 + Math.random() * .15, pick(PENTA) * 2, .035); }
+    else if (id === 'xylo') { const f = XYLO[xyI]; xyI += xyDir; if (xyI >= XYLO.length - 1 || xyI <= 0) xyDir = -xyDir; tone(t, f, f, quick ? .25 : .45, .16); tone(t, f * 3.98, f * 3.98, .1, .03); }
+    else if (id === 'kalimba') { const f = pick(KAL); tone(t, f, f, quick ? .6 : 1.3, .17); tone(t, f * 2, f * 2, .25, .03, 'triangle'); }
+  }
   function playSpin(speed) {
     if (muted || !ensureAudio()) return;
+    { const sd = wearing('snd'); if (sd) { const t0 = now(); shopSound(sd.id, t0 - lastSpinSound < .14); lastSpinSound = t0; return; } }
     const t = now(), p = (0.92 + Math.random() * 0.18) * (speed || 1);
     // tapping very fast: a short, light bloop so sounds don't pile up
     if (t - lastSpinSound < .14) { tone(t, 620 * p, 260 * p, 0.12, 0.22); if (Math.random() < .4) tone(t + .03, 900 * p, 1700 * p, 0.05, 0.06); return; }
@@ -1961,10 +2265,11 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   }
   function burst(px, py, n = 24) {
     const cap = PHONE ? 260 : 600; if (parts.length > cap * .6) n = Math.min(n, 5); if (parts.length > cap) return;
-    const rainbow = spins >= 2500, hearts = found.size >= SECRET_TOTAL;
+    const rainbow = spins >= 2500, hearts = found.size >= SECRET_TOTAL, bs = wearing('bub'), sh = wearing('shape');
     for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, sp = (1.2 + Math.random() * 3.6) * dpr;
       parts.push({ k: 'bub', x: px, y: py, r: (3 + Math.random() * 9) * dpr, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1.5 * dpr, life: 1,
-        hue: rainbow ? Math.floor(Math.random() * 360) : null, heart: hearts && Math.random() < .3 }); }
+        hue: bs ? bs.h[Math.floor(Math.random() * bs.h.length)] : rainbow ? Math.floor(Math.random() * 360) : null,
+        heart: sh ? sh.id === 'hearts' && Math.random() < .7 : hearts && Math.random() < .3, star: !!sh && sh.id === 'stars' && Math.random() < .7 }); }
   }
   const CONF = ['#ff9fb5', '#ffd36b', '#9ff0c8', '#8fd3f4', '#c6a8ff', '#ffffff'];
   function confetti(n, gold) {
@@ -1985,6 +2290,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     const b = pal.getBoundingClientRect(), a = Math.random() * Math.PI * 2, rr = b.width * (.45 + Math.random() * .2);
     parts.push({ k: 'spark', x: (b.left + b.width / 2 + Math.cos(a) * rr) * dpr, y: (b.top + b.height / 2 + Math.sin(a) * rr) * dpr, vx: 0, vy: -.3 * dpr, life: 1, c: Math.random() < .5 ? '#ffd36b' : '#fff' });
   }
+  function star4(c, s) { c.beginPath(); c.moveTo(0, -s); c.lineTo(s * .28, -s * .28); c.lineTo(s, 0); c.lineTo(s * .28, s * .28); c.lineTo(0, s); c.lineTo(-s * .28, s * .28); c.lineTo(-s, 0); c.lineTo(-s * .28, -s * .28); c.closePath(); c.fill(); }
   function heart(c, s) { c.beginPath(); c.moveTo(0, s * .3); c.bezierCurveTo(s * .6, -s * .3, s * .3, -s * .8, 0, -s * .35); c.bezierCurveTo(-s * .3, -s * .8, -s * .6, -s * .3, 0, s * .3); c.fill(); }
   function bubble(x, y, r, a, hue) {
     const col = hue != null ? `hsla(${hue},90%,75%,${a})` : `rgba(${FRIENDS[cur].tint},${a})`;
@@ -2053,7 +2359,8 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
           break;
         }
         case 'bub':
-          if (p.heart) { g2.save(); g2.translate(p.x, p.y); g2.globalAlpha = p.life * .9; g2.fillStyle = '#ff9fb5'; heart(g2, p.r * 2); g2.restore(); }
+          if (p.heart) { g2.save(); g2.translate(p.x, p.y); g2.globalAlpha = p.life * .9; g2.fillStyle = p.hue != null ? `hsl(${p.hue},90%,76%)` : '#ff9fb5'; heart(g2, p.r * 2); g2.restore(); }
+          else if (p.star) { g2.save(); g2.translate(p.x, p.y); g2.rotate(p.life * 2.5); g2.globalAlpha = p.life * .9; g2.fillStyle = p.hue != null ? `hsl(${p.hue},90%,78%)` : '#ffe27a'; star4(g2, p.r * 1.7); g2.restore(); }
           else bubble(p.x, p.y, p.r, p.life * .8, p.hue);
           break;
         case 'conf':
@@ -2087,15 +2394,17 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const fmtBadge = n => n >= 1000000 ? n / 1000000 + 'M' : n >= 1000 ? n / 1000 + 'k' : String(n);
   let lastAccKey = '';
   function placeAccs() {
-    const ak = cur + [100, 500, 1000, 5000, 7500, 10000].map(n => spins >= n ? 1 : 0).join('');
+    const hat = wearing('hat'), ak = cur + [100, 500, 1000, 5000, 7500, 10000].map(n => spins >= n ? 1 : 0).join('') + (hat ? hat.id : '');
     if (ak === lastAccKey) return; lastAccKey = ak;
     const sp = FRIENDS[cur].spots;
-    [['a-hat', 'hat'], ['a-crown', 'crown']].forEach(([id, k]) => {
+    [['a-hat', 'hat'], ['a-crown', 'crown'], ['a-shop', 'crown']].forEach(([id, k]) => {
       const [x, y, s] = sp[k]; $(id).setAttribute('transform', `translate(${x} ${y}) scale(${s})`);
     });
-    $('a-hat').classList.toggle('on', spins >= 100 && spins < 1000);
+    if (hat && $('a-shop').dataset.h !== hat.id) { $('a-shop').innerHTML = HATS[hat.id]; $('a-shop').dataset.h = hat.id; }
+    $('a-shop').classList.toggle('on', !!hat);
+    $('a-hat').classList.toggle('on', !hat && spins >= 100 && spins < 1000);
     pal.classList.toggle('b500', spins >= 500);
-    $('a-crown').classList.toggle('on', spins >= 1000);
+    $('a-crown').classList.toggle('on', !hat && spins >= 1000);
     svg.classList.toggle('golden', spins >= 7500);
     $('float').classList.toggle('aura', spins >= 5000);
     $('legend').hidden = spins < 10000;
@@ -2141,7 +2450,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const springy = 'cubic-bezier(.34,1.4,.5,1)';
   function glideFacts(open) {
     const box = $('factBox'), pill = $('showFact');
-    factsOpen = open; store.set('factsOpen', open);
+    factsOpen = open; store.set('guideFacts', open);
     if (open) {
       pill.animate([{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.7)' }], { duration: 150, easing: 'ease-in' }).onfinish = () => {
         pill.hidden = true; box.hidden = false;
@@ -2284,7 +2593,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     setTimeout(() => {
       banner('New friend!', `The ${c.label} has joined your ocean`, 3600);
       confetti(90); if (!muted && ensureAudio()) { const t = now(); [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => chime(t + i * .1, f, .08)); }
-      foundSecret('unlock_' + c.id);
+      foundSecret('unlock_' + c.id); setTimeout(() => earnPearls(25, 'New friend!'), 300);
       setTimeout(() => { setFriend(c.id); switchSound(); }, 1200);
     }, later);
   }
@@ -2465,11 +2774,131 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     if (found.has(id)) return false;
     dataVer++;
     found.add(id); store.set('secrets', [...found]); foundAt[id] = Date.now(); store.set('foundAt', foundAt);
-    toast(`You found a secret: <b>${SECRETS[id].what}</b>`);
+    toast(`You found a secret: <b>${SECRETS[id].what}</b><span class="tpl"><span class="prl"></span>+10</span>`); earnPearls(10);
     if (!muted && ensureAudio()) { const t = now() + .05; [1046.5, 1318.5, 1567.98, 2093].forEach((f, i) => tone(t + i * .07, f, f, 0.5, 0.05, 'triangle')); }
     if (found.size === SECRET_TOTAL) setTimeout(() => { banner('Secret Seeker!', `You found all ${SECRET_TOTAL} hidden secrets. Heart bubbles unlocked`, 4500); confetti(160); fanfare(true); }, 2000);
     return true;
   }
+
+  // ---------- Pearl Shop ----------
+  const pearlBtn = $('pearlBtn');
+  let plusAnim = null, lastPearlShown = -1, rushTimer = 0, shopTab = 'hat';
+  function renderPearls() {
+    const b = pearlBal();
+    if (b !== lastPearlShown) { lastPearlShown = b; $('pearlN').textContent = fmtN(b); pearlBtn.setAttribute('aria-label', `${fmtN(b)} pearls. Open the Pearl Shop`); }
+    const r = rushOn(); if ($('rushTag').hidden === r) $('rushTag').hidden = !r;
+  }
+  function earnPearls(n, label) {
+    if (!(n > 0)) return;
+    pearlsEarned += n; store.set('pearlsEarned', pearlsEarned); renderPearls();
+    const pl = $('pplus'); pl.textContent = (label ? label + ' ' : '') + '+' + n;
+    if (plusAnim) plusAnim.cancel();
+    plusAnim = pl.animate([{ opacity: 0, transform: 'translate(-4px, 4px)' }, { opacity: 1, transform: 'translate(0, 0)', offset: .2 }, { opacity: 1, transform: 'translate(0, -6px)', offset: .75 }, { opacity: 0, transform: 'translate(0, -14px)' }], { duration: label ? 1600 : 900, easing: 'ease-out' });
+    pearlBtn.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)', offset: .35 }, { transform: 'scale(1)' }], { duration: 320, easing: 'ease-out' });
+    if (n >= 5 && !muted && ctx && ctx.state === 'running') { const t = now() + .05; [1567.98, 2093].forEach((f, i) => tone(t + i * .06, f, f, .25, .03, 'triangle')); }
+  }
+  const mmss = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  function watchRush() {
+    clearInterval(rushTimer); renderPearls();
+    if (!rushOn()) return;
+    rushTimer = setInterval(() => {
+      if (rushOn()) { const el = $('rushLeft'); if (el && !$('shop').hidden) el.textContent = mmss(rushUntil - Date.now()); return; }
+      clearInterval(rushTimer); renderPearls(); if (!$('shop').hidden) renderShop();
+      toast('Pearl Rush is over. Back to normal pearls', 2400);
+    }, 1000);
+  }
+  // how a friend looks: a colour and a hat from the shop
+  function applyLook() {
+    const sk = wearing('skin');
+    svg.classList.toggle('skinned', !!sk); if (sk) svg.style.setProperty('--skin', sk.f); else svg.style.removeProperty('--skin');
+    lastAccKey = ''; placeAccs();
+  }
+  const flower = (x, y, c) => [0, 72, 144, 216, 288].map(a => `<circle cx="${(x + Math.cos(a * Math.PI / 180) * 5.5).toFixed(1)}" cy="${(y + Math.sin(a * Math.PI / 180) * 5.5).toFixed(1)}" r="5" fill="${c}"/>`).join('') + `<circle cx="${x}" cy="${y}" r="3.6" fill="#ffd36b"/>`;
+  const HATS = {
+    bow: '<path d="M0 -14 C-10 -32 -36 -32 -36 -14 C-36 2 -10 2 0 -14 Z M0 -14 C10 -32 36 -32 36 -14 C36 2 10 2 0 -14 Z" fill="#ff8fb8"/><path d="M-26 -20 C-21 -25 -15 -25 -10 -20 M26 -20 C21 -25 15 -25 10 -20" stroke="#fff" stroke-width="3" opacity=".6" fill="none" stroke-linecap="round"/><circle cx="0" cy="-14" r="7.5" fill="#ff5f99"/>',
+    flowers: '<path d="M-40 -2 Q0 -20 40 -2" stroke="#6cc46a" stroke-width="5" fill="none" stroke-linecap="round"/>' + flower(-28, -8, '#ff9fc4') + flower(-10, -14, '#fff') + flower(10, -14, '#c6a8ff') + flower(28, -8, '#ffb86b'),
+    beanie: '<path d="M-36 0 C-38 -44 38 -44 36 0 Z" fill="#5fb3ff"/><path d="M-30 -20 Q0 -28 30 -20 M-34 -10 Q0 -18 34 -10" stroke="#8fd0ff" stroke-width="4" fill="none"/><rect x="-40" y="-9" width="80" height="13" rx="6.5" fill="#3d8de0"/><circle cx="0" cy="-42" r="9" fill="#fff"/>',
+    tophat: '<rect x="-24" y="-56" width="48" height="52" rx="5" fill="#2b2f45"/><rect x="-24" y="-22" width="48" height="9" fill="#ff8fb8"/><rect x="-40" y="-9" width="80" height="10" rx="5" fill="#2b2f45"/><rect x="-18" y="-52" width="7" height="26" rx="3.5" fill="#fff" opacity=".18"/>',
+    pirate: '<path d="M-46 -4 C-32 -10 -26 -46 0 -48 C26 -46 32 -10 46 -4 C20 3 -20 3 -46 -4 Z" fill="#2b2f45"/><path d="M-42 -7 C-20 -2 20 -2 42 -7" stroke="#ffd36b" stroke-width="3" fill="none"/><circle cx="0" cy="-27" r="8" fill="#fff"/><circle cx="-3" cy="-28" r="1.8" fill="#2b2f45"/><circle cx="3" cy="-28" r="1.8" fill="#2b2f45"/><path d="M-12 -16 L12 -10 M12 -16 L-12 -10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>',
+    phones: '<path d="M-38 4 C-42 -48 42 -48 38 4" stroke="#ff6fa3" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="-50" y="-10" width="20" height="30" rx="9" fill="#ff6fa3"/><rect x="30" y="-10" width="20" height="30" rx="9" fill="#ff6fa3"/><rect x="-45" y="-4" width="8" height="18" rx="4" fill="#ffc2d8"/><rect x="37" y="-4" width="8" height="18" rx="4" fill="#ffc2d8"/>',
+    wizard: '<path d="M-32 -2 C-16 -30 -4 -62 12 -80 C8 -52 18 -26 32 -2 Z" fill="#6d5bd0"/><path d="M-44 -2 Q0 9 44 -2 Q0 -11 -44 -2 Z" fill="#5847b8"/><path d="M-6 -36 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z M10 -54 l1.5 4 4 1.5 -4 1.5 -1.5 4 -1.5 -4 -4 -1.5 4 -1.5 Z M12 -20 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2 -3 -3 -1.2 3 -1.2 Z" fill="#ffe27a"/>',
+    halo: '<ellipse cx="0" cy="-34" rx="32" ry="10" fill="none" stroke="#fff3b0" stroke-width="10" opacity=".35"/><ellipse cx="0" cy="-34" rx="30" ry="9" fill="none" stroke="#ffe27a" stroke-width="5"/>'
+  };
+  const SHAPE_SVG = {
+    round: '<svg viewBox="0 0 60 40"><circle cx="16" cy="22" r="10" fill="none" stroke="#bfe8fb" stroke-width="2.5"/><circle cx="38" cy="14" r="7" fill="none" stroke="#bfe8fb" stroke-width="2.5"/><circle cx="44" cy="30" r="5" fill="none" stroke="#bfe8fb" stroke-width="2.5"/><circle cx="12" cy="18" r="2.4" fill="#fff"/></svg>',
+    hearts: '<svg viewBox="0 0 60 40"><path d="M18 32 C4 22 6 10 13 10 C16 10 18 13 18 13 C18 13 20 10 23 10 C30 10 32 22 18 32 Z" fill="#ff9fb5"/><path d="M42 24 C34 18 35 11 39 11 C41 11 42 13 42 13 C42 13 43 11 45 11 C49 11 50 18 42 24 Z" fill="#ffc2d8"/></svg>',
+    stars: '<svg viewBox="0 0 60 40"><path d="M18 6 L21 17 L32 20 L21 23 L18 34 L15 23 L4 20 L15 17 Z" fill="#ffe27a"/><path d="M44 8 L46 15 L53 17 L46 19 L44 26 L42 19 L35 17 L42 15 Z" fill="#fff3b0"/></svg>'
+  };
+  const RUSH_ICON = '<svg viewBox="0 0 42 42"><defs><radialGradient id="spG" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff0f6"/><stop offset=".75" stop-color="#ecc9db"/><stop offset="1" stop-color="#c08ea9"/></radialGradient></defs><circle cx="19" cy="22" r="12" fill="url(#spG)"/><path d="M33 6v6M30 9h6M8 7v4M6 9h4M35 30v4M33 32h4" stroke="#ffe08a" stroke-width="2" stroke-linecap="round"/><text x="19" y="26.5" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="11" fill="#7a3d5c">x2</text></svg>';
+  function preview(it) {
+    if (it.slot === 'hat') return `<div class="spv"><svg viewBox="-52 -86 104 98">${it.id === 'nohat' ? (spins >= 1000 ? $('a-crown').innerHTML : $('a-hat').innerHTML) : HATS[it.id]}</svg></div>`;
+    if (it.slot === 'skin') return `<div class="spv"><img src="${charURL(cur, '')}" alt="" style="filter:${it.f || 'none'}"></div>`;
+    if (it.slot === 'bub') { const cols = it.h ? it.h.map(h => `hsl(${h},90%,75%)`) : [`rgb(${FRIENDS[cur].tint})`]; return `<div class="spv"><svg viewBox="0 0 60 40">${[[14, 22, 9], [33, 13, 7], [42, 29, 6], [24, 33, 4]].map(([x, y, r], i) => `<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${cols[i % cols.length]}" stroke-width="2.5"/>`).join('')}<circle cx="11" cy="19" r="2.2" fill="#fff"/></svg></div>`; }
+    if (it.slot === 'shape') return `<div class="spv">${SHAPE_SVG[it.id]}</div>`;
+    if (it.slot === 'snd') return it.id === 'friendly' ? `<div class="spv"><img src="${charURL(cur, 'happy')}" alt=""></div>` : `<button class="spv play" type="button" data-pv="${it.id}" aria-label="Hear ${it.name}"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="${it.c}"/><path d="M16 12.5 L28.5 20 L16 27.5 Z" fill="#fff"/></svg><span>Tap to hear</span></button>`;
+    return '';
+  }
+  function shopButton(it) {
+    const bal = pearlBal(), wear = it.slot === 'hat' || it.slot === 'skin';
+    if (it.slot === 'boost') {
+      if (rushOn()) return `<span class="sbtn live">Active, <span id="rushLeft">${mmss(rushUntil - Date.now())}</span> left</span>`;
+    } else if (ownsIt(it)) {
+      const on = isOn(it);
+      return `<button class="sbtn tog" type="button" data-id="${it.id}" aria-pressed="${on}">${on ? (wear ? 'Wearing' : 'Using') : (wear ? 'Wear' : 'Use')}</button>`;
+    }
+    if (bal < it.cost) return `<button class="sbtn poor" type="button" data-id="${it.id}"><span class="prl"></span>${fmtN(it.cost)} · ${fmtN(it.cost - bal)} to go</button>`;
+    return `<button class="sbtn" type="button" data-id="${it.id}"><span class="prl"></span>${fmtN(it.cost)}</button>`;
+  }
+  const isOn = it => it.cost === 0 ? !wearing(it.slot) : wearing(it.slot) === it;
+  function renderShop() {
+    $('shopBal').textContent = fmtN(pearlBal());
+    $('shopTabs').innerHTML = [['hat', 'Hats'], ['skin', 'Colours'], ['bub', 'Bubbles'], ['snd', 'Sounds'], ['boost', 'Boosts']].map(([k, n]) => `<button class="stab" type="button" role="tab" data-tab="${k}" aria-selected="${k === shopTab}">${n}</button>`).join('');
+    const box = $('shopItems'); box.className = 'sitems' + (shopTab === 'boost' ? '' : ' grid');
+    if (shopTab === 'boost') { box.innerHTML = SHOP.filter(it => it.slot === 'boost').map(it => `<div class="sitem"><div class="sic" aria-hidden="true">${RUSH_ICON}</div><div class="stx"><b>${it.name}</b><span>${it.desc}</span></div>${shopButton(it)}</div>`).join(''); return; }
+    const slots = shopTab === 'bub' ? [['bub', 'Colours'], ['shape', 'Shapes']] : [[shopTab, '']];
+    box.innerHTML = slots.map(([sl, h]) => (h ? `<div class="sgh">${h}</div>` : '') + SHOP.filter(it => it.slot === sl).map(it => `<div class="scard${isOn(it) ? ' on' : ''}">${preview(it)}<b class="sname">${it.name}</b>${shopButton(it)}</div>`).join('')).join('');
+  }
+  function openShop() { renderShop(); $('shop').hidden = false; $('shopClose').focus(); $('shopItems').scrollTop = 0; }
+  function closeShop() { const sh = $('shop'); sh.classList.add('closing'); setTimeout(() => { sh.hidden = true; sh.classList.remove('closing'); }, 240); pearlBtn.focus(); }
+  pearlBtn.addEventListener('click', openShop);
+  $('shopClose').addEventListener('click', closeShop);
+  $('searnBtn').addEventListener('click', () => {
+    const open = !$('searn').classList.contains('open');
+    $('searn').classList.toggle('open', open); $('searnBtn').setAttribute('aria-expanded', open);
+    if (!muted && ensureAudio()) tone(now(), open ? 660 : 880, open ? 880 : 660, .08, .04);
+  });
+  $('shop').addEventListener('click', e => { if (e.target === $('shop')) closeShop(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('shop').hidden) closeShop(); });
+  $('shopTabs').addEventListener('click', e => {
+    const b = e.target.closest('.stab'); if (!b || b.dataset.tab === shopTab) return;
+    shopTab = b.dataset.tab; renderShop(); $('shopItems').scrollTop = 0;
+    $('shopItems').animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' });
+    if (!muted && ensureAudio()) tone(now(), 700, 900, .06, .04);
+  });
+  $('shopItems').addEventListener('click', e => {
+    const pv = e.target.closest('[data-pv]'); if (pv) { if (ensureAudio()) shopSound(pv.dataset.pv, false); return; }
+    const b = e.target.closest('button[data-id]'); if (!b) return;
+    const it = ITEM[b.dataset.id]; if (!it) return;
+    const pop = () => { const c = b.closest('.scard, .sitem'); if (c) c.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.05)', offset: .35 }, { transform: 'scale(1)' }], { duration: 420, easing: 'cubic-bezier(.34,1.6,.5,1)' }); };
+    if (it.slot !== 'boost' && ownsIt(it)) {
+      if (isOn(it)) { if (it.cost === 0) return; delete equip[it.slot]; } else if (it.cost === 0) delete equip[it.slot]; else equip[it.slot] = it.id;
+      store.set('equip', equip); applyLook(); renderShop();
+      if (!muted && ensureAudio()) { if (it.slot === 'snd' && wearing('snd')) shopSound(it.id, false); else tone(now(), 660, 990, .12, .08); }
+      return;
+    }
+    if (pearlBal() < it.cost) {
+      b.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+      if (!muted && ensureAudio()) tone(now(), 220, 180, .12, .08, 'triangle');
+      return;
+    }
+    pearlsSpent += it.cost; store.set('pearlsSpent', pearlsSpent);
+    if (it.slot === 'boost') { rushUntil = Date.now() + RUSH_MS; store.set('rushUntil', rushUntil); watchRush(); }
+    else { owned.add(it.id); store.set('owned', [...owned]); equip[it.slot] = it.id; store.set('equip', equip); if (it.id === 'music') musicI = 0; applyLook(); }
+    persist(); renderPearls(); renderShop();
+    const nb = $('shopItems').querySelector(`[data-id="${it.id}"]`); if (nb) { const c = nb.closest('.scard, .sitem'); if (c) c.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)', offset: .35 }, { transform: 'scale(1)' }], { duration: 450, easing: 'cubic-bezier(.34,1.6,.5,1)' }); } else pop();
+    if (!muted && ensureAudio()) { const t = now(); [1046.5, 1318.5, 1567.98, 2093, 2637].forEach((f, i) => chime(t + i * .06, f, .05)); }
+    if (navigator.vibrate) { try { navigator.vibrate([10, 40, 14]); } catch (err) {} }
+  });
 
   // tap the open water: pop drifting bubbles, catch glowing specks
   let popCount = store.get('pops', 0), glowCount = store.get('glows', 0), collectorTaps = store.get('collector', 0);
@@ -2988,8 +3417,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     { t: 'Welcome to Bloop Ocean', p: 'A calm little clicker. Tap cute sea friends, dive deep and hunt for secrets. Here\'s a quick tour.', el: null },
     { t: 'Tap your friend', p: 'Every tap spins your friend with a soft bloop. Go on, try it now!', el: '#pal', free: true },
     { t: 'Dive deeper', p: 'Drag this slider to swim from the sunny surface down to the pitch-black deep.', el: '#gauge' },
-    { t: 'Collect 20 friends', p: 'A new sea friend joins every 500 spins. Tap here to see them all and swim to any of them.', el: '#friendBtn' },
+    { t: 'Collect 30 friends', p: 'A new sea friend joins every 150 spins. Tap here to see them all, swim to any of them and read fun facts.', el: '#friendBtn' },
     { t: 'Hunt for secrets', p: '250 secrets hide in the ocean. Tap things that swim by and play around. Your finds and records live here.', el: '#trophyBtn' },
+    { t: 'Earn pearls', p: 'Spinning, tapping fast and finding secrets earn pearls. Tap here to spend them in the Pearl Shop.', el: '#pearlBtn' },
     { t: 'Best with sound', p: 'Bloop Ocean is made for headphones. Change the volume here any time. Have fun!', el: '#mute' }
   ];
   let tourI = 0;
@@ -3037,6 +3467,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     $('wbText').textContent = spins === 0 ? 'Your friends missed you. Ready for a dive?' :
       `You've spun ${fmtN(spins)} times and made ${n} of ${CREATURES.length} friends.` + (next ? ` The next friend joins in ${fmtN(next.unlock - spins)} spins.` : ' You found every friend. Legend.');
     const row = $('wbRow'); row.innerHTML = ''; unlockedIds().slice(-4).forEach(id => row.appendChild(cloneChar(id, 'happy')));
+    if (pearlGift > 0) { $('wbText').textContent += ` To start you off, your progress so far is worth ${fmtN(pearlGift)} pearls.`; pearlGift = 0; }
     $('wbNew').hidden = !withNews; $('wbAll').hidden = !withNews;
     if (withNews) { const u = CHANGELOG[0]; $('wbTag').textContent = 'Update ' + u.v; $('wbName').textContent = u.name; $('wbList').innerHTML = u.items.map(t => `<li>${t}</li>`).join(''); }
     $('welcome').hidden = false; $('wbGo').focus();
@@ -3109,6 +3540,8 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       closeModal();
       rot -= 360; pal.style.transform = `rotate(${rot}deg)`;
       dataVer++; guideUnl = ''; $('guideBody').textContent = '';
+      pearlsEarned = 0; pearlsSpent = 0; owned = new Set(); equip = {}; rushUntil = 0; musicI = 0;
+      ['pearlsEarned', 'pearlsSpent', 'rushUntil'].forEach(k => store.set(k, 0)); store.set('owned', []); store.set('equip', {}); watchRush(); applyLook();
       renderCount(); placeAccs(); buildPicker(); renderDiveLimit(); if (!isUnlocked(cur)) setFriend('turtle');
       const b = pal.getBoundingClientRect(); burst((b.left + b.width / 2) * dpr, (b.top + b.height / 2) * dpr, 40);
       toast('Fresh dive! Back to <b>0 spins</b>', 2000);
@@ -3151,11 +3584,13 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     burst(x * dpr, y * dpr, (PHONE ? 12 : 22) - (fast ? (PHONE ? 5 : 8) : 0));
     playSpin(fast ? 1 + Math.min(.5, (taps.length - 8) * .04) : 1);
     spins++; dataVer++; store.set('spins', spins); renderCount(); placeAccs();
-    perFriend[cur] = (perFriend[cur] || 0) + 1; store.set('perFriend', perFriend); [10, 100, 500].forEach(n => { if (perFriend[cur] === n) foundSecret('spin' + n + '_' + cur); });
+    if (spins % 10 === 0) earnPearls(rushOn() ? 2 : 1);
+    perFriend[cur] = (perFriend[cur] || 0) + 1; store.set('perFriend', perFriend); if (perFriend[cur] === 100) foundSecret('spin100_' + cur);
     if (SECRETS['total_' + spins]) foundSecret('total_' + spins); if (SECRETS['num_' + spins]) foundSecret('num_' + spins);
     checkUnlocks();
     bump('tps', taps.filter(x => tnow - x <= 1000).length);
     tenSec = tenSec.filter(x => tnow - x < 10000); tenSec.push(tnow); bump('burst', tenSec.length);
+    if (tenSec.length >= 45 && tnow - lastSpeedPearl > 10000) { lastSpeedPearl = tnow; earnPearls(rushOn() ? 10 : 5, 'Speedy!'); }
     { const t1 = taps.filter(x => tnow - x <= 1000).length; [6, 9, 12, 15].forEach(n => { if (t1 >= n) foundSecret('tps_' + n); }); [40, 70, 100].forEach(n => { if (tenSec.length >= n) foundSecret('burst_' + n); }); }
     bump('visit', ++visitSpins);
     const iv = tnow - lastSpinT; lastSpinT = tnow;
@@ -3169,7 +3604,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     if (hr < 5) foundSecret('owl'); else if (hr < 7) foundSecret('early');
     if (spins % 1000 === 777) setTimeout(luckyFish, 600);
     const m = MILES.find(q => q.n === spins);
-    if (m) setTimeout(() => celebrate(m), 500);
+    if (m) { setTimeout(() => celebrate(m), 500); setTimeout(() => earnPearls(50, 'Milestone!'), 1400); }
     if (taps.length >= 18 && tnow > dizzyUntil) {
       dizzyUntil = tnow + 10000;
       const fl = $('float'); fl.classList.add('dizzy');
@@ -3188,7 +3623,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   // friends already earned count as found, without a parade of popups
   CREATURES.forEach(c => { if (c.unlock > 0 && isUnlocked(c.id) && !found.has('unlock_' + c.id)) { found.add('unlock_' + c.id); } }); store.set('secrets', [...found]);
   placeFaceBits();
-  setFriend(cur, { instant: true }); renderCount();
+  setFriend(cur, { instant: true }); renderCount(); watchRush(); applyLook();
   const idle = (fn, ms) => setTimeout(function go() { if (performance.now() - lastTapAt < 2500) { setTimeout(go, 1200); return; } (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 2000 }) : fn()); }, ms);
   idle(() => { fillCreatures(); }, 1500);
   idle(() => { if ($('guide').hidden) { guideUnl = unlockedIds().join(','); guideVer = dataVer; guideCur = cur; buildGuide(); } }, 2600);
