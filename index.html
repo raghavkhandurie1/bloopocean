@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Bloop Ocean</title>
-<meta name="description" content="Bloop Ocean is just a clicker. Tap cute sea friends, dive from the sunny surface to the pitch-black deep, and hunt 250 secrets on the way to ten million spins.">
+<meta name="description" content="Bloop Ocean is just a clicker. Tap cute sea friends, dive from the sunny surface to the pitch-black deep, and hunt 250 secrets on the way to 10,000 spins.">
 <meta name="theme-color" content="#1b3a8f">
 <meta property="og:title" content="Bloop Ocean">
 <meta property="og:description" content="Just a clicker. Tap cute sea friends and dive to the deep.">
@@ -315,6 +315,17 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .gauge.drag { cursor: grabbing; }
 .gauge:focus-visible { outline: none; }
 .gauge:focus-visible .dot { outline: 2px solid #fff; outline-offset: 4px; }
+.gauge .lockzone { position: absolute; right: 13px; width: 15px; bottom: -4px; top: var(--lim, 100%); border-radius: 0 0 10px 10px; pointer-events: none;
+  background: repeating-linear-gradient(-45deg, rgba(4,10,24,.82) 0 5px, rgba(30,44,70,.82) 5px 10px); box-shadow: 0 0 0 1px rgba(255,255,255,.18); transition: top .8s cubic-bezier(.34,1.2,.5,1), opacity .4s; }
+.gauge .lockzone.gone { opacity: 0; }
+.gauge .lkic { position: absolute; left: 50%; top: -9px; width: 18px; height: 18px; margin-left: -9px; padding: 2px; border-radius: 50%; background: #0d2340; stroke: var(--gold); fill: none; stroke-width: 2.2; stroke-linecap: round; box-shadow: 0 0 0 1px rgba(255,211,107,.5); }
+.gauge .lockzone.shake .lkic { animation: lockshake .5s ease; }
+@keyframes lockshake { 20% { transform: translateX(-3px) rotate(-12deg); } 45% { transform: translateX(3px) rotate(10deg); } 70% { transform: translateX(-2px) rotate(-5deg); } }
+.gauge .locknote { position: absolute; right: 40px; top: var(--lim, 100%); width: max-content; max-width: min(220px, 60vw); transform: translateY(-50%) translateX(8px); opacity: 0; pointer-events: none;
+  background: rgba(6,20,38,.92); border: 1px solid rgba(255,211,107,.6); color: #fff; font: 13px/1.35 var(--font); padding: 8px 11px; border-radius: 14px; text-align: left; letter-spacing: 0;
+  transition: opacity .25s, transform .35s cubic-bezier(.34,1.5,.5,1); }
+.gauge .locknote b { color: var(--gold); font-weight: 600; }
+.gauge .locknote.show { opacity: 1; transform: translateY(-50%); }
 .gauge .line { position: absolute; right: 18px; top: 0; bottom: 0; width: 5px; border-radius: 5px; background: linear-gradient(#bfe6ff, #2a74b4 25%, #1c2f6e 55%, #05070f); box-shadow: 0 0 0 1px rgba(255,255,255,.2); }
 .gauge .tick { position: absolute; right: 34px; transform: translateY(-50%); opacity: .75; white-space: nowrap; font-variant-numeric: tabular-nums; text-shadow: 0 1px 6px rgba(0,0,0,.5); pointer-events: none; }
 .gauge .tick::after { content: ""; position: absolute; right: -12px; top: 50%; width: 8px; height: 1px; background: currentColor; }
@@ -655,6 +666,65 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 #surface .cloud.boop svg { animation: cloudboop .6s ease-out; }
 @keyframes cloudboop { 30% { transform: translateY(4px) scale(1.06, .94); } 60% { transform: translateY(-2px); } }
 
+/* updates tab */
+.tab { font-size: 13px; padding: 7px 4px; }
+.tabs { overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.vnow { display: flex; align-items: center; gap: 10px; margin: 2px 0 12px; font-size: 13px; opacity: .9; }
+.vtag { display: inline-block; padding: 3px 10px; border-radius: 999px; background: linear-gradient(135deg, #ffe08a, #ffb86b); color: #2a1b00; font-weight: 600; font-size: 12px; letter-spacing: .02em; white-space: nowrap; }
+.upd { padding: 12px 12px 10px; border-radius: 16px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); margin-bottom: 10px; }
+.upd.latest { background: linear-gradient(140deg, rgba(255,211,107,.16), rgba(255,255,255,.05)); border-color: rgba(255,211,107,.4); }
+.upd .uh { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.upd .uv { font-weight: 600; font-size: 15px; color: #fff; }
+.upd .un { font-size: 13px; opacity: .85; }
+.upd .ud { margin-left: auto; font-size: 11px; opacity: .6; font-variant-numeric: tabular-nums; }
+.upd ul { margin: 6px 0 0; padding-left: 18px; }
+.upd li { font-size: 13px; line-height: 1.45; margin: 3px 0; opacity: .9; }
+.howbtn { margin: 2px 0 12px; }
+.upd .umaj { margin: 8px 0 2px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .65; }
+.upd .un b { font-weight: 600; color: #fff; }
+
+/* how-to-play tour */
+.tour { position: fixed; inset: 0; z-index: 12; }
+.tour .spot { position: fixed; border-radius: 999px; pointer-events: none; box-shadow: 0 0 0 200vmax rgba(2, 8, 20, .66);
+  transition: left .45s cubic-bezier(.34,1.2,.5,1), top .45s cubic-bezier(.34,1.2,.5,1), width .45s cubic-bezier(.34,1.2,.5,1), height .45s cubic-bezier(.34,1.2,.5,1), border-radius .45s; }
+.tour .spot::after { content: ""; position: absolute; inset: -6px; border-radius: inherit; border: 2px solid rgba(255,211,107,.9); animation: spotpulse 1.6s ease-out infinite; }
+.tour .spot.none::after { display: none; }
+@keyframes spotpulse { 0% { opacity: .9; transform: scale(.96); } 100% { opacity: 0; transform: scale(1.12); } }
+.tcard { position: fixed; left: 50%; width: min(400px, calc(100vw - 32px)); box-sizing: border-box; transform: translateX(-50%); padding: 16px 18px 14px; border-radius: 22px;
+  background: linear-gradient(165deg, #1d5a94, #12285a); border: 1px solid rgba(255,255,255,.22); box-shadow: 0 18px 50px rgba(0,0,0,.45); color: var(--text);
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transition: top .4s, bottom .4s; }
+.tcard.center { bottom: auto; top: 50%; transform: translate(-50%, -50%); }
+.tcard.top { bottom: auto; top: calc(18px + env(safe-area-inset-top, 0px)); }
+.tcard .ttop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.tcard .tstep { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; font-variant-numeric: tabular-nums; }
+.tcard .tskip { background: none; border: 0; color: var(--text); opacity: .75; font: 13px var(--font); cursor: pointer; padding: 4px 2px; text-decoration: underline; text-underline-offset: 3px; }
+.tcard h2 { margin: 2px 0 6px; font-size: 21px; font-weight: 600; text-wrap: balance; }
+.tcard p { margin: 0 0 14px; font-size: 14.5px; line-height: 1.5; opacity: .9; text-wrap: pretty; }
+.tcard .tfoot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tdots { display: flex; gap: 6px; }
+.tdots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.3); transition: background .3s, transform .3s; }
+.tdots span.on { background: var(--gold); transform: scale(1.3); }
+.tbtns { display: flex; gap: 8px; }
+.tback, .tnext { border-radius: 999px; padding: 9px 16px; font: 600 14px var(--font); cursor: pointer; }
+.tback { background: transparent; border: 1px solid rgba(255,255,255,.3); color: var(--text); }
+.tnext { border: 0; color: #2a1b00; background: linear-gradient(135deg, #ffe08a, #ffb86b); }
+.tskip:focus-visible, .tback:focus-visible, .tnext:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.tcard.swap h2, .tcard.swap p { animation: rise .35s cubic-bezier(.34,1.3,.5,1) both; }
+
+/* welcome back */
+.wcard { text-align: center; width: min(380px, 100%); }
+.wrow { display: flex; justify-content: center; align-items: flex-end; gap: 2px; height: 58px; margin: -4px 0 6px; }
+.wrow .cr { width: 58px; height: 50px; animation: finhop 1.2s ease-in-out infinite; }
+.wrow .cr:nth-child(2) { animation-delay: .15s; } .wrow .cr:nth-child(3) { animation-delay: .3s; } .wrow .cr:nth-child(4) { animation-delay: .45s; }
+.wnew { text-align: left; margin: 0 0 16px; padding: 12px 14px; border-radius: 16px; background: rgba(255,211,107,.12); border: 1px solid rgba(255,211,107,.35); }
+.wnh { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.wnh b { font-size: 14px; }
+.wnew ul { margin: 0; padding-left: 18px; }
+.wnew li { font-size: 13px; line-height: 1.45; margin: 3px 0; }
+.wgo span { color: #2a1b00 !important; }
+.wgo { background: linear-gradient(135deg, #ffe08a, #ffb86b) !important; }
+
 /* contact form */
 .cform { display: grid; gap: 6px; }
 .cform label { font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-top: 4px; }
@@ -667,7 +737,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 .csend:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .cnote { font-size: 13px; min-height: 1.2em; margin: 4px 0 0; }
 
-/* ---------- 10 million finale ---------- */
+/* ---------- 10,000 spin finale ---------- */
 .finale { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; text-align: center;
   background: radial-gradient(ellipse at 50% 40%, rgba(40,90,160,.85), rgba(2,8,20,.92)); animation: fadein .5s ease;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -714,6 +784,15 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 #pal.asleep .zz2 span:nth-child(3) { animation-delay: 2s; }
 @keyframes zfloat { 0% { opacity: 0; transform: translate(0, 0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(60%, -120%); } }
 #pal { position: relative; }
+/* bubble buddies: two little bubbles that circle your friend (500 spins) */
+.bud { position: absolute; inset: -4% 2%; opacity: 0; transition: opacity .8s; will-change: transform; }
+.bud span { position: absolute; left: 50%; top: 0; width: 10%; aspect-ratio: 1; margin-left: -5%; border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #fff 0 16%, rgba(210,242,255,.55) 34%, rgba(143,211,244,.28) 72%); box-shadow: inset 0 0 0 2px rgba(255,255,255,.9), 0 0 10px rgba(191,236,255,.6); }
+.bud.b2 { inset: 8% -4%; }
+.bud.b2 span { width: 7%; margin-left: -3.5%; }
+#pal.b500 .bud { opacity: 1; animation: budspin 9s linear infinite; }
+#pal.b500 .bud.b2 { animation-duration: 13s; animation-direction: reverse; }
+@keyframes budspin { to { rotate: 360deg; } }
 .asleep-float { animation-duration: 7s !important; }
 #pal { -webkit-touch-callout: none; }
 .mcard svg.wave-bye { width: 120px; height: 90px; display: block; margin: -6px auto 6px; }
@@ -912,7 +991,9 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   <div class="tick" style="top:25%">200 m</div>
   <div class="tick" style="top:55%">1,000 m</div>
   <div class="tick" style="top:100%">4,000 m</div>
+  <div class="lockzone" id="lockzone" aria-hidden="true"><svg class="lkic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
   <div class="dot" id="dot"><span class="dlabel" id="dlabel"></span></div>
+  <div class="locknote" id="locknote" role="status"></div>
   <div class="hint">Dive</div>
 </div>
 
@@ -1193,11 +1274,6 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
             <path d="M0 0 L-24 -2 L-6 -58 Z" fill="#ff9fb5"/><path d="M-12 -40 L-4 -42 M-17 -22 L-6 -25" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
             <path d="M-24 -2 L0 0" stroke="#ffd36b" stroke-width="5" stroke-linecap="round"/><circle cx="-6" cy="-60" r="7" fill="#ffd36b"/>
           </g>
-          <g class="acc" id="a-shades">
-            <rect x="-48" y="-12" width="38" height="24" rx="10" fill="#13202e"/><rect x="10" y="-12" width="38" height="24" rx="10" fill="#13202e"/>
-            <path d="M-10 -4 Q0 -10 10 -4" stroke="#13202e" stroke-width="5" fill="none"/>
-            <path d="M-40 -6 L-28 -6 M18 -6 L30 -6" stroke="#8fd3f4" stroke-width="3" stroke-linecap="round" opacity=".8"/>
-          </g>
           <g class="acc" id="a-crown">
             <path d="M-34 0 L-38 -34 L-18 -16 L0 -42 L18 -16 L38 -34 L34 0 Z" fill="#ffd36b" stroke="#e0a930" stroke-width="3" stroke-linejoin="round"/>
             <circle cx="0" cy="-12" r="5" fill="#ff7fa8"/><circle cx="-20" cy="-8" r="4" fill="#8fd3f4"/><circle cx="20" cy="-8" r="4" fill="#9ff0c8"/>
@@ -1210,6 +1286,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         <svg class="dz2" id="dzR2" viewBox="-6 -6 12 12"><path d="M0 0 m-1 0 a1 1 0 1 1 2 0 a2 2 0 1 1 -4 0 a3 3 0 1 1 6 0 a4 4 0 1 1 -8 0 a5 5 0 1 1 10 0" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round"/></svg>
         <div class="stars2" id="stars2"><span class="st"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b"/></svg></span><span class="st" style="animation-delay:-.47s"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffffff"/></svg></span><span class="st" style="animation-delay:-.93s"><svg viewBox="-10 -10 20 20"><path d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z" fill="#ffd36b"/></svg></span></div>
         <div class="zz2" id="zz2"><span>z</span><span>z</span><span>z</span></div>
+        <div class="bud b1"><span></span></div><div class="bud b2"><span></span></div>
       </div>
     </button>
   </div>
@@ -1240,6 +1317,29 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   </div>
 </div>
 
+<div class="tour" id="tour" role="dialog" aria-modal="true" aria-labelledby="tourTitle" hidden>
+  <div class="spot" id="tourSpot"></div>
+  <div class="tcard" id="tourCard">
+    <div class="ttop"><span class="tstep" id="tourStep"></span><button class="tskip" id="tourSkip" type="button">Skip tour</button></div>
+    <h2 id="tourTitle"></h2>
+    <p id="tourText"></p>
+    <div class="tfoot"><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="tback" id="tourBack" type="button">Back</button><button class="tnext" id="tourNext" type="button">Next</button></div></div>
+  </div>
+</div>
+
+<div class="modal" id="welcome" role="dialog" aria-modal="true" aria-labelledby="wbTitle" hidden>
+  <div class="mcard wcard">
+    <div class="wrow" id="wbRow" aria-hidden="true"></div>
+    <h2 id="wbTitle">Welcome back!</h2>
+    <p id="wbText"></p>
+    <div class="wnew" id="wbNew" hidden>
+      <div class="wnh"><span class="vtag" id="wbTag">Update 2.4</span><b id="wbName"></b></div>
+      <ul id="wbList"></ul>
+    </div>
+    <div class="mbtns"><button class="hold wgo" id="wbGo" type="button"><span>Let's dive</span></button><button class="keep" id="wbAll" type="button" hidden>See all updates</button></div>
+  </div>
+</div>
+
 <div class="modal" id="guide" role="dialog" aria-modal="true" aria-labelledby="guideTitle" hidden>
   <div class="mcard sheet gsheet">
     <div class="ghead">
@@ -1266,6 +1366,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       <button class="tab" role="tab" id="t-trophies" aria-controls="p-trophies" aria-selected="false" type="button">Trophies</button>
       <button class="tab" role="tab" id="t-privacy" aria-controls="p-privacy" aria-selected="false" type="button">Privacy</button>
       <button class="tab" role="tab" id="t-contact" aria-controls="p-contact" aria-selected="false" type="button">Contact</button>
+      <button class="tab" role="tab" id="t-updates" aria-controls="p-updates" aria-selected="false" type="button">Updates</button>
       <span class="tabline" id="tabline"></span>
     </div>
     <div class="panels">
@@ -1273,6 +1374,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         <p class="big">Just a clicker. Nothing else.</p>
         <p>Tap a friend, watch it spin, listen to the bubbles. That's it. No ads, no accounts, no point. Just bloops.</p>
         <p>Dive with the slider, poke the things floating around, and keep an eye out. The ocean is full of secrets.</p>
+        <button class="chip howbtn" id="howBtn" type="button">How to play</button>
         <p class="sig">Made with love by Raghav <span aria-hidden="true">♥</span></p>
       </section>
       <section class="panel" role="tabpanel" id="p-trophies" aria-labelledby="t-trophies" hidden>
@@ -1326,6 +1428,10 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
         </form>
         <p class="small" id="cOff" hidden>The message box opens soon.</p>
       </section>
+      <section class="panel" role="tabpanel" id="p-updates" aria-labelledby="t-updates" hidden>
+        <div class="vnow"><span class="vtag" id="vTag">Update 2.4</span><span>You're on the latest version</span></div>
+        <div id="upList"></div>
+      </section>
     </div>
   </div>
 </div>
@@ -1360,7 +1466,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const lerp = (a, b, t) => a + (b - a) * t;
 
   // ---------- the 20 friends: who they are, how deep they live, when they unlock ----------
-  const CREATURES = [{"id":"turtle","name":"Turtle","label":"sea turtle","unlock":0,"depth":0,"desc":"Sea turtles pop up to the surface to breathe air","hat":[70,98,0.8],"shades":[65,138,0.6],"crown":[66,100,0.75],"eyes":[[48,138],[82,138],0.85]},{"id":"clown","name":"Clownfish","label":"clownfish","unlock":100,"depth":8,"desc":"Clownfish live in warm, shallow coral reefs","hat":[92,96,0.85],"shades":[91,128,0.52],"crown":[90,96,0.8],"eyes":[[76,128],[106,128],0.9]},{"id":"whale","name":"Whale","label":"whale","unlock":500,"depth":12,"desc":"Whales cruise the sunlit upper ocean","hat":[146,80,1],"shades":[114,146,0.9],"crown":[114,82,0.95],"eyes":[[88,146],[140,146],1]},{"id":"puffer","name":"Pufferfish","label":"pufferfish","unlock":750,"depth":9,"desc":"Pufferfish drift around sunny reefs","hat":[150,58,1],"shades":[150,136,1.05],"crown":[150,60,1],"eyes":[[120,136],[180,136],1.15]},{"id":"seahorse","name":"Seahorse","label":"seahorse","unlock":1000,"depth":7,"desc":"Seahorses cling to seagrass in shallow water","hat":[154,56,0.75],"shades":[155,92,0.45],"crown":[154,56,0.7],"eyes":[[142,92],[168,92],0.8]},{"id":"crab","name":"Crab","label":"crab","unlock":2000,"depth":10,"desc":"Crabs scuttle along the shallow sea floor","hat":[150,108,0.9],"shades":[150,72,0.97],"crown":[150,110,0.9],"eyes":[[122,72],[178,72],1]},{"id":"jelly","name":"Jelly","label":"jellyfish","unlock":3500,"depth":40,"desc":"Many jellyfish glow in the dim twilight zone","hat":[150,66,1],"shades":[150,124,1.05],"crown":[150,68,1],"eyes":[[122,124],[178,124],0.9]},{"id":"star","name":"Starfish","label":"sea star","unlock":5000,"depth":6,"desc":"Sea stars cling to rocks in shallow water","hat":[150,48,0.85],"shades":[150,134,0.7],"crown":[150,50,0.8],"eyes":[[130,134],[170,134],0.95]},{"id":"octo","name":"Octopus","label":"octopus","unlock":7500,"depth":14,"desc":"Octopuses hide in rocky reefs and kelp","hat":[150,38,1],"shades":[150,116,0.85],"crown":[150,40,1],"eyes":[[126,116],[174,116],1.1]},{"id":"beluga","name":"Beluga","label":"beluga whale","unlock":10000,"depth":9,"desc":"Belugas chirp and sing in chilly Arctic seas","hat":[96,72,.95],"shades":[107,140,.8],"crown":[100,74,.95],"eyes":[[84,140],[130,140],1]},{"id":"seal","name":"Seal","label":"seal","unlock":20000,"depth":3,"desc":"Seals hunt below and rest at the surface","hat":[106,72,0.9],"shades":[106,116,0.7],"crown":[106,74,0.9],"eyes":[[86,116],[126,116],1.05]},{"id":"ray","name":"Stingray","label":"stingray","unlock":35000,"depth":16,"desc":"Stingrays glide over sandy sea floors","hat":[150,70,0.75],"shades":[150,128,0.7],"crown":[150,72,0.7],"eyes":[[130,128],[170,128],0.9]},{"id":"shark","name":"Shark","label":"shark","unlock":50000,"depth":18,"desc":"Sharks patrol the open sunlit ocean","hat":[102,96,0.85],"shades":[95,134,0.52],"crown":[100,98,0.85],"eyes":[[80,134],[110,134],0.85]},{"id":"naut","name":"Nautilus","label":"nautilus","unlock":75000,"depth":34,"desc":"Nautiluses drift between 100 and 700 m deep","hat":[176,58,0.9],"shades":[109,140,0.38],"crown":[176,60,0.85],"eyes":[[98,140],[120,140],0.7]},{"id":"angler","name":"Angler","label":"anglerfish","unlock":100000,"depth":80,"desc":"Anglerfish glow in the pitch-black midnight zone","hat":[198,90,1],"shades":[150,144,1.0],"crown":[184,82,0.9],"eyes":[[122,144],[178,144],1.2]},{"id":"orca","name":"Orca","label":"orca","unlock":250000,"depth":15,"desc":"Orcas hunt in every ocean, from pole to pole","hat":[104,96,0.85],"shades":[84,146,0.5],"crown":[104,98,0.85],"eyes":[[70,146],[98,146],0.8]},{"id":"narwhal","name":"Narwhal","label":"narwhal","unlock":500000,"depth":20,"desc":"Narwhals live in icy Arctic waters","hat":[146,80,1],"shades":[112,146,0.83],"crown":[112,84,0.9],"eyes":[[88,146],[136,146],1]},{"id":"blob","name":"Blobfish","label":"blobfish","unlock":1000000,"depth":47,"desc":"Blobfish float 600 to 1,200 m down off Australia","hat":[150,54,1],"shades":[148,118,1.03],"crown":[150,56,1],"eyes":[[118,118],[178,118],0.95]},{"id":"isopod","name":"Giant isopod","label":"giant isopod","unlock":2500000,"depth":63,"desc":"Giant isopods crawl along the deep sea floor","hat":[150,52,0.9],"shades":[150,84,0.76],"crown":[150,54,0.9],"eyes":[[128,84],[172,84],0.9]},{"id":"seapig","name":"Sea pig","label":"sea pig","unlock":5000000,"depth":98,"desc":"Sea pigs roam the deepest sea floor","hat":[170,100,0.85],"shades":[103,144,0.52],"crown":[170,102,0.85],"eyes":[[88,144],[118,144],0.85]}];
+  const CREATURES = [{"id":"turtle","name":"Turtle","label":"sea turtle","unlock":0,"depth":0,"desc":"Sea turtles pop up to the surface to breathe air","hat":[70,98,0.8],"shades":[65,138,0.6],"crown":[66,100,0.75],"eyes":[[48,138],[82,138],0.85]},{"id":"clown","name":"Clownfish","label":"clownfish","unlock":500,"depth":8,"desc":"Clownfish live in warm, shallow coral reefs","hat":[92,96,0.85],"shades":[91,128,0.52],"crown":[90,96,0.8],"eyes":[[76,128],[106,128],0.9]},{"id":"whale","name":"Whale","label":"whale","unlock":1000,"depth":12,"desc":"Whales cruise the sunlit upper ocean","hat":[146,80,1],"shades":[114,146,0.9],"crown":[114,82,0.95],"eyes":[[88,146],[140,146],1]},{"id":"puffer","name":"Pufferfish","label":"pufferfish","unlock":1500,"depth":9,"desc":"Pufferfish drift around sunny reefs","hat":[150,58,1],"shades":[150,136,1.05],"crown":[150,60,1],"eyes":[[120,136],[180,136],1.15]},{"id":"seahorse","name":"Seahorse","label":"seahorse","unlock":2000,"depth":7,"desc":"Seahorses cling to seagrass in shallow water","hat":[154,56,0.75],"shades":[155,92,0.45],"crown":[154,56,0.7],"eyes":[[142,92],[168,92],0.8]},{"id":"crab","name":"Crab","label":"crab","unlock":2500,"depth":10,"desc":"Crabs scuttle along the shallow sea floor","hat":[150,108,0.9],"shades":[150,72,0.97],"crown":[150,110,0.9],"eyes":[[122,72],[178,72],1]},{"id":"jelly","name":"Jelly","label":"jellyfish","unlock":3000,"depth":40,"desc":"Many jellyfish glow in the dim twilight zone","hat":[150,66,1],"shades":[150,124,1.05],"crown":[150,68,1],"eyes":[[122,124],[178,124],0.9]},{"id":"star","name":"Starfish","label":"sea star","unlock":3500,"depth":6,"desc":"Sea stars cling to rocks in shallow water","hat":[150,48,0.85],"shades":[150,134,0.7],"crown":[150,50,0.8],"eyes":[[130,134],[170,134],0.95]},{"id":"octo","name":"Octopus","label":"octopus","unlock":4000,"depth":14,"desc":"Octopuses hide in rocky reefs and kelp","hat":[150,38,1],"shades":[150,116,0.85],"crown":[150,40,1],"eyes":[[126,116],[174,116],1.1]},{"id":"beluga","name":"Beluga","label":"beluga whale","unlock":4500,"depth":9,"desc":"Belugas chirp and sing in chilly Arctic seas","hat":[96,72,.95],"shades":[107,140,.8],"crown":[100,74,.95],"eyes":[[84,140],[130,140],1]},{"id":"seal","name":"Seal","label":"seal","unlock":5000,"depth":3,"desc":"Seals hunt below and rest at the surface","hat":[106,72,0.9],"shades":[106,116,0.7],"crown":[106,74,0.9],"eyes":[[86,116],[126,116],1.05]},{"id":"ray","name":"Stingray","label":"stingray","unlock":5500,"depth":16,"desc":"Stingrays glide over sandy sea floors","hat":[150,70,0.75],"shades":[150,128,0.7],"crown":[150,72,0.7],"eyes":[[130,128],[170,128],0.9]},{"id":"shark","name":"Shark","label":"shark","unlock":6000,"depth":18,"desc":"Sharks patrol the open sunlit ocean","hat":[102,96,0.85],"shades":[95,134,0.52],"crown":[100,98,0.85],"eyes":[[80,134],[110,134],0.85]},{"id":"naut","name":"Nautilus","label":"nautilus","unlock":6500,"depth":34,"desc":"Nautiluses drift between 100 and 700 m deep","hat":[176,58,0.9],"shades":[109,140,0.38],"crown":[176,60,0.85],"eyes":[[98,140],[120,140],0.7]},{"id":"angler","name":"Angler","label":"anglerfish","unlock":7000,"depth":80,"desc":"Anglerfish glow in the pitch-black midnight zone","hat":[198,90,1],"shades":[150,144,1.0],"crown":[184,82,0.9],"eyes":[[122,144],[178,144],1.2]},{"id":"orca","name":"Orca","label":"orca","unlock":7500,"depth":15,"desc":"Orcas hunt in every ocean, from pole to pole","hat":[104,96,0.85],"shades":[84,146,0.5],"crown":[104,98,0.85],"eyes":[[70,146],[98,146],0.8]},{"id":"narwhal","name":"Narwhal","label":"narwhal","unlock":8000,"depth":20,"desc":"Narwhals live in icy Arctic waters","hat":[146,80,1],"shades":[112,146,0.83],"crown":[112,84,0.9],"eyes":[[88,146],[136,146],1]},{"id":"blob","name":"Blobfish","label":"blobfish","unlock":8500,"depth":47,"desc":"Blobfish float 600 to 1,200 m down off Australia","hat":[150,54,1],"shades":[148,118,1.03],"crown":[150,56,1],"eyes":[[118,118],[178,118],0.95]},{"id":"isopod","name":"Giant isopod","label":"giant isopod","unlock":9000,"depth":63,"desc":"Giant isopods crawl along the deep sea floor","hat":[150,52,0.9],"shades":[150,84,0.76],"crown":[150,54,0.9],"eyes":[[128,84],[172,84],0.9]},{"id":"seapig","name":"Sea pig","label":"sea pig","unlock":9500,"depth":98,"desc":"Sea pigs roam the deepest sea floor","hat":[170,100,0.85],"shades":[103,144,0.52],"crown":[170,102,0.85],"eyes":[[88,144],[118,144],0.85]}];
   const zoneOf = p => p <= 4 ? 'surface' : p <= 25 ? 'sunlight' : p <= 55 ? 'twilight' : 'midnight';
   const ZONES = {
     surface:  { zone: 'The surface',   tint: '230,247,255', sea: { cut: 900, vol: .035, lfo: .14, depth: .03 } },
@@ -1456,15 +1562,39 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     seapig: ["Sea pigs are a kind of sea cucumber that walks on tube-feet legs.", "Sea pigs live on the deep sea floor, often more than 1,000 m down.", "Sea pigs eat mud, picking out tiny bits of food from it.", "Sea pigs often travel together in big herds across the sea floor.", "Sea pigs are see-through pink, which helps them blend into the dark."]
   };
 
+  const VERSION = '2.4';
+  const CHANGELOG = [
+    { v: '2.4', name: 'Friends every 500 spins', date: '21 Oct 2026', items: [
+      'A new friend joins every 500 spins, with the big finale at 10,000',
+      'Bubble buddies replace the sunglasses',
+      'A quick how-to-play tour for new divers'] },
+    { v: '2.3', name: 'Smooth sailing', date: 'Oct 2026', items: [
+      'Much smoother on phones, even when you tap like crazy.',
+      'Menus and tabs open faster.',
+      'Made with love by Raghav.'] },
+    { v: '2.2', name: 'bloopocean.com', date: 'Oct 2026', items: [
+      'Bloop Ocean gets its own home at bloopocean.com.',
+      'A message box in the Contact tab.',
+      'The beluga replaces the penguin. Penguins are birds, after all.',
+      'A calmer screen on phones.'] },
+    { v: '2.1', name: 'A living ocean', date: 'Oct 2026', items: [
+      '100 sea creatures and things now come and go at random.',
+      'The Ocean guide shows every friend by how deep they live.'] },
+    { v: '2.0', name: 'Twenty friends', date: 'Oct 2026', items: [
+      '20 ocean friends to unlock, from the sea turtle to the sea pig.',
+      '250 hidden secrets, plus Trophies with your records.',
+      'Dive smoothly from the sunny surface to the abyss.'] },
+    { v: '1.0', name: 'The first bloop', date: 'Oct 2026', items: [
+      'One cute whale and one very satisfying spin.'] }
+  ];
   const MILES = [
-    { n: 100,      title: '100 spins!',        msg: 'Party hat unlocked' },
-    { n: 500,      title: '500 spins!',        msg: 'Cool shades unlocked' },
-    { n: 1000,     title: '1,000 spins!',      msg: 'You earned a crown' },
-    { n: 10000,    title: '10,000 spins!!',    msg: 'Your friends are solid gold now', gold: true },
-    { n: 50000,    title: '50,000 spins!!',    msg: 'Rainbow bubbles unlocked' },
-    { n: 100000,   title: '100,000 spins!!!',  msg: 'Your friends glow now' },
-    { n: 1000000,  title: 'ONE MILLION SPINS', msg: 'You are an Ocean Legend. Seriously, wow.', gold: true, mega: true },
-    { n: 10000000, title: 'TEN. MILLION.',     msg: 'The whole ocean is throwing you a party, forever.', gold: true, mega: true }
+    { n: 100,   title: '100 spins!',      msg: 'Party hat unlocked' },
+    { n: 500,   title: '500 spins!',      msg: 'Bubble buddies unlocked' },
+    { n: 1000,  title: '1,000 spins!',    msg: 'You earned a crown' },
+    { n: 2500,  title: '2,500 spins!',    msg: 'Rainbow bubbles unlocked' },
+    { n: 5000,  title: '5,000 spins!!',   msg: 'Your friends glow now' },
+    { n: 7500,  title: '7,500 spins!!',   msg: 'Your friends are solid gold now', gold: true },
+    { n: 10000, title: '10,000 SPINS',    msg: 'You are an Ocean Legend', gold: true, mega: true }
   ];
   const SECRETS = {
     duck:   { home: 'turtle', what: 'a rubber duck' },
@@ -1511,19 +1641,19 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     curious:   { what: 'a curious mind' },
     typist:    { what: 'the magic word' }
   };
-  // ---- generated secrets, so there is always something left to find on the way to 10 million ----
+  // ---- generated secrets, so there is always something left to find on the way to 10,000 ----
   const fmtN = n => n.toLocaleString('en-US');
   const ENV_IDS = { boat: 'sailboat', gull: 'seagull', light: 'lighthouse', dolphin: 'dolphin', shadow: 'passing boat', school: 'school of fish', manta: 'manta ray', plank: 'plankton', lantern: 'lanternfish', hatch: 'hatchetfish', siph: 'siphonophore', comb: 'comb jelly', squid: 'squid', dumbo: 'dumbo octopus', vamp: 'vampire squid', gulper: 'gulper eel', shrimp: 'glowing shrimp', vent: 'hydrothermal vent' };
   const GEN_INFO = {};
   const addS = (id, what, cat, desc) => { SECRETS[id] = { what }; GEN_INFO[id] = [cat, desc]; };
   CREATURES.forEach(c => {
     if (c.unlock > 0) addS('unlock_' + c.id, c.name + ' joins the ocean', 'friends', 'Unlocked at ' + fmtN(c.unlock) + ' spins');
-    [[10, 'fan'], [100, 'best buds'], [1000, 'legend']].forEach(([n, t]) => addS('spin' + n + '_' + c.id, c.name + ' ' + t, 'friends', 'Spun the ' + c.label + ' ' + fmtN(n) + ' times'));
+    [[10, 'fan'], [100, 'best buds'], [500, 'legend']].forEach(([n, t]) => addS('spin' + n + '_' + c.id, c.name + ' ' + t, 'friends', 'Spun the ' + c.label + ' ' + fmtN(n) + ' times'));
     addS('song_' + c.id, c.name + "'s song", 'friends', 'Held the ' + c.label + ' to hear it sing');
     addS('facts_' + c.id, c.name + ' expert', 'friends', 'Read every ' + c.label + ' fact');
   });
-  [10, 50, 250, 1000, 2500, 5000, 25000, 75000, 250000, 500000, 750000, 2000000, 3000000, 5000000, 7500000, 9000000, 9999999].forEach(n => addS('total_' + n, fmtN(n) + ' spins', 'count', 'Reached ' + fmtN(n) + ' spins in total'));
-  const EXACT = [7, 101, 404, 777, 1234, 2026, 4321, 9999, 12345, 31415, 314159, 999999, 1234567, 7777777];
+  [10, 25, 50, 150, 250, 750, 1500, 2000, 3000, 4000, 4500, 6000, 6500, 8000, 8500, 9000, 9999].forEach(n => addS('total_' + n, fmtN(n) + ' spins', 'count', 'Reached ' + fmtN(n) + ' spins in total'));
+  const EXACT = [7, 101, 404, 777, 1234, 2026, 2345, 3141, 4321, 5555, 6789, 7777, 8888, 9876];
   EXACT.forEach(n => addS('num_' + n, 'Spin number ' + fmtN(n), 'count', 'Landed exactly on spin ' + fmtN(n)));
   Object.entries(ENV_IDS).forEach(([k, nm]) => { addS('meet_' + k, 'Hello, ' + nm, 'sea', 'Tapped the ' + nm); if (k !== 'vent' && k !== 'shadow') addS('tap25_' + k, nm + ' fan club', 'sea', 'Tapped the ' + nm + ' 25 times'); });
   addS('meet50', 'Ocean explorer', 'sea', 'Met 50 different things in the ocean'); addS('meet100', 'Ocean encyclopedia', 'sea', 'Met all 100 things in the ocean');
@@ -1566,7 +1696,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const SAVE_KEY = 'bloopOcean.save', K1 = 0x5bd1e995, K2 = 'r3x\u00b7sydney\u00b7bl00p';
   const sig = str => { let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ K1; const t = str + K2; for (let i = 0; i < t.length; i++) { const c = t.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); } h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909); h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909); return (h2 >>> 0).toString(36) + (h1 >>> 0).toString(36); };
   const enc = obj => { const j = JSON.stringify(obj); return btoa(unescape(encodeURIComponent(j))) + '.' + sig(j); };
-  let save = {}, saveWasTampered = false;
+  let save = {}, saveWasTampered = false, firstVisit = false;
   (() => {
     let raw = null; try { raw = localStorage.getItem(SAVE_KEY); } catch (e) {}
     if (raw) {
@@ -1575,6 +1705,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       if (j && sig(j) === raw.slice(dot + 1)) { try { save = JSON.parse(j); } catch (e) { saveWasTampered = true; } } else saveWasTampered = true;
     } else {
       // first visit on this version: bring settings across, but never trust old unsigned progress
+      firstVisit = true;
       ['muted', 'fxVol', 'seaVol', 'factsOpen'].forEach(k => { try { const v = localStorage.getItem(k); if (v !== null) save[k] = JSON.parse(v); } catch (e) {} });
     }
     // a spin count that couldn't have been reached in the time actually played is ignored too
@@ -1830,7 +1961,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   }
   function burst(px, py, n = 24) {
     const cap = PHONE ? 260 : 600; if (parts.length > cap * .6) n = Math.min(n, 5); if (parts.length > cap) return;
-    const rainbow = spins >= 50000, hearts = found.size >= SECRET_TOTAL;
+    const rainbow = spins >= 2500, hearts = found.size >= SECRET_TOTAL;
     for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, sp = (1.2 + Math.random() * 3.6) * dpr;
       parts.push({ k: 'bub', x: px, y: py, r: (3 + Math.random() * 9) * dpr, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 1.5 * dpr, life: 1,
         hue: rainbow ? Math.floor(Math.random() * 360) : null, heart: hearts && Math.random() < .3 }); }
@@ -1882,7 +2013,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     lakeMix += ((cur === 'axo' ? 1 : 0) - lakeMix) * .06;
     if (Math.abs(lakeMix - (cur === 'axo' ? 1 : 0)) < .002) lakeMix = cur === 'axo' ? 1 : 0;
     const sy = waterline();
-    if (spins >= 1000000 && ++tw % 12 === 0) twinkle();
+    if (spins >= 10000 && ++tw % 12 === 0) twinkle();
     for (let i = parts.length - 1; i >= 0; i--) {
       const p = parts[i];
       switch (p.k) {
@@ -1947,7 +2078,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     if (dragging && dragP >= 53 && dragP <= 57) { if (!balStart) balStart = t; else if (t - balStart > 2500) foundSecret('balance'); } else balStart = 0;
     paintOcean();
     positionDuck();
-    const covered = !$('info').hidden || !$('modal').hidden || !$('guide').hidden;
+    const covered = !$('info').hidden || !$('modal').hidden || !$('guide').hidden || !$('welcome').hidden;
     if (!covered) { if ($('finale').hidden) roamStep(t); drawWorld(); }
     requestAnimationFrame(tick);
   }
@@ -1956,21 +2087,22 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const fmtBadge = n => n >= 1000000 ? n / 1000000 + 'M' : n >= 1000 ? n / 1000 + 'k' : String(n);
   let lastAccKey = '';
   function placeAccs() {
-    const ak = cur + [100, 500, 1000, 10000, 100000, 1000000, 10000000].map(n => spins >= n ? 1 : 0).join('');
+    const ak = cur + [100, 500, 1000, 5000, 7500, 10000].map(n => spins >= n ? 1 : 0).join('');
     if (ak === lastAccKey) return; lastAccKey = ak;
     const sp = FRIENDS[cur].spots;
-    [['a-hat', 'hat'], ['a-shades', 'shades'], ['a-crown', 'crown']].forEach(([id, k]) => {
+    [['a-hat', 'hat'], ['a-crown', 'crown']].forEach(([id, k]) => {
       const [x, y, s] = sp[k]; $(id).setAttribute('transform', `translate(${x} ${y}) scale(${s})`);
     });
     $('a-hat').classList.toggle('on', spins >= 100 && spins < 1000);
-    $('a-shades').classList.toggle('on', spins >= 500);
+    pal.classList.toggle('b500', spins >= 500);
     $('a-crown').classList.toggle('on', spins >= 1000);
-    svg.classList.toggle('golden', spins >= 10000);
-    $('float').classList.toggle('aura', spins >= 100000);
-    $('legend').hidden = spins < 1000000;
-    document.body.classList.toggle('disco', spins >= 10000000);
+    svg.classList.toggle('golden', spins >= 7500);
+    $('float').classList.toggle('aura', spins >= 5000);
+    $('legend').hidden = spins < 10000;
+    document.body.classList.toggle('disco', spins >= 10000);
   }
   let lastMileKey = '';
+  function renderCountAndLimit() { renderCount(); }
   function renderCount() {
     $('count').textContent = spins.toLocaleString();
     const mk = MILES.filter(m => spins >= m.n).length + '|' + (spins === 0);
@@ -2147,7 +2279,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   function checkUnlocks() {
     const c = CREATURES.find(x => x.unlock === spins && x.unlock > 0);
     if (!c) return;
-    buildPicker();
+    buildPicker(); renderDiveLimit();
     const later = MILES.some(m => m.n === spins) ? 3800 : 600;
     setTimeout(() => {
       banner('New friend!', `The ${c.label} has joined your ocean`, 3600);
@@ -2161,8 +2293,28 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   const gauge = $('gauge'); let lastEdge = null, edges = [];
   const pctFromY = y => { const r = gauge.getBoundingClientRect(); return clamp((y - r.top) / r.height * 100, 0, 100); };
   const nearest = p => unlockedIds().reduce((a, c) => Math.abs(FRIENDS[c].depth - p) < Math.abs(FRIENDS[a].depth - p) ? c : a);
+  const diveLimit = () => Math.min(100, Math.max(...unlockedIds().map(id => FRIENDS[id].depth)) + 3);
+  function renderDiveLimit() {
+    const lim = diveLimit(), g = $('gauge');
+    g.style.setProperty('--lim', lim + '%');
+    $('lockzone').classList.toggle('gone', lim >= 100);
+  }
+  let lockNoteT = 0, lastLockMsg = 0;
+  function blockedDive() {
+    const tn = performance.now(); if (tn - lastLockMsg < 1400) return; lastLockMsg = tn;
+    const next = CREATURES.find(c => !isUnlocked(c.id)); if (!next) return;
+    const deeper = CREATURES.filter(c => !isUnlocked(c.id) && c.depth > diveLimit() - 3).sort((a, b) => a.unlock - b.unlock)[0] || next;
+    const ln = $('locknote');
+    ln.innerHTML = `<b>Not so fast!</b> Deeper water opens as you make friends. ${fmtN(deeper.unlock - spins)} more spins to go.`;
+    ln.classList.add('show'); clearTimeout(lockNoteT); lockNoteT = setTimeout(() => ln.classList.remove('show'), 2600);
+    const lz = $('lockzone'); lz.classList.remove('shake'); void lz.offsetWidth; lz.classList.add('shake');
+    if (!muted && ensureAudio()) { const t = now(); tone(t, 240, 180, 0.14, 0.12, 'triangle'); tone(t + .12, 200, 150, 0.16, 0.1, 'triangle'); }
+    if (navigator.vibrate) { try { navigator.vibrate([10, 40, 10]); } catch (err) {} }
+  }
   function dragTo(e) {
     dragP = pctFromY(e.clientY);
+    const lim = diveLimit();
+    if (dragP > lim) { dragP = lim; blockedDive(); }
     placeDot(dragP);
     depthTarget = dragP;
     if (dragP >= 98) foundSecret('abyss');
@@ -2239,7 +2391,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     clearTimeout(bannerTimer); bannerTimer = setTimeout(() => $('banner').classList.remove('show'), ms);
   }
   function celebrate(m) {
-    if (m.n === 10000000) { openFinale(); return; }
+    if (m.n === 10000) { openFinale(); return; }
     const big = m.n >= 1000, gold = !!m.gold, mega = !!m.mega;
     banner(m.title, m.msg, mega ? 8000 : gold ? 5000 : 3200);
     confetti(mega ? 240 : gold ? 200 : big ? 150 : 100, gold);
@@ -2686,7 +2838,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
       foundSecret('sleepy');
     }
   }
-  setInterval(() => { if (!asleep && !dragging && modal.hidden && info.hidden && $('guide').hidden && $('finale').hidden && !document.hidden && performance.now() - lastInteract > 25000) fallAsleep(); }, 1000);
+  setInterval(() => { if (!asleep && !dragging && modal.hidden && info.hidden && $('guide').hidden && $('finale').hidden && $('tour').hidden && $('welcome').hidden && !document.hidden && performance.now() - lastInteract > 25000) fallAsleep(); }, 1000);
 
   // song secret: press and hold your friend
   const SONGS = {
@@ -2713,7 +2865,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => pal.addEventListener(ev, () => clearTimeout(pressT)));
   pal.addEventListener('contextmenu', e => e.preventDefault());
 
-  // 10 million: everyone comes out to say thank you
+  // 10,000 spins: everyone comes out to say thank you
   function openFinale() {
     const row = $('finRow'); row.innerHTML = '';
     const ids = unlockedIds(), sayers = new Set([...ids].sort(() => Math.random() - .5).slice(0, 5));
@@ -2732,7 +2884,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
 
   // ---------- About / Privacy / Contact ----------
   const info = $('info');
-  const TABS = ['about', 'trophies', 'privacy', 'contact'];
+  const TABS = ['about', 'trophies', 'privacy', 'contact', 'updates'];
   let curTab = 'about', tabsSeen = new Set();
   let trophyVer = -1;
   function selectTab(name) {
@@ -2823,6 +2975,82 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   $('infoClose').addEventListener('click', closeInfo);
   info.addEventListener('click', e => { if (e.target === info) closeInfo(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !info.hidden) closeInfo(); });
+  // ---------- Updates tab ----------
+  function fillUpdates() {
+    $('vTag').textContent = 'Update ' + VERSION;
+    const u = CHANGELOG[0];
+    $('upList').innerHTML = `<div class="upd latest"><div class="uh"><span class="un"><b>${u.name}</b></span><span class="ud">${u.date}</span></div><p class="umaj">Major features</p><ul>${u.items.map(t => `<li>${t}</li>`).join('')}</ul></div>`;
+  }
+  fillUpdates();
+
+  // ---------- How-to-play tour (first visit; can be skipped or replayed from About) ----------
+  const TOUR = [
+    { t: 'Welcome to Bloop Ocean', p: 'A calm little clicker. Tap cute sea friends, dive deep and hunt for secrets. Here\'s a quick tour.', el: null },
+    { t: 'Tap your friend', p: 'Every tap spins your friend with a soft bloop. Go on, try it now!', el: '#pal', free: true },
+    { t: 'Dive deeper', p: 'Drag this slider to swim from the sunny surface down to the pitch-black deep.', el: '#gauge' },
+    { t: 'Collect 20 friends', p: 'A new sea friend joins every 500 spins. Tap here to see them all and swim to any of them.', el: '#friendBtn' },
+    { t: 'Hunt for secrets', p: '250 secrets hide in the ocean. Tap things that swim by and play around. Your finds and records live here.', el: '#trophyBtn' },
+    { t: 'Best with sound', p: 'Bloop Ocean is made for headphones. Change the volume here any time. Have fun!', el: '#mute' }
+  ];
+  let tourI = 0;
+  function placeSpot() {
+    const st = TOUR[tourI], spot = $('tourSpot'), card = $('tourCard');
+    if (!st.el) { spot.classList.add('none'); Object.assign(spot.style, { left: '50%', top: '50%', width: '0px', height: '0px' }); card.className = 'tcard center'; return; }
+    spot.classList.remove('none');
+    const r = document.querySelector(st.el).getBoundingClientRect(), pad = st.el === '#pal' ? 4 : 8;
+    const round = st.el === '#gauge' ? '28px' : '999px';
+    Object.assign(spot.style, { left: (r.left - pad) + 'px', top: (r.top - pad) + 'px', width: (r.width + pad * 2) + 'px', height: (r.height + pad * 2) + 'px', borderRadius: round });
+    card.className = 'tcard' + (r.top + r.height / 2 > innerHeight * .62 ? ' top' : '');
+  }
+  function showTourStep(i) {
+    tourI = Math.max(0, Math.min(TOUR.length - 1, i));
+    const st = TOUR[tourI], card = $('tourCard');
+    $('tourStep').textContent = `${tourI + 1} of ${TOUR.length}`;
+    $('tourTitle').textContent = st.t; $('tourText').textContent = st.p;
+    $('tourDots').innerHTML = TOUR.map((_, k) => `<span class="${k === tourI ? 'on' : ''}"></span>`).join('');
+    $('tourBack').hidden = tourI === 0;
+    $('tourNext').textContent = tourI === TOUR.length - 1 ? 'Start playing' : tourI === 0 ? 'Show me' : 'Next';
+    $('tour').style.pointerEvents = st.free ? 'none' : 'auto'; card.style.pointerEvents = 'auto';
+    card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+    placeSpot();
+    if (!muted && ctx && ctx.state === 'running') tone(now(), 660 + tourI * 70, 990 + tourI * 70, 0.1, 0.05);
+  }
+  function startTour() {
+    if (!$('info').hidden) { info.hidden = true; }
+    $('tour').hidden = false; showTourStep(0); $('tourNext').focus();
+  }
+  function endTour() {
+    store.set('seenTutorial', true); store.set('seenVersion', VERSION);
+    const tr = $('tour'); tr.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220 }).onfinish = () => { tr.hidden = true; };
+    lastInteract = performance.now();
+  }
+  $('tourNext').addEventListener('click', () => { ensureAudio(); if (tourI === TOUR.length - 1) endTour(); else showTourStep(tourI + 1); });
+  $('tourBack').addEventListener('click', () => showTourStep(tourI - 1));
+  $('tourSkip').addEventListener('click', endTour);
+  addEventListener('resize', () => { if (!$('tour').hidden) placeSpot(); });
+  document.addEventListener('keydown', e => { if ($('tour').hidden) return; if (e.key === 'Escape') endTour(); if (e.key === 'ArrowRight') $('tourNext').click(); if (e.key === 'ArrowLeft' && tourI > 0) showTourStep(tourI - 1); });
+  $('howBtn').addEventListener('click', () => { info.classList.add('closing'); setTimeout(() => { info.hidden = true; info.classList.remove('closing'); startTour(); }, 240); });
+
+  // ---------- Welcome back (returning players) ----------
+  function showWelcome(withNews) {
+    const n = unlockedIds().length, next = CREATURES.find(c => !isUnlocked(c.id));
+    $('wbText').textContent = spins === 0 ? 'Your friends missed you. Ready for a dive?' :
+      `You've spun ${fmtN(spins)} times and made ${n} of ${CREATURES.length} friends.` + (next ? ` The next friend joins in ${fmtN(next.unlock - spins)} spins.` : ' You found every friend. Legend.');
+    const row = $('wbRow'); row.innerHTML = ''; unlockedIds().slice(-4).forEach(id => row.appendChild(cloneChar(id, 'happy')));
+    $('wbNew').hidden = !withNews; $('wbAll').hidden = !withNews;
+    if (withNews) { const u = CHANGELOG[0]; $('wbTag').textContent = 'Update ' + u.v; $('wbName').textContent = u.name; $('wbList').innerHTML = u.items.map(t => `<li>${t}</li>`).join(''); }
+    $('welcome').hidden = false; $('wbGo').focus();
+  }
+  function closeWelcome(then) {
+    store.set('seenVersion', VERSION);
+    const w = $('welcome'); w.classList.add('closing'); setTimeout(() => { w.hidden = true; w.classList.remove('closing'); if (then) then(); }, 240);
+    lastInteract = performance.now();
+  }
+  $('wbGo').addEventListener('click', () => { ensureAudio(); closeWelcome(); });
+  $('wbAll').addEventListener('click', () => closeWelcome(() => openInfo('updates')));
+  $('welcome').addEventListener('click', e => { if (e.target === $('welcome')) closeWelcome(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('welcome').hidden) closeWelcome(); });
+
   // ---------- contact form: sends through Formspree, which emails the message to you ----------
   const FORMSPREE_ID = 'YOUR_FORM_ID';   // paste your Formspree form ID here, for example 'xyzabcde'
   if (!/^[a-z0-9]{6,12}$/i.test(FORMSPREE_ID)) { $('cform').hidden = true; $('cOff').hidden = false; }
@@ -2880,7 +3108,8 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     setTimeout(() => {
       closeModal();
       rot -= 360; pal.style.transform = `rotate(${rot}deg)`;
-      renderCount(); placeAccs(); buildPicker(); if (!isUnlocked(cur)) setFriend('turtle');
+      dataVer++; guideUnl = ''; $('guideBody').textContent = '';
+      renderCount(); placeAccs(); buildPicker(); renderDiveLimit(); if (!isUnlocked(cur)) setFriend('turtle');
       const b = pal.getBoundingClientRect(); burst((b.left + b.width / 2) * dpr, (b.top + b.height / 2) * dpr, 40);
       toast('Fresh dive! Back to <b>0 spins</b>', 2000);
       if (!muted && ensureAudio()) { const t = now(); tone(t, 900, 300, 0.5, 0.25); noise(t, 0.9, 0.12, 1800, 600, 250); chime(t + .45, 523.25, 0.06); }
@@ -2922,7 +3151,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
     burst(x * dpr, y * dpr, (PHONE ? 12 : 22) - (fast ? (PHONE ? 5 : 8) : 0));
     playSpin(fast ? 1 + Math.min(.5, (taps.length - 8) * .04) : 1);
     spins++; dataVer++; store.set('spins', spins); renderCount(); placeAccs();
-    perFriend[cur] = (perFriend[cur] || 0) + 1; store.set('perFriend', perFriend); [10, 100, 1000].forEach(n => { if (perFriend[cur] === n) foundSecret('spin' + n + '_' + cur); });
+    perFriend[cur] = (perFriend[cur] || 0) + 1; store.set('perFriend', perFriend); [10, 100, 500].forEach(n => { if (perFriend[cur] === n) foundSecret('spin' + n + '_' + cur); });
     if (SECRETS['total_' + spins]) foundSecret('total_' + spins); if (SECRETS['num_' + spins]) foundSecret('num_' + spins);
     checkUnlocks();
     bump('tps', taps.filter(x => tnow - x <= 1000).length);
@@ -2955,7 +3184,7 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   }
   pal.addEventListener('click', spin);
 
-  buildPicker();
+  buildPicker(); renderDiveLimit();
   // friends already earned count as found, without a parade of popups
   CREATURES.forEach(c => { if (c.unlock > 0 && isUnlocked(c.id) && !found.has('unlock_' + c.id)) { found.add('unlock_' + c.id); } }); store.set('secrets', [...found]);
   placeFaceBits();
@@ -2966,6 +3195,13 @@ button.cat:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; 
   idle(() => { if (info.hidden) fillTrophies(); }, 4200);
   idle(() => { fillParade(); }, 3400);
   if (saveWasTampered) setTimeout(() => toast('Your saved progress looked edited, so the ocean started fresh', 4200), 800); renderMute(); renderFacts();
+  {
+    const prevSeen = store.get('lastSeen', 0), seenV = store.get('seenVersion', '');
+    store.set('lastSeen', Date.now()); setInterval(() => { if (!document.hidden) store.set('lastSeen', Date.now()); }, 20000);
+    if (!store.get('seenTutorial', false) && (firstVisit || spins === 0)) setTimeout(startTour, 700);
+    else if (seenV !== VERSION) setTimeout(() => showWelcome(true), 700);
+    else if (Date.now() - prevSeen > 30 * 60 * 1000) setTimeout(() => showWelcome(false), 700);
+  }
   tick();
 })();
 </script>
